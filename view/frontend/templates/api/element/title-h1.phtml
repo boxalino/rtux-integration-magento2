@@ -1,0 +1,11 @@
+<?php
+/**
+ * @var $block Boxalino\RealTimeUserExperience\Block\Api\Block
+ */
+?>
+<h1><?php echo $block->getTitle()[0];?></h1>
+
+<?php /** generic structure to render child elements of the Layout Block */?>
+<?php foreach($this->getBlocks() as $block) :?>
+    <?php echo $this->getApiBlock($block)->toHtml();?>
+<?php endforeach; ?>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Catalog\Block\Category\View" type="Boxalino\RealTimeUserExperienceIntegration\Block\Api\Navigation"/>
+    <type name="Boxalino\RealTimeUserExperienceIntegration\Block\Api\Navigation">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="widget" xsi:type="string">navigation</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
