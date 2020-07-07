@@ -3,7 +3,6 @@ namespace Boxalino\RealTimeUserExperienceIntegration\Block\Api;
 
 use Boxalino\RealTimeUserExperience\Api\ApiRendererInterface;
 use Boxalino\RealTimeUserExperience\Block\ApiBlockTrait;
-use Boxalino\RealTimeUserExperience\Model\ApiLoaderTrait;
 use Boxalino\RealTimeUserExperienceIntegration\Model\Api\Request\Context\CmsContext;
 use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
@@ -20,7 +19,6 @@ class Cms extends \Magento\Framework\View\Element\Template
     implements ApiRendererInterface
 {
 
-    use ApiLoaderTrait;
     use ApiBlockTrait;
 
     /**

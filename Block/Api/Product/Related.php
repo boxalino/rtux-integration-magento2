@@ -4,7 +4,6 @@ namespace Boxalino\RealTimeUserExperienceIntegration\Block\Api\Product;
 use Boxalino\RealTimeUserExperience\Api\ApiBlockAccessorInterface;
 use Boxalino\RealTimeUserExperience\Api\ApiRendererInterface;
 use Boxalino\RealTimeUserExperience\Block\ApiBlockTrait;
-use Boxalino\RealTimeUserExperience\Model\ApiLoaderTrait;
 use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
 use Boxalino\RealTimeUserExperience\Model\Response\Content\ApiEntityCollection;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
@@ -26,7 +25,6 @@ class Related extends \Magento\Catalog\Block\Product\ProductList\Related
     implements ApiRendererInterface
 {
 
-    use ApiLoaderTrait;
     use ApiBlockTrait;
 
     /**

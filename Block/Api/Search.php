@@ -6,7 +6,6 @@ use Boxalino\RealTimeUserExperience\Api\ApiRendererInterface;
 use Boxalino\RealTimeUserExperience\Api\ApiResponseBlockInterface;
 use Boxalino\RealTimeUserExperience\Block\ApiBlockTrait;
 use Boxalino\RealTimeUserExperience\Block\Catalog\Product\ListProduct;
-use Boxalino\RealTimeUserExperience\Model\ApiLoaderTrait;
 use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
 use Boxalino\RealTimeUserExperienceIntegration\Api\ApiLayoutBlockNameInterface;
 use Boxalino\RealTimeUserExperienceIntegration\Model\Api\Request\Context\SearchContext;
@@ -29,7 +28,6 @@ class Search extends \Magento\CatalogSearch\Block\Result
     implements ApiRendererInterface
 {
 
-    use ApiLoaderTrait;
     use ApiBlockTrait;
 
     /**

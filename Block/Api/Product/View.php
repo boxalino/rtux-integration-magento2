@@ -3,7 +3,6 @@ namespace Boxalino\RealTimeUserExperienceIntegration\Block\Api\Product;
 
 use Boxalino\RealTimeUserExperience\Api\ApiRendererInterface;
 use Boxalino\RealTimeUserExperience\Block\ApiBlockTrait;
-use Boxalino\RealTimeUserExperience\Model\ApiLoaderTrait;
 use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Boxalino\RealTimeUserExperienceIntegration\Model\Api\Request\Context\ItemContext;
@@ -16,7 +15,6 @@ class View extends \Magento\Framework\View\Element\Template
     implements ApiRendererInterface
 {
 
-    use ApiLoaderTrait;
     use ApiBlockTrait;
 
     /**

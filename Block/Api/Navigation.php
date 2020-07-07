@@ -4,14 +4,13 @@ namespace Boxalino\RealTimeUserExperienceIntegration\Block\Api;
 use Boxalino\RealTimeUserExperience\Api\ApiRendererInterface;
 use Boxalino\RealTimeUserExperience\Api\ApiResponseBlockInterface;
 use Boxalino\RealTimeUserExperience\Block\ApiBlockTrait;
-use Boxalino\RealTimeUserExperience\Model\ApiLoaderTrait;
 use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
 use Boxalino\RealTimeUserExperienceIntegration\Model\Api\Request\Context\NavigationContext;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
-use Magento\Framework\View\Element\Template;
 use Magento\Catalog\Block\Category\View;
 use Magento\Framework\View\Element\Template\Context;
 use Magento\Catalog\Model\Layer\Resolver;
+
 /**
  * Class Navigation
  * Replaces the category-displayed products
@@ -23,7 +22,6 @@ class Navigation extends View
     implements ApiRendererInterface
 {
 
-    use ApiLoaderTrait;
     use ApiBlockTrait;
 
     /**
