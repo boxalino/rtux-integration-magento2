@@ -21,6 +21,7 @@ use Magento\Search\Model\QueryFactory;
  * Class Search
  * Replaces the search-displayed products/result
  * Extends from the original block in order to ensure a fallback strategy
+ * Does not replace the default template
  *
  * @package Boxalino\RealTimeUserExperienceIntegration\Block
  */

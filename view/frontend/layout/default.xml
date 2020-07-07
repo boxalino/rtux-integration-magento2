@@ -1,10 +1,6 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance dc" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <referenceBlock name="top.search">
-        <action method="setTemplate">
-            <argument name="template" xsi:type="string">Boxalino_RealTimeUserExperienceIntegration::search/form.mini.phtml</argument>
-        </action>
-    </referenceBlock>
+    <!-- adding the JS configuration for the autocomplete JS requests -->
     <referenceContainer name="after.body.start">
         <block class="Magento\Framework\View\Element\Template" name="rtux.api.js.init" template="Boxalino_RealTimeUserExperience::js.phtml"/>
     </referenceContainer>

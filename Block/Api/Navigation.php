@@ -15,6 +15,7 @@ use Magento\Catalog\Model\Layer\Resolver;
 /**
  * Class Navigation
  * Replaces the category-displayed products
+ * Does not update the default Magento2 catalog_category_view template
  *
  * @package Boxalino\RealTimeUserExperienceIntegration\Block
  */
