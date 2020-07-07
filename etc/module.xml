@@ -2,6 +2,8 @@
     <module name="Boxalino_RealTimeUserExperienceIntegration" setup_version="1.0.0">
         <sequence>
             <module name="Magento_Catalog"/>
+            <module name="Magento_CatalogSearch"/>
+            <module name="Magento_Search"/>
         </sequence>
     </module>
 </config>

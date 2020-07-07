@@ -1,0 +1,13 @@
+<?php
+/**
+ * Template used to represent the toolbar
+ * sequence from vendor/magento/module-catalog/view/frontend/templates/product/list/toolbar.phtml
+ *
+ * @var $block \Boxalino\RealTimeUserExperience\Block\Catalog\Product\ProductList\Toolbar
+ */
+?>
+<div class="toolbar toolbar-products" data-mage-init='{"productListToolbarForm":<?= /* @noEscape */ $block->getWidgetOptionsJson() ?>}'>
+    <?php foreach($this->getBlocks() as $block) :?>
+        <?php echo $this->getApiBlock($block)->toHtml();?>
+    <?php endforeach; ?>
+</div>

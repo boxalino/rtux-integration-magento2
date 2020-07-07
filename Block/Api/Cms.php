@@ -14,7 +14,7 @@ use Magento\Framework\View\Element\Template;
  * Adds a CMS block/context on the page
  * (as seen in vendor/boxalino/rtux-integration-magento2/view/frontend/layout/cms_page_view_selectable_home_RTUX.xml)
  *
- * @package Boxalino\RealTimeUserExperience\Block
+ * @package Boxalino\RealTimeUserExperienceIntegration\Block
  */
 class Cms extends \Magento\Framework\View\Element\Template
     implements ApiRendererInterface
@@ -56,6 +56,7 @@ class Cms extends \Magento\Framework\View\Element\Template
         parent::_prepareLayout();
 
         try{
+            /** the configurations for the context can be defined via XML or directly in the $apiContext model */
             $this->apiContext
                 ->setWidget($this->getData("widget"))
                 ->setHitCount($this->getData("hitCount"))
@@ -76,16 +77,6 @@ class Cms extends \Magento\Framework\View\Element\Template
     public function getBlocks() : \ArrayIterator
     {
         return $this->apiLoader->getApiResponsePage()->getBlocks();
-    }
-
-    public function getRtuxVariantUuid() : string
-    {
-        return $this->apiLoader->getApiResponsePage()->getVariantUuid();
-    }
-
-    public function getRtuxGroupBy() : string
-    {
-        return $this->apiLoader->getApiResponsePage()->getGroupBy();
     }
 
 }

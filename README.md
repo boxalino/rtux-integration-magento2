@@ -43,6 +43,7 @@ In order to deploy it, check the *Setup* steps bellow.
 ## Documentation
 
 The latest documentation is available upon request.
+Specific feature integration is available in the repository Wiki.
 
 ## Contact us!
 

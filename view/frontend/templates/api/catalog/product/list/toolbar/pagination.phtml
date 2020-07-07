@@ -1,0 +1,29 @@
+<?php
+/**
+ * Simple sample for the pager & displayable amount
+ * sample exported from the default catalog/product/list/toolbar.phtml template structure
+ *  - if the show amounts is disabled for the pager.html logic - include the amount.phtml template
+ *  - if the pager is enabled - include the template
+ *  - if the show per page is disabled for the pager.html logic - include the limiter.phtml
+ *
+ * Requirement:
+ *  - html/pager.html must not check the collection size
+ *  - CSS for .toolbar-products .pages must not have display:none;
+ *
+ * @var $block \Boxalino\RealTimeUserExperience\Block\Catalog\Product\ProductList\Pager
+ */
+?>
+<?php
+// phpcs:disable Magento2.Security.IncludeFile.FoundIncludeFile
+// phpcs:disable PSR2.Methods.FunctionCallSignature.SpaceBeforeOpenBracket
+?>
+
+<?php if(!$block->getShowAmounts()) : ?>
+    <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/amount.phtml')) ?>
+<?php endif;?>
+<?php if($block->getLastPageNum() > 1 && $block->showPager()): ?>
+    <?php include ($block->getTemplateFile('Magento_Theme::html/pager.phtml')) ?>
+<?php endif;?>
+<?php if(!$block->isShowPerPage()) :?>
+    <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/limiter.phtml')) ?>
+<?php endif;?>

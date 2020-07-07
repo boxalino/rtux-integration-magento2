@@ -16,7 +16,7 @@ use Magento\Catalog\Model\Layer\Resolver;
  * Class Navigation
  * Replaces the category-displayed products
  *
- * @package Boxalino\RealTimeUserExperience\Block
+ * @package Boxalino\RealTimeUserExperienceIntegration\Block
  */
 class Navigation extends View
     implements ApiRendererInterface
@@ -56,12 +56,17 @@ class Navigation extends View
         $this->apiContext = $apiContext;
     }
 
+    /**
+     * Makes the request to Boxalino API
+     *
+     * @return Navigation|void
+     */
     protected function _prepareLayout()
     {
         try{
             $this->apiLoader
                 ->setRequest($this->requestWrapper->setRequest($this->_request))
-                ->setApiContext($this->apiContext->setWidget("navigation"))
+                ->setApiContext($this->apiContext)
                 ->load();
         } catch (\Throwable $exception)
         {
@@ -74,9 +79,15 @@ class Navigation extends View
         parent::_prepareLayout();
     }
 
+    public function getBlocks() : \ArrayIterator
+    {
+        return $this->apiLoader->getApiResponsePage()->getBlocks();
+    }
+
     /**
-     * If it`s fallback - return default Magento2 products
-     * If it`s not fallback - display the Boxalino API response
+     * Default: call parent
+     * Boxalino API: display the Boxalino API response block
+     * Optional: this function is only needed if the default Magento2 template is used
      *
      * @return string
      */
@@ -94,21 +105,6 @@ class Navigation extends View
             ->setApiResponsePage($this->apiLoader->getApiResponsePage());
 
         return $apiBlock->toHtml();
-    }
-
-    public function getBlocks() : \ArrayIterator
-    {
-        return $this->apiLoader->getApiResponsePage()->getBlocks();
-    }
-
-    public function getRtuxVariantUuid() : string
-    {
-        return $this->apiLoader->getApiResponsePage()->getVariantUuid();
-    }
-
-    public function getRtuxGroupBy() : string
-    {
-        return $this->apiLoader->getApiResponsePage()->getGroupBy();
     }
 
 }

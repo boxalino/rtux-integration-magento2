@@ -15,6 +15,8 @@ use Magento\Catalog\Model\Product\Visibility;
 /**
  * Class CmsContext
  * Holds the request properties: widget, hitcount, returnfields, groupby, offset, etc
+ * The list of filters applied on the context is part of the class function (which can be rewritten)
+ * protected function addFilters(RequestInterface $request) : void
  *
  * @package Boxalino\RealTimeUserExperienceIntegration\Model\Api\Request\Context
  */
@@ -31,8 +33,9 @@ class CmsContext extends ContextAbstract
         StoreConfigurationHelper $storeConfigurationHelper
     ) {
         parent::__construct($requestTransformer, $parameterFactory);
-        $this->setRequestDefinition($requestDefinition);
         $this->storeConfigurationHelper = $storeConfigurationHelper;
+        /** prepare context with configurations */
+        $this->setRequestDefinition($requestDefinition);
     }
 
     /**
