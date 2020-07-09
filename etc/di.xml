@@ -3,4 +3,42 @@
     <preference for="Magento\Catalog\Block\Category\View" type="Boxalino\RealTimeUserExperienceIntegration\Block\Api\Navigation"/>
     <preference for="Magento\CatalogSearch\Block\Result" type="Boxalino\RealTimeUserExperienceIntegration\Block\Api\Search"/>
     <preference for="Magento\Catalog\Block\Product\ProductList\Related" type="Boxalino\RealTimeUserExperienceIntegration\Block\Api\Product\Related"/>
+
+    <!-- the sorting model must be declared for the integration to work; even in absence of use, the default provided one can be used -->
+    <preference for="Boxalino\RealTimeUserExperienceApi\Framework\Content\Listing\ApiSortingModelInterface" type="Boxalino\RealTimeUserExperience\Model\Response\Content\ApiSorting"/>
+    <type name="Boxalino\RealTimeUserExperience\Model\Response\Content\ApiSorting">
+        <arguments>
+            <argument name="sortingList" xsi:type="array">
+                <item name="position" xsi:type="array">
+                    <item name="field" xsi:type="string">position</item>
+                    <item name="direction" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string">Recommended</item>
+                    <item name="api-field" xsi:type="string">position</item>
+                    <item name="reverse" xsi:type="boolean">false</item>
+                </item>
+                <item name="price-asc" xsi:type="array">
+                    <item name="field" xsi:type="string">price</item>
+                    <item name="direction" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string">Price: low to high</item>
+                    <item name="api-field" xsi:type="string">discountedPrice</item>
+                    <item name="reverse" xsi:type="boolean">false</item>
+                </item>
+                <item name="price-desc" xsi:type="array">
+                    <item name="field" xsi:type="string">price</item>
+                    <item name="direction" xsi:type="string">desc</item>
+                    <item name="label" xsi:type="string">Price: high to low</item>
+                    <item name="api-field" xsi:type="string">discountedPrice</item>
+                    <item name="reverse" xsi:type="boolean">true</item>
+                </item>
+                <item name="newest" xsi:type="array">
+                    <item name="field" xsi:type="string">entity_id</item>
+                    <item name="direction" xsi:type="string">desc</item>
+                    <item name="label" xsi:type="string">New arrivals</item>
+                    <item name="api-field" xsi:type="string">id</item>
+                    <item name="reverse" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
 </config>

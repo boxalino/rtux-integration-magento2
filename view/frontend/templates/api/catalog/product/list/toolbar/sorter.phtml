@@ -1,14 +1,10 @@
 <?php
 /**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
-?>
-<?php
-/**
- * Product list toolbar
+ * Product list sorting options
+ * As seen in Magento_Catalog::product/list/toolbar/sorter.phtml
+ * (changes: the label access, the "direction" is removed as the sorting fields are joined with it)
  *
- * @var $block \Magento\Catalog\Block\Product\ProductList\Toolbar
+ * @var $block \Boxalino\RealTimeUserExperience\Block\Catalog\Product\ProductList\Sorting
  */
 ?>
 <div class="toolbar-sorter sorter">
@@ -20,25 +16,8 @@
                     selected="selected"
                 <?php endif; ?>
                 >
-                <?= $block->escapeHtml(__($_order)) ?>
+                <?= $block->escapeHtml(__($_order->getLabel())) ?>
             </option>
         <?php endforeach; ?>
     </select>
-    <?php if ($block->getCurrentDirection() == 'desc') :?>
-        <a title="<?= $block->escapeHtmlAttr(__('Set Ascending Direction')) ?>"
-           href="#"
-           class="action sorter-action sort-desc"
-           data-role="direction-switcher"
-           data-value="asc">
-            <span><?= $block->escapeHtml(__('Set Ascending Direction')) ?></span>
-        </a>
-    <?php else :?>
-        <a title="<?= $block->escapeHtmlAttr(__('Set Descending Direction')) ?>"
-           href="#"
-           class="action sorter-action sort-asc"
-           data-role="direction-switcher"
-           data-value="desc">
-            <span><?= $block->escapeHtml(__('Set Descending Direction')) ?></span>
-        </a>
-    <?php endif; ?>
 </div>
