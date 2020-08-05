@@ -4,6 +4,10 @@
     <preference for="Magento\CatalogSearch\Block\Result" type="Boxalino\RealTimeUserExperienceIntegration\Block\Api\Search"/>
     <preference for="Magento\Catalog\Block\Product\ProductList\Related" type="Boxalino\RealTimeUserExperienceIntegration\Block\Api\Product\Related"/>
 
+    <!-- registry-mock to access available API response structures -->
+    <preference for="Boxalino\RealTimeUserExperience\Api\CurrentApiResponseRegistryInterface" type="Boxalino\RealTimeUserExperience\Registry\CurrentApiResponse"/>
+    <preference for="Boxalino\RealTimeUserExperience\Api\CurrentApiResponseViewRegistryInterface" type="Boxalino\RealTimeUserExperience\Registry\CurrentApiResponseView"/>
+
     <!-- the sorting model must be declared for the integration to work; even in absence of use, the default provided one can be used -->
     <preference for="Boxalino\RealTimeUserExperienceApi\Framework\Content\Listing\ApiSortingModelInterface" type="Boxalino\RealTimeUserExperience\Model\Response\Content\ApiSorting"/>
     <type name="Boxalino\RealTimeUserExperience\Model\Response\Content\ApiSorting">

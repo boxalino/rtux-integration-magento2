@@ -7,6 +7,8 @@ use Boxalino\RealTimeUserExperience\Api\ApiResponseBlockInterface;
 use Boxalino\RealTimeUserExperience\Block\ApiBlockTrait;
 use Boxalino\RealTimeUserExperience\Block\Catalog\Product\ListProduct;
 use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
+use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseRegistryInterface;
+use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseViewRegistryInterface;
 use Boxalino\RealTimeUserExperienceIntegration\Api\ApiLayoutBlockNameInterface;
 use Boxalino\RealTimeUserExperienceIntegration\Model\Api\Request\Context\SearchContext;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
@@ -19,8 +21,14 @@ use Magento\Search\Model\QueryFactory;
 /**
  * Class Search
  * Replaces the search-displayed products/result
+ *
+ * The default Boxalino Narrative API search layout includes 3 scenarios:
+ * 1. default search (matches for the search term)
+ * 2. search sub-phrases (multiple groups of search results for parts of the search term)
+ * 3. no results (product recommendations)
+ *
  * Extends from the original block in order to ensure a fallback strategy
- * Does not replace the default template
+ * Does not replace the default template (Magento_CatalogSearch::result.phtml)
  *
  * @package Boxalino\RealTimeUserExperienceIntegration\Block
  */
@@ -45,7 +53,19 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     protected $requestWrapper;
 
+    /**
+     * @var CurrentApiResponseRegistryInterface
+     */
+    protected $currentApiResponse;
+
+    /**
+     * @var CurrentApiResponseViewRegistryInterface
+     */
+    protected $currentApiResponseView;
+
     public function __construct(
+        CurrentApiResponseRegistryInterface$currentApiResponse,
+        CurrentApiResponseViewRegistryInterface $currentApiResponseView,
         ApiPageLoader $apiPageLoader,
         SearchContext $apiContext,
         RequestInterface $requestWrapper,
@@ -56,6 +76,8 @@ class Search extends \Magento\CatalogSearch\Block\Result
         array $data = []
     ){
         parent::__construct($context, $layerResolver, $catalogSearchData, $queryFactory, $data);
+        $this->currentApiResponse = $currentApiResponse;
+        $this->currentApiResponseView = $currentApiResponseView;
         $this->requestWrapper = $requestWrapper;
         $this->apiLoader = $apiPageLoader;
         $this->apiContext = $apiContext;
@@ -63,13 +85,13 @@ class Search extends \Magento\CatalogSearch\Block\Result
 
     /**
      * Default: use default template in case of fallback
-     * Boxalino API: custom template
+     * Boxalino API: use the generic template to render blocks and children
      *
      * @return string
      */
     public function getTemplate()
     {
-        if($this->apiLoader->getApiResponsePage()->isFallback())
+        if($this->currentApiResponseView->get()->isFallback())
         {
             return parent::getTemplate();
         }
@@ -78,7 +100,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
     }
 
     /**
-     * Makes the API requests
+     * Makes the API requests (all parameters are defined in the api context)
      * Processes default action
      *
      * @return Search|void
@@ -86,10 +108,16 @@ class Search extends \Magento\CatalogSearch\Block\Result
     protected function _prepareLayout()
     {
         try{
+            if($this->currentApiResponse->get())
+            {
+                return parent::_prepareLayout();
+            }
+
             $this->apiLoader
                 ->setRequest($this->requestWrapper->setRequest($this->_request))
                 ->setApiContext($this->apiContext)
                 ->load();
+
         } catch (\Throwable $exception)
         {
             $this->apiLoader->getApiResponsePage()->setFallback(true);
@@ -103,14 +131,14 @@ class Search extends \Magento\CatalogSearch\Block\Result
 
     /**
      * Default: Get search query text
-     * Boxalino API: regardless of the search scenario (default, search query correction, sub-phrases or noresults),
+     * Boxalino API: regardless of the search scenario (default/search query correction, sub-phrases or noresults),
      * there is a search title element in the configured narrative layout
      *
      * @return \Magento\Framework\Phrase
      */
     public function getSearchQueryText()
     {
-        if($this->apiLoader->getApiResponsePage()->isFallback())
+        if($this->currentApiResponseView->get()->isFallback())
         {
             return parent::getSearchQueryText();
         }
@@ -146,7 +174,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function setListModes()
     {
-        if($this->apiLoader->getApiResponsePage()->isFallback())
+        if($this->currentApiResponseView->get()->isFallback())
         {
             return parent::setListModes();
         }
@@ -162,7 +190,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function setListOrders()
     {
-        if($this->apiLoader->getApiResponsePage()->isFallback())
+        if($this->currentApiResponseView->get()->isFallback())
         {
             return parent::setListOrders();
         }
@@ -172,12 +200,17 @@ class Search extends \Magento\CatalogSearch\Block\Result
 
     public function getBlocks() : \ArrayIterator
     {
-        return $this->apiLoader->getApiResponsePage()->getBlocks();
+        if($this->currentApiResponseView->get())
+        {
+            return $this->currentApiResponseView->get()->getBlocks();
+        }
+
+        return new \ArrayIterator();
     }
 
     /**
      * Optional functions rewritten from parent block
-     * (to be used if the default Magento2 template is used)
+     * (required for when the default Magento2 template is used)
      */
 
     /**
@@ -189,7 +222,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function getListBlock()
     {
-        if($this->apiLoader->getApiResponsePage()->isFallback())
+        if($this->currentApiResponseView->get()->isFallback())
         {
             return parent::getListBlock();
         }
@@ -212,7 +245,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function getProductListHtml()
     {
-        if($this->apiLoader->getApiResponsePage()->isFallback())
+        if($this->currentApiResponseView->get()->isFallback())
         {
             return parent::getProductListHtml();
         }
@@ -229,7 +262,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     protected function _getProductCollection()
     {
-        if($this->apiLoader->getApiResponsePage()->isFallback())
+        if($this->currentApiResponseView->get()->isFallback())
         {
             return parent::_getProductCollection();
         }
@@ -258,7 +291,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function getResultCount()
     {
-        if($this->apiLoader->getApiResponsePage()->isFallback())
+        if($this->currentApiResponseView->get()->isFallback())
         {
             return parent::getResultCount();
         }
@@ -281,7 +314,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function getNoteMessages()
     {
-        if($this->apiLoader->getApiResponsePage()->isFallback())
+        if($this->currentApiResponseView->get()->isFallback())
         {
             return parent::getNoteMessages();
         }

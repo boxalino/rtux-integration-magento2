@@ -77,4 +77,16 @@ class NavigationContext extends ListingContextAbstract
         return ["id", "products_group_id", "title"];
     }
 
+    /**
+     * Set the range properties following the presented structure
+     *
+     * @return array
+     */
+    public function getRangeProperties() : array
+    {
+        return [
+            "discountedPrice" => ['from' => 'min-price', 'to' => 'max-price']
+        ];
+    }
+
 }

@@ -1,15 +1,19 @@
 <?php
 namespace Boxalino\RealTimeUserExperienceIntegration\Block\Api\Product;
 
+use Boxalino\RealTimeUserExperience\Api\ApiBlockAccessorInterface;
 use Boxalino\RealTimeUserExperience\Api\ApiRendererInterface;
 use Boxalino\RealTimeUserExperience\Block\ApiBlockTrait;
 use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
+use Boxalino\RealTimeUserExperience\Model\Response\Content\ApiEntityCollection;
+use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseViewRegistryInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Boxalino\RealTimeUserExperienceIntegration\Model\Api\Request\Context\ItemContext;
 use Magento\Framework\View\Element\Template;
+use Magento\Catalog\Model\ResourceModel\Product\Collection;
 
 /**
- * Catalog product related items block
+ * Catalog product view items block
  */
 class View extends \Magento\Framework\View\Element\Template
     implements ApiRendererInterface
@@ -32,7 +36,18 @@ class View extends \Magento\Framework\View\Element\Template
      */
     protected $requestWrapper;
 
+    /**
+     * @var CurrentApiResponseViewRegistryInterface
+     */
+    protected $currentApiResponseView;
+
+    /**
+     * @var Collection
+     */
+    protected $itemsCollection;
+
     public function __construct(
+        CurrentApiResponseViewRegistryInterface $currentApiResponseView,
         ApiPageLoader $apiPageLoader,
         ItemContext $apiContext,
         RequestInterface $requestWrapper,
@@ -40,6 +55,7 @@ class View extends \Magento\Framework\View\Element\Template
         array $data = []
     ) {
         parent::__construct($context, $data);
+        $this->currentApiResponseView = $currentApiResponseView;
         $this->requestWrapper = $requestWrapper;
         $this->apiLoader = $apiPageLoader;
         $this->apiContext = $apiContext;
@@ -53,7 +69,7 @@ class View extends \Magento\Framework\View\Element\Template
      */
     public function getWidget() : string
     {
-        return $this->getData("widget") ?? "related";
+        return "pdp-widget";
     }
 
     /**
@@ -63,8 +79,9 @@ class View extends \Magento\Framework\View\Element\Template
      */
     public function getHitCount() : string
     {
-        return $this->getData("hitCount") ?? 7;
+        return 7;
     }
+
     /**
      * It can either be used the (deprecated) registry to access the product ID
      * OR the request parameter
@@ -91,6 +108,11 @@ class View extends \Magento\Framework\View\Element\Template
     protected function _prepareLayout()
     {
         try{
+            if($this->currentApiResponseView->get())
+            {
+                return parent::_prepareLayout();
+            }
+
             $this->apiContext->setProductId($this->getContextItemId())
                 ->setWidget($this->getWidget())
                 ->setHitCount($this->getHitCount());
@@ -107,6 +129,34 @@ class View extends \Magento\Framework\View\Element\Template
         }
 
         parent::_prepareLayout();
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getItems() : ?Collection
+    {
+        if($this->currentApiResponseView->get()->isFallback())
+        {
+            return null;
+        }
+
+        if ($this->itemsCollection === null)
+        {
+            /** @var ApiBlockAccessorInterface $apiBlock */
+            foreach ($this->currentApiResponseView->get()->getBlocks() as $apiBlock)
+            {
+                /** upsell, crosssell, related, other */
+                if ($apiBlock->getType() === $this->getType())
+                {
+                    /** @var ApiEntityCollection $collectionModel */
+                    $collectionModel = $apiBlock->getModel();
+                    $this->itemsCollection = $collectionModel->getCollection();
+                }
+            }
+        }
+
+        return $this->itemsCollection;
     }
 
 }

@@ -1,0 +1,37 @@
+<?php
+/**
+ * State renderer for a generic (select) facet
+ * The sample template is being included via Boxalino_RealTimeUserExperienceIntegration::api/layered-navigation/state.phtml
+ *
+ * @var $block \Boxalino\RealTimeUserExperience\Block\LayeredNavigation\Layer\State
+ * @var $filter \Boxalino\RealTimeUserExperienceApi\Service\Api\Response\Accessor\Facet
+ * @var $selectedValue \Boxalino\RealTimeUserExperienceApi\Service\Api\Response\Accessor\FacetValue
+ */
+?>
+<?php foreach($filter->getSelectedValues() as $selectedValue) :?>
+    <li class="item">
+        <span class="filter-label"><?= $block->escapeHtml(__($filter->getLabel())) ?></span>
+        <span class="filter-value"><?= $block->escapeHtml($block->stripTags($selectedValue->getValue())) ?></span>
+        <?php
+        //$clearLinkUrl = $filter->getClearLinkUrl();
+        $clearLinkUrl = null;
+        $currentFilterName = $block->escapeHtmlAttr(__($filter->getLabel()) . " " . $block->stripTags($selectedValue->getValue()));
+        if ($clearLinkUrl) :
+            ?>
+            <a class="action previous" href="<?= $block->escapeUrl("filter->getRemoveUrl()") ?>"
+               title="<?= $block->escapeHtmlAttr(__('Previous')) ?>">
+                <span><?= $block->escapeHtml(__('Previous')) ?></span>
+            </a>
+            <a class="action remove"
+               title="<?= $block->escapeHtmlAttr("filter->getFilter()->getClearLinkText()") ?>"
+               href="<?= $block->escapeUrl($clearLinkUrl) ?>">
+                <span><?= $block->escapeHtml("filter->getFilter()->getClearLinkText()") ?></span>
+            </a>
+        <?php else : ?>
+            <a class="action remove" href="<?= $block->escapeUrl("filter->getRemoveUrl()") ?>"
+               title="<?= /* @noEscape */ $block->escapeHtmlAttr(__('Remove')) . " " . $currentFilterName ?>">
+                <span><?= $block->escapeHtml(__('Remove This Item')) ?></span>
+            </a>
+        <?php endif; ?>
+    </li>
+<?php endforeach;?>

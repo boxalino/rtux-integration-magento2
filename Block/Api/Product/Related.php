@@ -6,6 +6,7 @@ use Boxalino\RealTimeUserExperience\Api\ApiRendererInterface;
 use Boxalino\RealTimeUserExperience\Block\ApiBlockTrait;
 use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
 use Boxalino\RealTimeUserExperience\Model\Response\Content\ApiEntityCollection;
+use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseViewRegistryInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Boxalino\RealTimeUserExperienceIntegration\Model\Api\Request\Context\ItemContext;
 
@@ -14,7 +15,7 @@ use Boxalino\RealTimeUserExperienceIntegration\Model\Api\Request\Context\ItemCon
  * It extends the original Related block for the fallback strategy (if chosen to)
  *
  * Using this block as a preference for the default Magento2 block does not require any template update
- * (the generic Magento2 product/list/items.phtml is to be used)
+ * (the generic Magento2 Magento_Catalog::product/list/items.phtml is to be used)
  *
  * The product ID (context item ID) it is required due to the nature of the scenario
  *
@@ -42,7 +43,13 @@ class Related extends \Magento\Catalog\Block\Product\ProductList\Related
      */
     protected $requestWrapper;
 
+    /**
+     * @var CurrentApiResponseViewRegistryInterface
+     */
+    protected $currentApiResponseView;
+
     public function __construct(
+        CurrentApiResponseViewRegistryInterface $currentApiResponseView,
         ApiPageLoader $apiPageLoader,
         ItemContext $apiContext,
         RequestInterface $requestWrapper,
@@ -54,13 +61,15 @@ class Related extends \Magento\Catalog\Block\Product\ProductList\Related
         array $data = []
     ) {
         parent::__construct($context, $checkoutCart, $catalogProductVisibility, $checkoutSession, $moduleManager, $data);
+        $this->currentApiResponseView = $currentApiResponseView;
         $this->requestWrapper = $requestWrapper;
         $this->apiLoader = $apiPageLoader;
         $this->apiContext = $apiContext;
     }
 
     /**
-     * Property either set as an argument on block, a configuration field or hardcoded
+     * Property either set as an argument on block, a configuration field or statically defined
+     * Represents the PDP widget assigned to the narrative
      *
      * @required
      * @return string
@@ -71,14 +80,14 @@ class Related extends \Magento\Catalog\Block\Product\ProductList\Related
     }
 
     /**
-     * Property either set as an argument on block, a configuration field or hardcoded
-     *
+     * Property either set as an argument on block, a configuration field or statically defined
+     * Represents the size of the returned collection
      * @required
      * @return string
      */
     public function getHitCount() : string
     {
-        return 5;
+        return 8;
     }
 
     /**
@@ -111,14 +120,22 @@ class Related extends \Magento\Catalog\Block\Product\ProductList\Related
     protected function _prepareLayout()
     {
         try{
-            $this->apiContext->setProductId($this->getContextItemId())
-                ->setWidget($this->getWidget())
-                ->setHitCount($this->getHitCount());
+            if($this->currentApiResponseView->get())
+            {
+                return parent::_prepareLayout();
+            }
 
-            $this->apiLoader
-                ->setRequest($this->requestWrapper->setRequest($this->_request))
-                ->setApiContext($this->apiContext)
-                ->load();
+            if($this->getContextItemId())
+            {
+                $this->apiContext->setProductId($this->getContextItemId())
+                    ->setWidget($this->getWidget())
+                    ->setHitCount($this->getHitCount());
+
+                $this->apiLoader
+                    ->setRequest($this->requestWrapper->setRequest($this->_request))
+                    ->setApiContext($this->apiContext)
+                    ->load();
+            }
         } catch (\Throwable $exception)
         {
             $this->apiLoader->getApiResponsePage()->setFallback(true);
@@ -138,13 +155,13 @@ class Related extends \Magento\Catalog\Block\Product\ProductList\Related
      */
     protected function _prepareData()
     {
-        if($this->apiLoader->getApiResponsePage()->isFallback())
+        if($this->currentApiResponseView->get()->isFallback() || !$this->getContextItemId())
         {
             return parent::_prepareData();
         }
 
         /** @var ApiBlockAccessorInterface $apiBlock */
-        foreach($this->apiLoader->getApiResponsePage()->getBlocks() as $apiBlock)
+        foreach($this->currentApiResponseView->get()->getBlocks() as $apiBlock)
         {
             /** upsell, crosssell, related, other */
             if($apiBlock->getType() === $this->getType())

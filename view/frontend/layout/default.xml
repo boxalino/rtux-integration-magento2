@@ -1,7 +1,13 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance dc" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <!-- NOUISLIDER CSS for the range facet (discountedPrice) sample -->
+    <head>
+        <css src="Boxalino_RealTimeUserExperienceIntegration::css/nouislider.css"/>
+    </head>
+
     <!-- adding the JS configuration for the autocomplete JS requests -->
     <referenceContainer name="after.body.start">
         <block class="Magento\Framework\View\Element\Template" name="rtux.api.js.init" template="Boxalino_RealTimeUserExperience::js.phtml"/>
     </referenceContainer>
+
 </page>

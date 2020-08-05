@@ -5,6 +5,8 @@ use Boxalino\RealTimeUserExperience\Api\ApiRendererInterface;
 use Boxalino\RealTimeUserExperience\Api\ApiResponseBlockInterface;
 use Boxalino\RealTimeUserExperience\Block\ApiBlockTrait;
 use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
+use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseRegistryInterface;
+use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseViewRegistryInterface;
 use Boxalino\RealTimeUserExperienceIntegration\Model\Api\Request\Context\NavigationContext;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Magento\Catalog\Block\Category\View;
@@ -39,7 +41,19 @@ class Navigation extends View
      */
     protected $requestWrapper;
 
+    /**
+     * @var CurrentApiResponseRegistryInterface
+     */
+    protected $currentApiResponse;
+
+    /**
+     * @var CurrentApiResponseViewRegistryInterface
+     */
+    protected $currentApiResponseView;
+
     public function __construct(
+        CurrentApiResponseRegistryInterface$currentApiResponse,
+        CurrentApiResponseViewRegistryInterface $currentApiResponseView,
         ApiPageLoader $apiPageLoader,
         NavigationContext $apiContext,
         RequestInterface $requestWrapper,
@@ -50,6 +64,8 @@ class Navigation extends View
         array $data = []
     ){
         parent::__construct($context, $layerResolver, $registry, $categoryHelper, $data);
+        $this->currentApiResponse = $currentApiResponse;
+        $this->currentApiResponseView = $currentApiResponseView;
         $this->requestWrapper = $requestWrapper;
         $this->apiLoader = $apiPageLoader;
         $this->apiContext = $apiContext;
@@ -63,6 +79,11 @@ class Navigation extends View
     protected function _prepareLayout()
     {
         try{
+            if($this->currentApiResponse->get())
+            {
+                return parent::_prepareLayout();
+            }
+
             $this->apiLoader
                 ->setRequest($this->requestWrapper->setRequest($this->_request))
                 ->setApiContext($this->apiContext)
@@ -80,7 +101,12 @@ class Navigation extends View
 
     public function getBlocks() : \ArrayIterator
     {
-        return $this->apiLoader->getApiResponsePage()->getBlocks();
+        if($this->currentApiResponseView->get())
+        {
+            return $this->currentApiResponseView->get()->getBlocks();
+        }
+
+        return new \ArrayIterator();
     }
 
     /**
@@ -92,7 +118,7 @@ class Navigation extends View
      */
     public function getProductListHtml()
     {
-        if($this->apiLoader->getApiResponsePage()->isFallback())
+        if($this->currentApiResponseView->get()->isFallback())
         {
             return $this->getChildHtml('product_list');
         }
