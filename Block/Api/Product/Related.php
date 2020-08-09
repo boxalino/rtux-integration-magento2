@@ -155,7 +155,7 @@ class Related extends \Magento\Catalog\Block\Product\ProductList\Related
      */
     protected function _prepareData()
     {
-        if($this->currentApiResponseView->get()->isFallback() || !$this->getContextItemId())
+        if(!$this->currentApiResponseView->get() || !$this->getContextItemId())
         {
             return parent::_prepareData();
         }

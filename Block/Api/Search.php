@@ -64,7 +64,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
     protected $currentApiResponseView;
 
     public function __construct(
-        CurrentApiResponseRegistryInterface$currentApiResponse,
+        CurrentApiResponseRegistryInterface $currentApiResponse,
         CurrentApiResponseViewRegistryInterface $currentApiResponseView,
         ApiPageLoader $apiPageLoader,
         SearchContext $apiContext,
@@ -91,7 +91,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function getTemplate()
     {
-        if($this->currentApiResponseView->get()->isFallback())
+        if(!$this->currentApiResponse->get() || $this->currentApiResponseView->get() && $this->currentApiResponseView->get()->isFallback())
         {
             return parent::getTemplate();
         }
@@ -138,13 +138,13 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function getSearchQueryText()
     {
-        if($this->currentApiResponseView->get()->isFallback())
+        if(!$this->currentApiResponse->get() || $this->currentApiResponseView->get() && $this->currentApiResponseView->get()->isFallback())
         {
             return parent::getSearchQueryText();
         }
 
         /** @var ApiBlockAccessorInterface $apiBlock */
-        foreach($this->getBlocks() as $index=>$apiBlock)
+        foreach($this->getBlocks() as $index => $apiBlock)
         {
             if(in_array(
                 $apiBlock->getName(),
@@ -174,7 +174,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function setListModes()
     {
-        if($this->currentApiResponseView->get()->isFallback())
+        if(!$this->currentApiResponse->get() || $this->currentApiResponseView->get() && $this->currentApiResponseView->get()->isFallback())
         {
             return parent::setListModes();
         }
@@ -190,7 +190,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function setListOrders()
     {
-        if($this->currentApiResponseView->get()->isFallback())
+        if(!$this->currentApiResponse->get())
         {
             return parent::setListOrders();
         }
@@ -200,7 +200,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
 
     public function getBlocks() : \ArrayIterator
     {
-        if($this->currentApiResponseView->get())
+        if($this->currentApiResponse->get())
         {
             return $this->currentApiResponseView->get()->getBlocks();
         }
@@ -222,7 +222,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function getListBlock()
     {
-        if($this->currentApiResponseView->get()->isFallback())
+        if(!$this->currentApiResponse->get())
         {
             return parent::getListBlock();
         }
@@ -245,7 +245,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function getProductListHtml()
     {
-        if($this->currentApiResponseView->get()->isFallback())
+        if(!$this->currentApiResponse->get())
         {
             return parent::getProductListHtml();
         }
@@ -262,7 +262,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     protected function _getProductCollection()
     {
-        if($this->currentApiResponseView->get()->isFallback())
+        if(!$this->currentApiResponse->get())
         {
             return parent::_getProductCollection();
         }
@@ -291,7 +291,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function getResultCount()
     {
-        if($this->currentApiResponseView->get()->isFallback())
+        if(!$this->currentApiResponse->get())
         {
             return parent::getResultCount();
         }
@@ -314,7 +314,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function getNoteMessages()
     {
-        if($this->currentApiResponseView->get()->isFallback())
+        if(!$this->currentApiResponseView->get())
         {
             return parent::getNoteMessages();
         }

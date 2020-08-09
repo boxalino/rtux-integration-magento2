@@ -136,7 +136,7 @@ class View extends \Magento\Framework\View\Element\Template
      */
     public function getItems() : ?Collection
     {
-        if($this->currentApiResponseView->get()->isFallback())
+        if(!$this->currentApiResponseView->get())
         {
             return null;
         }

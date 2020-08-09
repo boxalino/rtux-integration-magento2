@@ -16,6 +16,8 @@ use Magento\Catalog\Model\Layer\Resolver;
 /**
  * Class Navigation
  * Replaces the category-displayed products
+ * The displayed API response is part of the "blocks" parameter (left/top/right/bottom are not part of it)
+ *
  * Does not update the default Magento2 catalog_category_view template
  *
  * @package Boxalino\RealTimeUserExperienceIntegration\Block
@@ -118,7 +120,7 @@ class Navigation extends View
      */
     public function getProductListHtml()
     {
-        if($this->currentApiResponseView->get()->isFallback())
+        if($this->currentApiResponseView->get() && $this->currentApiResponseView->get()->isFallback() || !$this->currentApiResponseView->get())
         {
             return $this->getChildHtml('product_list');
         }
