@@ -10,10 +10,13 @@
  */
 ?>
 <?php
-$minValue = $block->getFilter()->getValues()[0]->getMinValue();
-$maxValue = $block->getFilter()->getValues()[0]->getMaxValue();
-$minSelectedValue = $block->getFilter()->getValues()[0]->getMinSelectedValue() ?? $block->getFilter()->getValues()[0]->getMinValue();
-$maxSelectedValue = $block->getFilter()->getValues()[0]->getMaxSelectedValue() ?? $block->getFilter()->getValues()[0]->getMaxValue();
+$rangeValue = $block->getFilter()->getValues()[0];
+$minValue = $rangeValue->getMinValue();
+$maxValue = $rangeValue->getMaxValue();
+$minSelectedValue = $rangeValue->getMinSelectedValue() ?? $rangeValue->getMinValue();
+$maxSelectedValue = $rangeValue->getMaxSelectedValue() ?? $rangeValue->getMaxValue();
+$rangeFrom = $block->getFilter()->getRangeFromField();
+$rangeTo = $block->getFilter()->getRangeToField();
 ?>
 <div id="rtux-range"></div>
 <span id="slider-snap-value-lower"></span>
@@ -40,7 +43,7 @@ $maxSelectedValue = $block->getFilter()->getValues()[0]->getMaxSelectedValue() ?
 
             let snapElements = [document.getElementById('slider-snap-value-lower'), document.getElementById('slider-snap-value-upper')];
             let snapValues = [<?= $minSelectedValue?>,<?= $maxSelectedValue ?>];
-            let snapHandleParameter=["min-price", "max-price"];
+            let snapHandleParameter=['<?= $rangeFrom;?>','<?= $rangeTo;?>'];
 
             slider.noUiSlider.on('update', function (values, handle) {
                 let handlename = handle == 1 ? " " + "<?php /* @escapeNotVerified */ echo __('to slider') ?>" + " " :

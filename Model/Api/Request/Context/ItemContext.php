@@ -10,6 +10,7 @@ use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\Definition\ItemReques
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\ParameterFactoryInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestTransformerInterface;
+use Boxalino\RealTimeUserExperienceIntegration\Model\Api\Request\IntegrationContextTrait;
 use Magento\Catalog\Model\Product\Visibility;
 
 /**

@@ -10,6 +10,7 @@ use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\Definition\ListingReq
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\ParameterFactoryInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestTransformerInterface;
+use Boxalino\RealTimeUserExperienceIntegration\Model\Api\Request\IntegrationContextTrait;
 use Magento\Catalog\Model\Product\Visibility;
 
 /**
@@ -25,6 +26,7 @@ class NavigationContext extends ListingContextAbstract
 {
     use ContextTrait;
     use RequestParametersTrait;
+    use IntegrationContextTrait;
 
     public function __construct(
         RequestTransformerInterface $requestTransformer,
@@ -75,18 +77,6 @@ class NavigationContext extends ListingContextAbstract
     public function getReturnFields() : array
     {
         return ["id", "products_group_id", "title"];
-    }
-
-    /**
-     * Set the range properties following the presented structure
-     *
-     * @return array
-     */
-    public function getRangeProperties() : array
-    {
-        return [
-            "discountedPrice" => ['from' => 'min-price', 'to' => 'max-price']
-        ];
     }
 
 }

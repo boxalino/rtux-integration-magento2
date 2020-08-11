@@ -5,8 +5,8 @@
  * Includes the "more values" toggle logic (JS logic part of the Boxalino_RealTimeUserExperienceIntegration::api/layered-navigation/layer/view.phtml)
  *
  * @var $block Boxalino\RealTimeUserExperience\Block\LayeredNavigation\Layer\Filter
- * @var $filterItem \Boxalino\RealTimeUserExperienceApi\Service\Api\Response\Accessor\FacetValue
- * @var $filter \Boxalino\RealTimeUserExperienceApi\Service\Api\Response\Accessor\Facet
+ * @var $filterItem \Boxalino\RealTimeUserExperience\Service\Api\Response\Accessor\FacetValue
+ * @var $filter \Boxalino\RealTimeUserExperience\Service\Api\Response\Accessor\Facet
  */
 ?>
 <?php
@@ -15,7 +15,7 @@ $showedMoreLink = false;
 $filter = $block->getFilter();
 ?>
 <ol class="items">
-    <?php foreach ($block->getFilter()->getValues() as $index=>$filterItem) : ?>
+    <?php foreach ($block->getFilter()->getValues() as $index => $filterItem) : ?>
         <?php if((!$filterItem->isShow() || $filter->getEnumDisplayMaxSize() < $index) && !$showedMoreLink):?>
             <?php $showedMoreLink = true; $more_values = __('more values');?>
                 <li style="cursor:pointer" class="show-more-values"><?= /* @noEscape */ $more_values ?></li>
@@ -24,7 +24,7 @@ $filter = $block->getFilter();
             <?php echo ($filterItem->isShow() && $filter->getEnumDisplayMaxSize() >= $index)  ? '':' hidden-items';?>"
             style="<?php echo ($filterItem->isShow() && $filter->getEnumDisplayMaxSize() >= $index) ? "" : "display:none";?>">
             <?php if ($filterItem->getHitCount() > 0): ?>
-                <a href="<?php //echo $block->escapeUrl($filterItem->getUrl()) ?>">
+                <a href="<?php echo $block->escapeUrl($filterItem->getSelectUrl()) ?>">
                     <?php /* @escapeNotVerified */ echo $filterItem->getLabel() ?>
                     <?php if ($showCount): ?>
                         <span class="count"><?php /* @escapeNotVerified */ echo $filterItem->getHitCount()?>

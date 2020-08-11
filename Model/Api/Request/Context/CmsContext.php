@@ -10,6 +10,7 @@ use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\Definition\ListingReq
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\ParameterFactoryInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestTransformerInterface;
+use Boxalino\RealTimeUserExperienceIntegration\Model\Api\Request\IntegrationContextTrait;
 use Magento\Catalog\Model\Product\Visibility;
 
 /**
@@ -25,6 +26,7 @@ class CmsContext extends ContextAbstract
 {
     use ContextTrait;
     use RequestParametersTrait;
+    use IntegrationContextTrait;
 
     public function __construct(
         RequestTransformerInterface $requestTransformer,

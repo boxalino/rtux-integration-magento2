@@ -7,8 +7,8 @@
  * 2. the sample template is being included via Boxalino_RealTimeUserExperienceIntegration::api/layered-navigation/state.phtml
  *
  * @var $block \Boxalino\RealTimeUserExperience\Block\LayeredNavigation\Layer\State
- * @var $selectedValue \Boxalino\RealTimeUserExperienceApi\Service\Api\Response\Accessor\FacetValue
- * @var $filter \Boxalino\RealTimeUserExperienceApi\Service\Api\Response\Accessor\Facet
+ * @var $selectedValue \Boxalino\RealTimeUserExperience\Service\Api\Response\Accessor\FacetValue
+ * @var $filter \Boxalino\RealTimeUserExperience\Service\Api\Response\Accessor\Facet
  */
 ?>
 <?php
@@ -27,26 +27,9 @@ $priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data');
                 <?= $block->escapeHtml($block->stripTags($priceHelper->currency($selectedValue->getMinSelectedValue()))) . " - " . $block->escapeHtml($block->stripTags($priceHelper->currency($selectedValue->getMaxSelectedValue())));?>
             <?php endif;?>
         </span>
-        <?php
-        //$clearLinkUrl = $_filter->getClearLinkUrl();
-        $clearLinkUrl = null;
-        $currentFilterName = $block->escapeHtmlAttr(__($filter->getLabel()) . " " . $block->stripTags($selectedValue->getMinSelectedValue()));
-        if ($clearLinkUrl) :
-            ?>
-            <a class="action previous" href="<?= $block->escapeUrl($filter->getRemoveUrl()) ?>"
-               title="<?= $block->escapeHtmlAttr(__('Previous')) ?>">
-                <span><?= $block->escapeHtml(__('Previous')) ?></span>
-            </a>
-            <a class="action remove"
-               title="<?= $block->escapeHtmlAttr("filter->getClearLinkText()") ?>"
-               href="<?= $block->escapeUrl($clearLinkUrl) ?>">
-                <span><?= $block->escapeHtml("filter->getClearLinkText()") ?></span>
-            </a>
-        <?php else : ?>
-            <a class="action remove" href="#filter-remove-url"
-               title="<?= /* @noEscape */ $block->escapeHtmlAttr(__('Remove')) . " " . $currentFilterName ?>">
-                <span><?= $block->escapeHtml(__('Remove This Item')) ?></span>
-            </a>
-        <?php endif; ?>
+        <a class="action remove" href="<?= $block->escapeUrl($selectedValue->getRemoveUrl()) ?>"
+           title="<?= /* @noEscape */ $block->escapeHtmlAttr(__('Remove')) . " " . $block->escapeHtmlAttr(__($filter->getLabel())) ?>">
+            <span><?= $block->escapeHtml(__('Remove This Item')) ?></span>
+        </a>
     </li>
 <?php endforeach;?>

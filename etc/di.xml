@@ -45,4 +45,11 @@
         </arguments>
     </type>
 
+    <!-- configuration for the facet values delimiter in the URL -->
+    <type name="Boxalino\RealTimeUserExperience\Model\Response\Content\ApiFacet">
+        <arguments>
+            <argument name="facetValuesDelimiter" xsi:type="string">|</argument>
+        </arguments>
+    </type>
+
 </config>

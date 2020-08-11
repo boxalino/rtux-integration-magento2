@@ -10,6 +10,7 @@ use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\Definition\SearchRequ
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\ParameterFactoryInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestTransformerInterface;
+use Boxalino\RealTimeUserExperienceIntegration\Model\Api\Request\IntegrationContextTrait;
 use Magento\Catalog\Model\Product\Visibility;
 
 /**
@@ -27,6 +28,7 @@ class SearchContext extends SearchContextAbstract
 {
     use ContextTrait;
     use RequestParametersTrait;
+    use IntegrationContextTrait;
 
     public function __construct(
         RequestTransformerInterface $requestTransformer,
@@ -76,16 +78,6 @@ class SearchContext extends SearchContextAbstract
         return ["id", "products_group_id", "title", "discountedPrice"];
     }
 
-    /**
-     * Set the range properties following the presented structure
-     *
-     * @return array
-     */
-    public function getRangeProperties() : array
-    {
-        return [
-            "discountedPrice" => ['from' => 'min-price', 'to' => 'max-price']
-        ];
-    }
+
 
 }

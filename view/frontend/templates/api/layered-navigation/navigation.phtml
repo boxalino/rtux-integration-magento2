@@ -19,13 +19,6 @@
 
     <div class="block-content filter-content">
         <?= $block->getChildHtml("state"); ?>
-        <?php if ($block->hasActiveFilters()) : ?>
-            <div class="block-actions filter-actions">
-                <a href="<?= $block->escapeUrl($block->getClearUrl()) ?>" class="action clear filter-clear">
-                    <span><?= $block->escapeHtml(__('Clear All')) ?></span>
-                </a>
-            </div>
-        <?php endif; ?>
         <?php $expandedFacets = $block->getExpandedFiltersConfiguration();?>
         <?php foreach ($block->getFilters() as $filter) : ?>
             <?php if ($filter->getValues()->count()) : ?>
