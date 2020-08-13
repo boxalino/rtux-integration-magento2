@@ -153,7 +153,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
                     ApiLayoutBlockNameInterface::RTUX_API_NORESULTS_SEARCH_TITLE_BLOCK
                 ]))
             {
-                $title = $apiBlock->getTitle()[0];
+                $title = $apiBlock->getTitle();
                 if($title)
                 {
                     /** once the title is accessed, the title block can be removed from layout, otherwise it will duplicate on view */

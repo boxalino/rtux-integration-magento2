@@ -20,9 +20,10 @@ trait IntegrationContextTrait
     }
 
     /**
+     * Must match the value configured in the di.xml as an argument for the facet model in use
      * @return string
      */
-    public function getFilterValuesSeparator(): string
+    public function getFilterValuesDelimiter(): string
     {
         return "|";
     }
