@@ -1,0 +1,27 @@
+<?php
+/**
+ * Autocomplete templates which are used by the the Boxalino_RealTimeUserExperienceIntegration/js/rtuxApiAutocompleteMixin
+ * the template ID is set as parameter in the Boxalino Layout Block JSON schema
+ */
+?>
+<script type="text/x-magento-template" id="rtux-product-template">
+    <a href="<%- data.products_url_key[0] %>.html">
+        <li class="<%- data.class %>" class="text_suggest_<%- data.index %>" role="option">
+            <span class="product-image"><img src="http://m235-api.danneg.work/media/catalog/product<%- data.products_image[0] %>"></span>
+            <span class="product-name"><%- data.title %></span>
+            <span class="product-price">CHF <%- data.discountedPrice %></span>
+        </li>
+    </a>
+</script>
+
+<script type="text/x-magento-template" id="rtux-suggestion-template">
+    <li class="<%- data.class %><%- data.index %>" id="qs-option-<%- data.index %>" role="option">
+        <span class="qs-option-name"><%- data.suggestion %></span>
+        <span aria-hidden="true" class="amount"><%- data.totalHitCount %></span>
+    </li>
+</script>
+
+<script type="text/x-magento-template" id="rtux-title-template">
+    <li><h4 class="suggestion-title"><%- data.title %></h4></li>
+</script>
+

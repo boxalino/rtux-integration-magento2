@@ -10,4 +10,14 @@
         <block class="Magento\Framework\View\Element\Template" name="rtux.api.js.init" template="Boxalino_RealTimeUserExperience::js.phtml"/>
     </referenceContainer>
 
+    <!-- adding the tracker -->
+    <referenceBlock name="head.additional">
+        <block class="Magento\Framework\View\Element\Template" name="rtux.narrative.tracker" as="rtux.tracker" template="Boxalino_RealTimeUserExperience::tracker.phtml"/>
+    </referenceBlock>
+
+    <!-- adding the autocomplete templates // location can be changed-->
+    <referenceBlock name="top.search">
+        <block class="Magento\Framework\View\Element\Template" name="rtux.autocomplete.template" template="Boxalino_RealTimeUserExperienceIntegration::api/autocomplete/template.phtml"/>
+    </referenceBlock>
+
 </page>
