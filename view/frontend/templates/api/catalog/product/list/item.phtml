@@ -24,7 +24,7 @@ if ($block->getMode() == 'grid') {
     $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
 }
 ?>
-<li class="item product product-item">
+<li class="item product product-item bx-narrative-item" data-bx-item-id="<?= $_product->getId();?>">
     <div class="product-item-info" data-container="product-<?= /* @noEscape */ $viewMode ?>">
         <?php
         $productImage = $block->getImage($_product, $imageDisplayArea);

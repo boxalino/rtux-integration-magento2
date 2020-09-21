@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!-- RTUX purchase event track; can also be linked to event checkout_type_onepage_save_order_after -->
+    <event name="checkout_onepage_controller_success_action">
+        <observer name="rtux_api_track_purchase" instance="Boxalino\RealTimeUserExperience\Observer\TrackEventPurchaseObserver"/>
+    </event>
+
+    <!-- RTUX login event cookie; the decision can also be to send the event server-side as opposed to client-side -->
+    <event name="customer_login">
+        <observer name="rtux_api_login_cookie" instance="Boxalino\RealTimeUserExperience\Observer\TrackCookieLoginObserver"/>
+    </event>
+</config>
