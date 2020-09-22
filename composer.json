@@ -11,7 +11,7 @@
   "require": {
     "php": ">=7.2",
     "boxalino/rtux-api-php": ">=1.0.0",
-    "boxalino/rtux-magento2": ">=1.0.0",
+    "boxalino/rtux-magento2": ">=1.0.5",
     "boxalino/exporter-magento2": ">=1.0.0"
   },
   "autoload": {
