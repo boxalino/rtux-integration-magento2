@@ -5,14 +5,14 @@
         <css src="Boxalino_RealTimeUserExperienceIntegration::css/nouislider.css"/>
     </head>
 
-    <!-- adding the JS configuration for the autocomplete JS requests -->
+    <!-- adding the JS configuration for the autocomplete JS requests and helper -->
     <referenceContainer name="after.body.start">
         <block class="Magento\Framework\View\Element\Template" name="rtux.api.js.init" template="Boxalino_RealTimeUserExperience::js.phtml"/>
     </referenceContainer>
 
-    <!-- adding the tracker -->
+    <!-- adding the tracker init -->
     <referenceBlock name="head.additional">
-        <block class="Magento\Framework\View\Element\Template" name="rtux.narrative.tracker" as="rtux.tracker" template="Boxalino_RealTimeUserExperience::tracker.phtml"/>
+        <block class="Magento\Framework\View\Element\Template" name="rtux.narrative.tracker" as="rtux.tracker" template="Boxalino_RealTimeUserExperienceIntegration::tracker.phtml"/>
     </referenceBlock>
 
     <!-- adding the autocomplete templates // location can be changed-->

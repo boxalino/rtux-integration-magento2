@@ -1,0 +1,21 @@
+<?php
+/**
+ * JS Tracker init
+ *
+ * @var $block \Magento\Framework\View\Element\Template
+ * @var $helper \Boxalino\RealTimeUserExperience\Helper\Js\Configuration
+ */
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+?>
+<?php
+$helper = $this->helper(\Boxalino\RealTimeUserExperience\Helper\Js\Configuration::class);
+?>
+<?php if($helper->isTrackerActive()) : ?>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "Boxalino_RealTimeUserExperienceIntegration/js/rtuxApiTracker": {}
+            }
+        }
+    </script>
+<?php endif;?>

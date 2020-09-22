@@ -1,7 +1,8 @@
 var config = {
     map: {
         '*': {
-            nouislider: 'Boxalino_RealTimeUserExperienceIntegration/js/nouislider'
+            nouislider: 'Boxalino_RealTimeUserExperienceIntegration/js/nouislider',
+            rtuxApiTracker: 'Boxalino_RealTimeUserExperienceIntegration/js/rtuxApiTracker'
         }
     },
     deps: ["rtuxApiHelper"],
