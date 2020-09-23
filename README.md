@@ -15,12 +15,14 @@ Included functionalities (with samples of templates):
 
 The repository is being updated with new guidelines & scenario.
 The repository has dependencies for *Boxalino RTUX API PHP* library and the *Boxalino RTUX Magento2* plugin.
+
 https://github.com/boxalino/rtux-api-php
+
 https://github.com/boxalino/rtux-magento2
 
 ## Integration
 This repository is **not** subject to Boxalino maintenance on client setup.
-This means, the guidelines are supposed to be integrated in a repository/plugin maintainted&developed by the client`s team.
+This means, the guidelines are supposed to be integrated in a repository/plugin maintainted & developed by the client`s team.
 
 This repository can be deployed for testing Boxalino features or in order to prepare your own integration.
 In order to deploy it as is in a local environment, check the *Setup* steps bellow.
@@ -43,7 +45,7 @@ In order to deploy it as is in a local environment, check the *Setup* steps bell
 ## Documentation
 
 The latest documentation is available upon request.
-Specific feature integration is available in the repository Wiki.
+Specific feature integration is available in the [repository Wiki](https://github.com/boxalino/rtux-integration-magento2/wiki).
 
 ## Contact us!
 
