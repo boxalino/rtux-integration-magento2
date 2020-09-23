@@ -1,6 +1,6 @@
 <?php
 \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::MODULE,
-    'Boxalino_RealTimeUserExperienceIntegration',
+    'BoxalinoClientProject_BoxalinoRealTimeUserExperienceIntegration',
     __DIR__
 );

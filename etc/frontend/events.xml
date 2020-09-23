@@ -5,8 +5,8 @@
         <observer name="rtux_api_track_purchase" instance="Boxalino\RealTimeUserExperience\Observer\TrackEventPurchaseObserver"/>
     </event>
 
-    <!-- RTUX login event cookie; the decision can also be to send the event server-side as opposed to client-side -->
+    <!-- RTUX login event track; -->
     <event name="customer_login">
-        <observer name="rtux_api_login_cookie" instance="Boxalino\RealTimeUserExperience\Observer\TrackCookieLoginObserver"/>
+        <observer name="rtux_api_track_login" instance="Boxalino\RealTimeUserExperience\Observer\TrackEventLoginObserver"/>
     </event>
 </config>

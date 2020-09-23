@@ -17,9 +17,9 @@
         <ol class="items">
             <?php foreach ($filters as $filter) : ?>
                 <?php if($filter->getVisualisation()=='range' || $filter->getField()=='discountedPrice') :?>
-                    <?php include ($block->getTemplateFile('Boxalino_RealTimeUserExperienceIntegration::api/layered-navigation/layer/state/range.phtml')) ?>
+                    <?php include ($block->getTemplateFile('BoxalinoClientProject_BoxalinoRealTimeUserExperienceIntegration::api/layered-navigation/layer/state/range.phtml')) ?>
                 <?php else:?>
-                    <?php include ($block->getTemplateFile('Boxalino_RealTimeUserExperienceIntegration::api/layered-navigation/layer/state/generic.phtml')) ?>
+                    <?php include ($block->getTemplateFile('BoxalinoClientProject_BoxalinoRealTimeUserExperienceIntegration::api/layered-navigation/layer/state/generic.phtml')) ?>
                 <?php endif;?>
             <?php endforeach; ?>
         </ol>

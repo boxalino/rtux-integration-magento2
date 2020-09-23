@@ -1,15 +1,15 @@
 var config = {
     map: {
         '*': {
-            nouislider: 'Boxalino_RealTimeUserExperienceIntegration/js/nouislider',
-            rtuxApiTracker: 'Boxalino_RealTimeUserExperienceIntegration/js/rtuxApiTracker'
+            nouislider: 'BoxalinoClientProject_BoxalinoRealTimeUserExperienceIntegration/js/nouislider',
+            rtuxApiTracker: 'BoxalinoClientProject_BoxalinoRealTimeUserExperienceIntegration/js/rtuxApiTracker'
         }
     },
     deps: ["rtuxApiHelper"],
     config: {
         mixins: {
             'Magento_Search/js/form-mini': {
-                'Boxalino_RealTimeUserExperienceIntegration/js/rtuxApiAutocompleteMixin': true
+                'BoxalinoClientProject_BoxalinoRealTimeUserExperienceIntegration/js/rtuxApiAutocompleteMixin': true
             }
         }
     }

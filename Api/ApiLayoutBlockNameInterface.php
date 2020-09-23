@@ -1,5 +1,5 @@
 <?php
-namespace Boxalino\RealTimeUserExperienceIntegration\Api;
+namespace BoxalinoClientProject\BoxalinoRealTimeUserExperienceIntegration\Api;
 
 
 /**

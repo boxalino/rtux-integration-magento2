@@ -1,5 +1,5 @@
 <?php
-namespace Boxalino\RealTimeUserExperienceIntegration\Block\Api;
+namespace BoxalinoClientProject\BoxalinoRealTimeUserExperienceIntegration\Block\Api;
 
 use Boxalino\RealTimeUserExperience\Api\ApiRendererInterface;
 use Boxalino\RealTimeUserExperience\Api\ApiResponseBlockInterface;
@@ -7,7 +7,7 @@ use Boxalino\RealTimeUserExperience\Block\ApiBlockTrait;
 use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
 use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseRegistryInterface;
 use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseViewRegistryInterface;
-use Boxalino\RealTimeUserExperienceIntegration\Model\Api\Request\Context\NavigationContext;
+use BoxalinoClientProject\BoxalinoRealTimeUserExperienceIntegration\Model\Api\Request\Context\NavigationContext;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Magento\Catalog\Block\Category\View;
 use Magento\Framework\View\Element\Template\Context;
@@ -20,7 +20,7 @@ use Magento\Catalog\Model\Layer\Resolver;
  *
  * Does not update the default Magento2 catalog_category_view template
  *
- * @package Boxalino\RealTimeUserExperienceIntegration\Block
+ * @package BoxalinoClientProject\BoxalinoRealTimeUserExperienceIntegration\Block
  */
 class Navigation extends View
     implements ApiRendererInterface

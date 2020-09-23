@@ -32,7 +32,7 @@ In order to deploy it as is in a local environment, check the *Setup* steps bell
 ``composer require boxalino/rtux-integration-magento2``
 
 2. Activate the plugin (Magento2 command)
-``php bin/magento module:enable Boxalino_RealTimeUserExperienceIntegration``
+``php bin/magento module:enable BoxalinoClientProject_BoxalinoRealTimeUserExperienceIntegration``
 
 3. Flush cache (Magento2 command)
 ``php bin/magento cache:flush``

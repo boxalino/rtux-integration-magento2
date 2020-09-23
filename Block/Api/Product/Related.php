@@ -1,5 +1,5 @@
 <?php
-namespace Boxalino\RealTimeUserExperienceIntegration\Block\Api\Product;
+namespace BoxalinoClientProject\BoxalinoRealTimeUserExperienceIntegration\Block\Api\Product;
 
 use Boxalino\RealTimeUserExperience\Api\ApiBlockAccessorInterface;
 use Boxalino\RealTimeUserExperience\Api\ApiRendererInterface;
@@ -8,7 +8,7 @@ use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
 use Boxalino\RealTimeUserExperience\Model\Response\Content\ApiEntityCollection;
 use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseViewRegistryInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
-use Boxalino\RealTimeUserExperienceIntegration\Model\Api\Request\Context\ItemContext;
+use BoxalinoClientProject\BoxalinoRealTimeUserExperienceIntegration\Model\Api\Request\Context\ItemContext;
 
 /**
  * Catalog product related items block

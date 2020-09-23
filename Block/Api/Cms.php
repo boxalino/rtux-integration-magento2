@@ -1,9 +1,9 @@
 <?php
-namespace Boxalino\RealTimeUserExperienceIntegration\Block\Api;
+namespace BoxalinoClientProject\BoxalinoRealTimeUserExperienceIntegration\Block\Api;
 
 use Boxalino\RealTimeUserExperience\Api\ApiRendererInterface;
 use Boxalino\RealTimeUserExperience\Block\ApiBlockTrait;
-use Boxalino\RealTimeUserExperienceIntegration\Model\Api\Request\Context\CmsContext;
+use BoxalinoClientProject\BoxalinoRealTimeUserExperienceIntegration\Model\Api\Request\Context\CmsContext;
 use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Magento\Framework\View\Element\Template;
@@ -13,7 +13,7 @@ use Magento\Framework\View\Element\Template;
  * Adds a CMS block/context on the page
  * (as seen in vendor/boxalino/rtux-integration-magento2/view/frontend/layout/cms_page_view_selectable_home_RTUX.xml)
  *
- * @package Boxalino\RealTimeUserExperienceIntegration\Block
+ * @package BoxalinoClientProject\BoxalinoRealTimeUserExperienceIntegration\Block
  */
 class Cms extends \Magento\Framework\View\Element\Template
     implements ApiRendererInterface
