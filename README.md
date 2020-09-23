@@ -19,11 +19,11 @@ https://github.com/boxalino/rtux-api-php
 https://github.com/boxalino/rtux-magento2
 
 ## Integration
-Generally, this repository is not subject to Boxalino maintenance on client setup.
-This means, the guidelines are meant to be integrated in a repository/plugin maintainted&developed by the client`s team.
+This repository is **not** subject to Boxalino maintenance on client setup.
+This means, the guidelines are supposed to be integrated in a repository/plugin maintainted&developed by the client`s team.
 
 This repository can be deployed for testing Boxalino features or in order to prepare your own integration.
-In order to deploy it, check the *Setup* steps bellow.
+In order to deploy it as is in a local environment, check the *Setup* steps bellow.
 
 ## Setup
 1. Add the plugin to your project via composer
@@ -35,7 +35,7 @@ In order to deploy it, check the *Setup* steps bellow.
 3. Flush cache (Magento2 command)
 ``php bin/magento cache:flush``
 
-4. Import the content of the complete-guidelines (https://github.com/boxalino/rtux-integration-magento2/tree/master/doc/complete-guidelines) JSONs in Boxalino Intelligence Admin; test, save & publish.
+4. Import the content of the [complete-guidelines JSONs](https://github.com/boxalino/rtux-integration-magento2/wiki/JSON-Guidelines-(Complete)) in Boxalino Intelligence Admin; test, save & publish.
     * Layout Blocks (Boxalino Intelligence Admin >> Marketing >> Layout Blocks)
     * Template Resources (Boxalino Intelligence Admin >> Advanced >> Template Resources)
     * Narratives  (Boxalino Intelligence Admin >> Marketing >> Narratives)

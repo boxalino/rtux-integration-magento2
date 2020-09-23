@@ -8,7 +8,7 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <!-- displaying the elements with the position:top -->
+        <!-- displaying the elements with the position:top ; adding the cacheable=false will make the view non-cacheable -->
         <referenceContainer name="content">
             <block class="Boxalino\RealTimeUserExperience\Block\Layout\Top" name="rtux.api.top" before="-"/>
         </referenceContainer>
