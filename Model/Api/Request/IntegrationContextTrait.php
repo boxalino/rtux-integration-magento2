@@ -9,6 +9,7 @@ trait IntegrationContextTrait
 {
     /**
      * Set the range properties following the presented structure
+     * These values have to be configured in IntelligenceAdmin as the rangeFromField and rangeToField
      *
      * @return array
      */
