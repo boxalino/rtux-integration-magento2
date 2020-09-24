@@ -36,9 +36,9 @@ For more information, check the [Boxalino Exporter for Magento2](https://github.
 ``composer require boxalino/rtux-integration-magento2``
 
 2. Activate the plugin (Magento2 command)
-``php bin/magento module:enable BoxalinoClientProject_BoxalinoRealTimeUserExperienceIntegration``
+``php bin/magento module:enable BoxalinoClientProject_BoxalinoIntegration``
 
-3. Flush cache (Magento2 command)
+3. Flush cache (Magento2 command)/ run setup:upgrade / setup:di:compile depending on your environment
 ``php bin/magento cache:flush``
 
 4. Import the content of the [complete-guidelines JSONs](https://github.com/boxalino/rtux-integration-magento2/wiki/JSON-Guidelines-(Complete)) in Boxalino Intelligence Admin; test, save & publish.

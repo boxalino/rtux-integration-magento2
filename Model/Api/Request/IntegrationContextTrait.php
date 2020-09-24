@@ -1,9 +1,9 @@
 <?php
-namespace BoxalinoClientProject\BoxalinoRealTimeUserExperienceIntegration\Model\Api\Request;
+namespace BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request;
 
 /**
  * Trait IntegrationContextTrait
- * @package BoxalinoClientProject\BoxalinoRealTimeUserExperienceIntegration\Model\Api\Request
+ * @package BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request
  */
 trait IntegrationContextTrait
 {

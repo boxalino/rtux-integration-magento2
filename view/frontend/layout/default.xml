@@ -2,7 +2,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance dc" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <!-- NOUISLIDER CSS for the range facet (discountedPrice) sample -->
     <head>
-        <css src="BoxalinoClientProject_BoxalinoRealTimeUserExperienceIntegration::css/nouislider.css"/>
+        <css src="BoxalinoClientProject_BoxalinoIntegration::css/nouislider.css"/>
     </head>
 
     <!-- adding the JS configuration for the autocomplete JS requests and helper -->
@@ -12,12 +12,12 @@
 
     <!-- adding the tracker init -->
     <referenceBlock name="head.additional">
-        <block class="Magento\Framework\View\Element\Template" name="rtux.narrative.tracker" as="rtux.tracker" template="BoxalinoClientProject_BoxalinoRealTimeUserExperienceIntegration::tracker.phtml"/>
+        <block class="Magento\Framework\View\Element\Template" name="rtux.narrative.tracker" as="rtux.tracker" template="BoxalinoClientProject_BoxalinoIntegration::tracker.phtml"/>
     </referenceBlock>
 
     <!-- adding the autocomplete templates // location can be changed-->
     <referenceBlock name="top.search">
-        <block class="Magento\Framework\View\Element\Template" name="rtux.autocomplete.template" template="BoxalinoClientProject_BoxalinoRealTimeUserExperienceIntegration::api/autocomplete/template.phtml"/>
+        <block class="Magento\Framework\View\Element\Template" name="rtux.autocomplete.template" template="BoxalinoClientProject_BoxalinoIntegration::api/autocomplete/template.phtml"/>
     </referenceBlock>
 
 </page>

@@ -1,5 +1,5 @@
 <?php
-namespace BoxalinoClientProject\BoxalinoRealTimeUserExperienceIntegration\Block\Api;
+namespace BoxalinoClientProject\BoxalinoIntegration\Block\Api;
 
 use Boxalino\RealTimeUserExperience\Api\ApiBlockAccessorInterface;
 use Boxalino\RealTimeUserExperience\Api\ApiRendererInterface;
@@ -9,8 +9,8 @@ use Boxalino\RealTimeUserExperience\Block\Catalog\Product\ListProduct;
 use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
 use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseRegistryInterface;
 use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseViewRegistryInterface;
-use BoxalinoClientProject\BoxalinoRealTimeUserExperienceIntegration\Api\ApiLayoutBlockNameInterface;
-use BoxalinoClientProject\BoxalinoRealTimeUserExperienceIntegration\Model\Api\Request\Context\SearchContext;
+use BoxalinoClientProject\BoxalinoIntegration\Api\ApiLayoutBlockNameInterface;
+use BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context\SearchContext;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Magento\CatalogSearch\Helper\Data;
 use Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection;
@@ -30,7 +30,7 @@ use Magento\Search\Model\QueryFactory;
  * Extends from the original block in order to ensure a fallback strategy
  * Does not replace the default template (Magento_CatalogSearch::result.phtml)
  *
- * @package BoxalinoClientProject\BoxalinoRealTimeUserExperienceIntegration\Block
+ * @package BoxalinoClientProject\BoxalinoIntegration\Block
  */
 class Search extends \Magento\CatalogSearch\Block\Result
     implements ApiRendererInterface

@@ -11,8 +11,8 @@
 // phpcs:disable PSR2.Methods.FunctionCallSignature.SpaceBeforeOpenBracket
 ?>
 <?php if($block->getFilter()->getVisualisation() == 'range' || $block->getFilter()->getField() == 'discountedPrice') :?>
-    <?php include ($block->getTemplateFile('BoxalinoClientProject_BoxalinoRealTimeUserExperienceIntegration::api/layered-navigation/layer/filter/range.phtml')) ?>
+    <?php include ($block->getTemplateFile('BoxalinoClientProject_BoxalinoIntegration::api/layered-navigation/layer/filter/range.phtml')) ?>
 <?php else:?>
-    <?php include ($block->getTemplateFile('BoxalinoClientProject_BoxalinoRealTimeUserExperienceIntegration::api/layered-navigation/layer/filter/generic.phtml')) ?>
+    <?php include ($block->getTemplateFile('BoxalinoClientProject_BoxalinoIntegration::api/layered-navigation/layer/filter/generic.phtml')) ?>
 <?php endif;?>
 

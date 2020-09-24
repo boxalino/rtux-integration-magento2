@@ -1,5 +1,5 @@
 <?php declare(strict_types=1);
-namespace BoxalinoClientProject\BoxalinoRealTimeUserExperienceIntegration\Model\Api\Request\Context;
+namespace BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context;
 
 use Boxalino\RealTimeUserExperience\Service\Api\Util\ContextTrait;
 use Boxalino\RealTimeUserExperience\Service\Api\Util\RequestParametersTrait;
@@ -10,7 +10,7 @@ use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\Definition\ItemReques
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\ParameterFactoryInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestTransformerInterface;
-use BoxalinoClientProject\BoxalinoRealTimeUserExperienceIntegration\Model\Api\Request\IntegrationContextTrait;
+use BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\IntegrationContextTrait;
 use Magento\Catalog\Model\Product\Visibility;
 
 /**
@@ -19,7 +19,7 @@ use Magento\Catalog\Model\Product\Visibility;
  * The list of filters applied on the context is part of the class function:
  * protected function addFilters(RequestInterface $request) : void
  *
- * @package BoxalinoClientProject\BoxalinoRealTimeUserExperienceIntegration\Model\Api\Request\Context
+ * @package BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context
  */
 class ItemContext extends ItemContextAbstract
     implements ItemContextInterface
