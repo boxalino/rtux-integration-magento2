@@ -27,7 +27,11 @@ This means, the guidelines are supposed to be integrated in a repository/plugin 
 This repository can be deployed for testing Boxalino features or in order to prepare your own integration.
 In order to deploy it as is in a local environment, check the *Setup* steps bellow.
 
-## Setup
+## Prerequisites
+A full data sync is required in order to activate the Boxalino client data index.
+For more information, check the [Boxalino Exporter for Magento2](https://github.com/boxalino/exporter-magento2)
+
+## Setup (for local/testing purposes)
 1. Add the plugin to your project via composer
 ``composer require boxalino/rtux-integration-magento2``
 
@@ -42,10 +46,14 @@ In order to deploy it as is in a local environment, check the *Setup* steps bell
     * Template Resources (Boxalino Intelligence Admin >> Advanced >> Template Resources)
     * Narratives  (Boxalino Intelligence Admin >> Marketing >> Narratives)
 
+5. Update the Boxalino Framework configurations
+
 ## Documentation
 
 The latest documentation is available upon request.
 Specific feature integration is available in the [repository Wiki](https://github.com/boxalino/rtux-integration-magento2/wiki).
+Magento2 integration elements documentation is available on the [Magento2 Framework repository Wiki](https://github.com/boxalino/rtux-magento2/wiki)
+Core API documentation is available on the [RTUX API PHP wiki](https://github.com/boxalino/rtux-api-php/wiki)
 
 ## Contact us!
 
