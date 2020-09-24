@@ -32,7 +32,7 @@ A full data sync is required in order to activate the Boxalino client data index
 For more information, check the [Boxalino Exporter for Magento2](https://github.com/boxalino/exporter-magento2)
 
 ## Setup (for local/testing purposes)
-1. Add the plugin to your project via composer
+1. Add the plugin to your project via composer 
 ``composer require boxalino/rtux-integration-magento2``
 
 2. Activate the plugin (Magento2 command)
@@ -47,6 +47,9 @@ For more information, check the [Boxalino Exporter for Magento2](https://github.
     * Narratives  (Boxalino Intelligence Admin >> Marketing >> Narratives)
 
 5. Update the Boxalino Framework configurations
+
+6. Run the exporter (is declared as dependency via composer.json)  
+```php bin/magento indexer:reindex boxalino_exporter```
 
 ## Documentation
 
