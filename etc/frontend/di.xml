@@ -19,4 +19,12 @@
         </arguments>
     </virtualType>
     <preference for="Magento\LayeredNavigation\Block\Navigation\Search" type="Boxalino\RealTimeUserExperience\Block\LayeredNavigation\Navigation\Search"/>
+
+    <!-- PDP recommendation blocks (strategy B): declare as many virtual types per your layout needs -->
+    <virtualType name="BoxalinoClientProject\BoxalinoIntegration\Block\Catalog\Product\View\Upsell" type="BoxalinoClientProject\BoxalinoIntegration\Block\Api\Product\View"/>
+    <preference for="Magento\Catalog\Block\Product\ProductList\Upsell" type="BoxalinoClientProject\BoxalinoIntegration\Block\Catalog\Product\View\Upsell"/>
+
+    <virtualType name="BoxalinoClientProject\BoxalinoIntegration\Block\Catalog\Product\View\Crosssell" type="BoxalinoClientProject\BoxalinoIntegration\Block\Api\Product\View"/>
+    <preference for="Magento\Catalog\Block\Product\ProductList\Crosssell" type="BoxalinoClientProject\BoxalinoIntegration\Block\Catalog\Product\View\Crosssell"/>
+
 </config>
