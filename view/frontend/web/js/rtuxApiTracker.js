@@ -12,7 +12,6 @@ define([
     'Boxalino_RealTimeUserExperience/js/tracker/events/view-search',
     'Boxalino_RealTimeUserExperience/js/tracker/events/view-product',
     'Boxalino_RealTimeUserExperience/js/tracker/events/add-to-cart',
-    'Boxalino_RealTimeUserExperience/js/tracker/events/login',
     'Boxalino_RealTimeUserExperience/js/tracker/events/purchase',
 ], function (
     $,
@@ -21,7 +20,6 @@ define([
     ViewSearchEvent,
     ViewProductEvent,
     AddToCartEvent,
-    LoginEvent,
     PurchaseEvent
 ){
     'use strict';
@@ -66,7 +64,6 @@ define([
             this.registerEvent(ViewSearchEvent);
             this.registerEvent(ViewNavigationEvent);
             this.registerEvent(AddToCartEvent);
-            this.registerEvent(LoginEvent);
             this.registerEvent(PurchaseEvent);
         },
 
