@@ -134,7 +134,7 @@ define([
                 }
             },
             /**
-             * additional parameters to be set: returnFields, filters, facets, sort
+             * additional parameters to be set: filters, facets
              * for more details, check the Narrative Api Technical Integration manual provided by Boxalino
              *
              * @param value
@@ -143,6 +143,9 @@ define([
             _getApiRequestData(value) {
                 var otherParameters = {
                     'acQueriesHitCount':this.options.suggestions,
+                    'acHighlight': true,        // highlight matching sections
+                    'acHighlightPre':"<em>",    //textual suggestion highlight start for match word
+                    'acHighlightPost':"</em>",  //textual suggestion highlight end for match word
                     'query':value
                 };
                 return $.boxalino.rtuxApiHelper.getApiRequestData(
