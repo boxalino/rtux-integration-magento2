@@ -1,5 +1,5 @@
 <?php
-namespace BoxalinoClientProject\BoxalinoIntegration\Block\Catalog\Product;
+namespace BoxalinoClientProject\BoxalinoIntegration\Block\Api;
 
 use Boxalino\RealTimeUserExperience\Api\ApiBlockAccessorInterface;
 use Boxalino\RealTimeUserExperience\Api\ApiRendererInterface;

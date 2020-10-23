@@ -2,7 +2,7 @@
 namespace BoxalinoClientProject\BoxalinoIntegration\Block\Api\Product;
 
 use Boxalino\RealTimeUserExperience\Api\ApiRendererInterface;
-use BoxalinoClientProject\BoxalinoIntegration\Block\Catalog\Product\Product;
+use BoxalinoClientProject\BoxalinoIntegration\Block\Api\Product;
 
 /**
  * Catalog product view recommendations block
