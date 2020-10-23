@@ -2,7 +2,7 @@
 namespace BoxalinoClientProject\BoxalinoIntegration\Block\Api\Product;
 
 use Boxalino\RealTimeUserExperience\Api\ApiRendererInterface;
-use Boxalino\RealTimeUserExperience\Block\Catalog\Product\View as ApiView;
+use BoxalinoClientProject\BoxalinoIntegration\Block\Catalog\Product\Product;
 
 /**
  * Catalog product view recommendations block
@@ -14,7 +14,7 @@ use Boxalino\RealTimeUserExperience\Block\Catalog\Product\View as ApiView;
  *
  * Can inherit directly from the replaced blocks (for a fallback strategy)
  */
-class View extends ApiView
+class View extends Product
     implements ApiRendererInterface
 {
 
