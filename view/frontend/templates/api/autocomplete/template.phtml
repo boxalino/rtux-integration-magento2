@@ -5,13 +5,15 @@
  */
 ?>
 <script type="text/x-magento-template" id="rtux-product-template">
-    <a href="<%- data.products_url_key[0] %>.html">
-        <li class="<%- data.class %>" class="text_suggest_<%- data.index %>" role="option">
-            <span class="product-image"><img src="http://m235-api.danneg.work/media/catalog/product<%- data.products_image[0] %>"></span>
-            <span class="product-name"><%- data.title %></span>
-            <span class="product-price">CHF <%- data.discountedPrice %></span>
-        </li>
-    </a>
+    <div class="bx-narrative-item" data-bx-item-id="<%- data.id %>">
+        <a href="<%- data.products_url_key[0] %>.html">
+            <li class="<%- data.class %>" class="text_suggest_<%- data.index %>" role="option">
+                <span class="product-image"><img src="http://m235-api.danneg.work/media/catalog/product<%- data.products_image[0] %>"></span>
+                <span class="product-name"><%- data.title %></span>
+                <span class="product-price">CHF <%- data.discountedPrice %></span>
+            </li>
+        </a>
+    </div>
 </script>
 
 <script type="text/x-magento-template" id="rtux-suggestion-template">
@@ -25,3 +27,6 @@
     <li><h4 class="suggestion-title"><%- data.title %></h4></li>
 </script>
 
+<script type="text/x-magento-template" id="rtux-js-markup-template">
+    <div class="bx-narrative" data-bx-variant-uuid="<%- data.uuid %>" data-bx-narrative-name="<%- data.element %>" data-bx-narrative-group-by="<%- data.groupBy %>">
+</script>

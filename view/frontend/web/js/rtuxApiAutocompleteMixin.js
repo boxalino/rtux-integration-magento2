@@ -21,7 +21,9 @@ define([
                 suggestions: 3,
                 hits: 5,
                 groupBy:"products_group_id",
-                sectionTitleTemplateId:"#rtux-title-template"
+                sectionTitleTemplateId:"#rtux-title-template",
+                sectionJSmarkupTemplateId:"#rtux-js-markup-template",
+                uuid:"not-defined"
             },
 
             _onPropertyChange:function()
@@ -49,12 +51,16 @@ define([
                             data: requestData,
                             success: $.proxy(function (data) {
                                 if (data.blocks.length) {
+
+                                    let markupElement={uuid:data.advanced[0]['_bx_variant_uuid'], groupBy:data.advanced[0]['_bx_group_by']};
                                     $.each(data.blocks, function (index, element) {
                                         var html,
                                             isProduct = element.content[0] === 'product',
+                                            childCount = element.blocks.length,
                                             accessor = isProduct ? 'bx-hit' : 'bx-acQuery',
                                             templateId = element.template[0],
                                             sectionTitleTemplate = mageTemplate(this.options.sectionTitleTemplateId),
+                                            sectionJSmarkup = mageTemplate(this.options.sectionJSmarkupTemplateId),
                                             template = mageTemplate(templateId);
 
                                         $.each(element.blocks, function(childIndex, childBlock) {
@@ -67,15 +73,27 @@ define([
                                             item.class = childBlock.class[0];
                                             html = template({data:item});
 
+
                                             /** if there are item-type elements - add the header **/
                                             if(childIndex === 0) {
                                                 if(isProduct) {
                                                     dropdown.append(sectionTitleTemplate({data:element}));
+                                                    /** add the required JS API tracker markup**/
+                                                    markupElement.element="products-list";
+                                                    html = sectionJSmarkup({data:markupElement}) + html;
+                                                }
+                                                /** if(isBlog){}.. **/
+                                            }
+
+                                            if(childIndex === childCount - 1){
+                                                if(isProduct){
+                                                    html += "</div>";
                                                 }
                                             }
                                             dropdown.append(html);
                                         });
                                     }.bind(this));
+
 
                                     /** as seen on mage.quickSearch */
                                     this._resetResponseList(true);
@@ -134,7 +152,7 @@ define([
                 }
             },
             /**
-             * additional parameters to be set: filters, facets
+             * additional parameters to be set: returnFields, filters, facets, sort
              * for more details, check the Narrative Api Technical Integration manual provided by Boxalino
              *
              * @param value
@@ -143,9 +161,6 @@ define([
             _getApiRequestData(value) {
                 var otherParameters = {
                     'acQueriesHitCount':this.options.suggestions,
-                    'acHighlight': true,        // highlight matching sections
-                    'acHighlightPre':"<em>",    //textual suggestion highlight start for match word
-                    'acHighlightPost':"</em>",  //textual suggestion highlight end for match word
                     'query':value
                 };
                 return $.boxalino.rtuxApiHelper.getApiRequestData(
