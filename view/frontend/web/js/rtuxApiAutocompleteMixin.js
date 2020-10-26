@@ -22,8 +22,7 @@ define([
                 hits: 5,
                 groupBy:"products_group_id",
                 sectionTitleTemplateId:"#rtux-title-template",
-                sectionJSmarkupTemplateId:"#rtux-js-markup-template",
-                uuid:"not-defined"
+                sectionJSmarkupTemplateId:"#rtux-js-markup-template"
             },
 
             _onPropertyChange:function()
@@ -161,6 +160,9 @@ define([
             _getApiRequestData(value) {
                 var otherParameters = {
                     'acQueriesHitCount':this.options.suggestions,
+                    'acHighlight': true,        // highlight matching sections
+                    'acHighlightPre':"<em>",    //textual suggestion highlight start for match word
+                    'acHighlightPost':"</em>",  //textual suggestion highlight end for match word
                     'query':value
                 };
                 return $.boxalino.rtuxApiHelper.getApiRequestData(
