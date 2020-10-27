@@ -46,11 +46,6 @@ abstract class Product extends MagentoProductView
     protected $requestWrapper;
 
     /**
-     * @var CurrentApiResponseViewRegistryInterface
-     */
-    protected $currentApiResponseView;
-
-    /**
      * @var Collection
      */
     protected $itemsCollection;
@@ -105,7 +100,7 @@ abstract class Product extends MagentoProductView
      * @required
      * @return string|null
      */
-    protected function getContextItemId() : ?string
+    protected function getContextItemId()
     {
         $id = (int) $this->_request->getParam('id', false);
         if($id)
@@ -151,7 +146,7 @@ abstract class Product extends MagentoProductView
     /**
      * @return Collection
      */
-    public function getItems() : ?Collection
+    public function getItems()
     {
         if(!$this->currentApiResponseView->get())
         {

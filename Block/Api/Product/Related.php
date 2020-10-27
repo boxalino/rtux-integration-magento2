@@ -8,6 +8,7 @@ use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
 use Boxalino\RealTimeUserExperience\Model\Response\Content\ApiEntityCollection;
 use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseViewRegistryInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
+use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\ResponseDefinitionInterface;
 use BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context\ItemContext;
 
 /**
@@ -43,10 +44,6 @@ class Related extends \Magento\Catalog\Block\Product\ProductList\Related
      */
     protected $requestWrapper;
 
-    /**
-     * @var CurrentApiResponseViewRegistryInterface
-     */
-    protected $currentApiResponseView;
 
     public function __construct(
         CurrentApiResponseViewRegistryInterface $currentApiResponseView,
@@ -98,7 +95,7 @@ class Related extends \Magento\Catalog\Block\Product\ProductList\Related
      * @required
      * @return string|null
      */
-    protected function getContextItemId() : ?string
+    protected function getContextItemId()
     {
         $id = (int) $this->_request->getParam('id', false);
         if($id)
@@ -120,7 +117,7 @@ class Related extends \Magento\Catalog\Block\Product\ProductList\Related
     protected function _prepareLayout()
     {
         try{
-            if($this->currentApiResponseView->get())
+            if($this->currentApiResponseView->get() instanceof ResponseDefinitionInterface)
             {
                 return parent::_prepareLayout();
             }

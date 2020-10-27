@@ -9,6 +9,7 @@ use Boxalino\RealTimeUserExperience\Block\Catalog\Product\ListProduct;
 use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
 use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseRegistryInterface;
 use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseViewRegistryInterface;
+use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\ResponseDefinitionInterface;
 use BoxalinoClientProject\BoxalinoIntegration\Api\ApiLayoutBlockNameInterface;
 use BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context\SearchContext;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
@@ -53,16 +54,6 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     protected $requestWrapper;
 
-    /**
-     * @var CurrentApiResponseRegistryInterface
-     */
-    protected $currentApiResponse;
-
-    /**
-     * @var CurrentApiResponseViewRegistryInterface
-     */
-    protected $currentApiResponseView;
-
     public function __construct(
         CurrentApiResponseRegistryInterface $currentApiResponse,
         CurrentApiResponseViewRegistryInterface $currentApiResponseView,
@@ -91,7 +82,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function getTemplate()
     {
-        if(!$this->currentApiResponse->get() || $this->currentApiResponseView->get() && $this->currentApiResponseView->get()->isFallback())
+        if($this->isApiFallback())
         {
             return parent::getTemplate();
         }
@@ -108,7 +99,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
     protected function _prepareLayout()
     {
         try{
-            if($this->currentApiResponse->get())
+            if($this->currentApiResponse->get() instanceof ResponseDefinitionInterface)
             {
                 return parent::_prepareLayout();
             }
@@ -138,7 +129,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function getSearchQueryText()
     {
-        if(!$this->currentApiResponse->get() || $this->currentApiResponseView->get() && $this->currentApiResponseView->get()->isFallback())
+        if($this->isApiFallback())
         {
             return parent::getSearchQueryText();
         }
@@ -174,7 +165,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function setListModes()
     {
-        if(!$this->currentApiResponse->get() || $this->currentApiResponseView->get() && $this->currentApiResponseView->get()->isFallback())
+        if($this->isApiFallback())
         {
             return parent::setListModes();
         }
@@ -190,17 +181,17 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function setListOrders()
     {
-        if(!$this->currentApiResponse->get())
+        if($this->currentApiResponse->get() instanceof ResponseDefinitionInterface)
         {
-            return parent::setListOrders();
+            return $this;
         }
 
-        return $this;
+        return parent::setListOrders();
     }
 
     public function getBlocks() : \ArrayIterator
     {
-        if($this->currentApiResponse->get())
+        if($this->currentApiResponse->get() instanceof ResponseDefinitionInterface)
         {
             return $this->currentApiResponseView->get()->getBlocks();
         }
@@ -222,18 +213,18 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function getListBlock()
     {
-        if(!$this->currentApiResponse->get())
+        if($this->currentApiResponse->get() instanceof ResponseDefinitionInterface)
         {
-            return parent::getListBlock();
+            /** @var ApiResponseBlockInterface $apiBlock */
+            $apiBlock = $this->getDefaultResponseBlock();
+            $apiBlock->setRtuxGroupBy($this->getRtuxGroupBy())
+                ->setRtuxVariantUuid($this->getRtuxVariantUuid())
+                ->setApiResponsePage($this->apiLoader->getApiResponsePage());
+
+            return $apiBlock;
         }
 
-        /** @var ApiResponseBlockInterface $apiBlock */
-        $apiBlock = $this->getDefaultResponseBlock();
-        $apiBlock->setRtuxGroupBy($this->getRtuxGroupBy())
-            ->setRtuxVariantUuid($this->getRtuxVariantUuid())
-            ->setApiResponsePage($this->apiLoader->getApiResponsePage());
-
-        return $apiBlock;
+        return parent::getListBlock();
     }
 
     /**
@@ -245,12 +236,12 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function getProductListHtml()
     {
-        if(!$this->currentApiResponse->get())
+        if($this->currentApiResponse->get() instanceof ResponseDefinitionInterface)
         {
-            return parent::getProductListHtml();
+            return $this->getListBlock()->toHtml();
         }
 
-        return $this->getListBlock()->toHtml();
+        return parent::getProductListHtml();
     }
 
     /**
@@ -262,24 +253,24 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     protected function _getProductCollection()
     {
-        if(!$this->currentApiResponse->get())
+        if($this->currentApiResponse->get() instanceof ResponseDefinitionInterface)
         {
-            return parent::_getProductCollection();
-        }
-
-        if (null === $this->productCollection) {
-            /** @var ApiBlockAccessorInterface $apiBlock */
-            foreach($this->getBlocks() as $apiBlock)
-            {
-                /** @var ListProduct $apiBlock (type for guidelines sample) */
-                if($apiBlock->getName() === ApiLayoutBlockNameInterface::RTUX_API_SEARCH_PRODUCT_LIST_BLOCK)
+            if (null === $this->productCollection) {
+                /** @var ApiBlockAccessorInterface $apiBlock */
+                foreach($this->getBlocks() as $apiBlock)
                 {
-                    $this->productCollection = $apiBlock->getLoadedProductCollection();
+                    /** @var ListProduct $apiBlock (type for guidelines sample) */
+                    if($apiBlock->getName() === ApiLayoutBlockNameInterface::RTUX_API_SEARCH_PRODUCT_LIST_BLOCK)
+                    {
+                        $this->productCollection = $apiBlock->getLoadedProductCollection();
+                    }
                 }
             }
+
+            return $this->productCollection;
         }
 
-        return $this->productCollection;
+        return parent::_getProductCollection();
     }
 
     /**
@@ -291,18 +282,18 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function getResultCount()
     {
-        if(!$this->currentApiResponse->get())
+        if($this->currentApiResponse->get() instanceof ResponseDefinitionInterface)
         {
-            return parent::getResultCount();
+            if (!$this->getData('result_count')) {
+                /** @var int $size */
+                $size = $this->apiLoader->getApiResponsePage()->getTotalHitCount();
+                $this->setResultCount($size);
+            }
+
+            return $this->getData('result_count');
         }
 
-        if (!$this->getData('result_count')) {
-            /** @var int $size */
-            $size = $this->apiLoader->getApiResponsePage()->getTotalHitCount();
-            $this->setResultCount($size);
-        }
-
-        return $this->getData('result_count');
+        return parent::getResultCount();
     }
 
     /**

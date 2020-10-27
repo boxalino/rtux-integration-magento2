@@ -7,6 +7,7 @@ use Boxalino\RealTimeUserExperience\Block\ApiBlockTrait;
 use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
 use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseRegistryInterface;
 use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseViewRegistryInterface;
+use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\ResponseDefinitionInterface;
 use BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context\NavigationContext;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Magento\Catalog\Block\Category\View;
@@ -43,16 +44,6 @@ class Navigation extends View
      */
     protected $requestWrapper;
 
-    /**
-     * @var CurrentApiResponseRegistryInterface
-     */
-    protected $currentApiResponse;
-
-    /**
-     * @var CurrentApiResponseViewRegistryInterface
-     */
-    protected $currentApiResponseView;
-
     public function __construct(
         CurrentApiResponseRegistryInterface$currentApiResponse,
         CurrentApiResponseViewRegistryInterface $currentApiResponseView,
@@ -81,7 +72,7 @@ class Navigation extends View
     protected function _prepareLayout()
     {
         try{
-            if($this->currentApiResponse->get())
+            if($this->currentApiResponse->get() instanceof ResponseDefinitionInterface)
             {
                 return parent::_prepareLayout();
             }
@@ -103,7 +94,7 @@ class Navigation extends View
 
     public function getBlocks() : \ArrayIterator
     {
-        if($this->currentApiResponseView->get())
+        if($this->currentApiResponseView->get() instanceof ResponseDefinitionInterface)
         {
             return $this->currentApiResponseView->get()->getBlocks();
         }
@@ -120,7 +111,7 @@ class Navigation extends View
      */
     public function getProductListHtml()
     {
-        if($this->currentApiResponseView->get() && $this->currentApiResponseView->get()->isFallback() || !$this->currentApiResponseView->get())
+        if($this->isApiFallback())
         {
             return $this->getChildHtml('product_list');
         }
