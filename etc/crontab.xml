@@ -4,5 +4,8 @@
         <job name="boxalino_exporter_delta" instance="Boxalino\Exporter\Model\Indexer\Delta" method="execute">
             <schedule>*/9 7-23 * * *</schedule>
         </job>
+        <job name="boxalino_exporter" instance="Boxalino\Exporter\Model\Indexer\Full" method="executeFull">
+            <schedule>1 * * * *</schedule>
+        </job>
     </group>
 </config>

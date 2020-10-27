@@ -9,6 +9,7 @@ use Boxalino\RealTimeUserExperience\Block\Catalog\Product\ListProduct;
 use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
 use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseRegistryInterface;
 use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseViewRegistryInterface;
+use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\ResponseDefinitionInterface;
 use BoxalinoClientProject\BoxalinoIntegration\Api\ApiLayoutBlockNameInterface;
 use BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context\SearchContext;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
@@ -53,16 +54,6 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     protected $requestWrapper;
 
-    /**
-     * @var CurrentApiResponseRegistryInterface
-     */
-    protected $currentApiResponse;
-
-    /**
-     * @var CurrentApiResponseViewRegistryInterface
-     */
-    protected $currentApiResponseView;
-
     public function __construct(
         CurrentApiResponseRegistryInterface $currentApiResponse,
         CurrentApiResponseViewRegistryInterface $currentApiResponseView,
@@ -91,7 +82,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function getTemplate()
     {
-        if(!$this->currentApiResponse->get() || $this->currentApiResponseView->get() && $this->currentApiResponseView->get()->isFallback())
+        if($this->isApiFallback())
         {
             return parent::getTemplate();
         }
@@ -108,7 +99,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
     protected function _prepareLayout()
     {
         try{
-            if($this->currentApiResponse->get())
+            if($this->currentApiResponse->get() instanceof ResponseDefinitionInterface)
             {
                 return parent::_prepareLayout();
             }
@@ -138,7 +129,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function getSearchQueryText()
     {
-        if(!$this->currentApiResponse->get() || $this->currentApiResponseView->get() && $this->currentApiResponseView->get()->isFallback())
+        if($this->isApiFallback())
         {
             return parent::getSearchQueryText();
         }
@@ -174,7 +165,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function setListModes()
     {
-        if(!$this->currentApiResponse->get() || $this->currentApiResponseView->get() && $this->currentApiResponseView->get()->isFallback())
+        if($this->isApiFallback())
         {
             return parent::setListModes();
         }
@@ -190,7 +181,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function setListOrders()
     {
-        if(!$this->currentApiResponse->get())
+        if($this->isApiFallback())
         {
             return parent::setListOrders();
         }
@@ -200,7 +191,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
 
     public function getBlocks() : \ArrayIterator
     {
-        if($this->currentApiResponse->get())
+        if($this->currentApiResponse->get() instanceof ResponseDefinitionInterface)
         {
             return $this->currentApiResponseView->get()->getBlocks();
         }
@@ -222,7 +213,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function getListBlock()
     {
-        if(!$this->currentApiResponse->get())
+        if($this->isApiFallback())
         {
             return parent::getListBlock();
         }
@@ -245,7 +236,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function getProductListHtml()
     {
-        if(!$this->currentApiResponse->get())
+        if($this->isApiFallback())
         {
             return parent::getProductListHtml();
         }
@@ -262,7 +253,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     protected function _getProductCollection()
     {
-        if(!$this->currentApiResponse->get())
+        if($this->isApiFallback())
         {
             return parent::_getProductCollection();
         }
@@ -291,7 +282,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function getResultCount()
     {
-        if(!$this->currentApiResponse->get())
+        if($this->isApiFallback())
         {
             return parent::getResultCount();
         }
@@ -314,7 +305,7 @@ class Search extends \Magento\CatalogSearch\Block\Result
      */
     public function getNoteMessages()
     {
-        if(!$this->currentApiResponseView->get())
+        if($this->isApiFallback())
         {
             return parent::getNoteMessages();
         }
