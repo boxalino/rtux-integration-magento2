@@ -7,6 +7,7 @@ use Boxalino\RealTimeUserExperience\Block\ApiBlockTrait;
 use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
 use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseRegistryInterface;
 use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseViewRegistryInterface;
+use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\ApiResponseViewInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\ResponseDefinitionInterface;
 use BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context\NavigationContext;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
@@ -94,7 +95,7 @@ class Navigation extends View
 
     public function getBlocks() : \ArrayIterator
     {
-        if($this->currentApiResponseView->get() instanceof ResponseDefinitionInterface)
+        if($this->currentApiResponseView->get() instanceof ApiResponseViewInterface)
         {
             return $this->currentApiResponseView->get()->getBlocks();
         }

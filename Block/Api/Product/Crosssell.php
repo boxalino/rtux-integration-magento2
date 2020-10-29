@@ -7,7 +7,7 @@ use Boxalino\RealTimeUserExperience\Block\ApiBlockTrait;
 use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
 use Boxalino\RealTimeUserExperience\Model\Response\Content\ApiEntityCollection;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
-use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\ResponseDefinitionInterface;
+use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\ApiResponseViewInterface;
 use BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context\ItemContext;
 use Magento\Catalog\Model\ResourceModel\Product\Collection;
 use Magento\Checkout\Block\Cart\Crosssell as MagentoCrosssell;
@@ -17,7 +17,11 @@ use Magento\CatalogInventory\Helper\Stock as StockHelper;
  * Class Crosssell
  * Used for the cart recommendations
  * Sets the last added product IDs as the main ID; in lack of this - it will use the product ID with the highest price
- * The list of products in cart is set as subproducts
+ * The list of products in cart must be set as sub-products
+ *
+ * A much more simple version can be used (ex: a virtual type -- scenario #2C)
+ *
+ * Keep in mind to add the required JS API tracker HTML-mark-ups to Magento_Catalog::product/list/items.phtml
  *
  * @package BoxalinoClientProject\BoxalinoIntegration\Block\Api\Product
  */
@@ -98,7 +102,7 @@ class Crosssell extends MagentoCrosssell
     protected function _prepareLayout()
     {
         try{
-            if($this->currentApiResponseView->get() instanceof ResponseDefinitionInterface)
+            if($this->currentApiResponseView->get() instanceof ApiResponseViewInterface)
             {
                 return parent::_prepareLayout();
             }
@@ -107,7 +111,7 @@ class Crosssell extends MagentoCrosssell
             if($productId)
             {
                 $this->apiContext->setProductId($this->getMainItemId())
-                    ->setSubProductIds($this->getCartProductIds())
+                    ->setSubProductIds($this->getApiRequestSubproductIds())
                     ->setWidget($this->getWidget())
                     ->setHitCount($this->getHitCount());
 
@@ -202,7 +206,7 @@ class Crosssell extends MagentoCrosssell
      *
      * @return array
      */
-    protected function getCartProductIds() : array
+    protected function getApiRequestSubproductIds() : array
     {
         return array_diff($this->_getCartProductIds(), [$this->getMainItemId()]);
     }

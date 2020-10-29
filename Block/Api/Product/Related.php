@@ -8,15 +8,15 @@ use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
 use Boxalino\RealTimeUserExperience\Model\Response\Content\ApiEntityCollection;
 use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseViewRegistryInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
-use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\ResponseDefinitionInterface;
+use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\ApiResponseViewInterface;
 use BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context\ItemContext;
 
 /**
  * Catalog product related items block
  * It extends the original Related block for the fallback strategy (if chosen to)
  *
- * Using this block as a preference for the default Magento2 block does not require any template update
- * (the generic Magento2 Magento_Catalog::product/list/items.phtml is to be used)
+ * Due to the preference update, the default M2 template is used (Magento_Catalog::product/list/items.phtml)
+ * Keep in mind to add the required JS API tracker HTML-mark-ups
  *
  * The product ID (context item ID) it is required due to the nature of the scenario
  *
@@ -117,7 +117,7 @@ class Related extends \Magento\Catalog\Block\Product\ProductList\Related
     protected function _prepareLayout()
     {
         try{
-            if($this->currentApiResponseView->get() instanceof ResponseDefinitionInterface)
+            if($this->currentApiResponseView->get() instanceof ApiResponseViewInterface)
             {
                 return parent::_prepareLayout();
             }

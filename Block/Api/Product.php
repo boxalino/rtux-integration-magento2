@@ -8,6 +8,7 @@ use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
 use Boxalino\RealTimeUserExperience\Model\Response\Content\ApiEntityCollection;
 use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseViewRegistryInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
+use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\ApiResponseViewInterface;
 use BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context\ItemContext;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Model\ResourceModel\Product\Collection;
@@ -119,14 +120,14 @@ abstract class Product extends MagentoProductView
     /**
      * Makes the Boxalino API request
      *
-     * @return View|void
+     * @return self
      */
     protected function _prepareLayout()
     {
         try{
-            if($this->currentApiResponseView->get())
+            if($this->currentApiResponseView->get() instanceof ApiResponseViewInterface)
             {
-                return parent::_prepareLayout();
+                return $this;
             }
 
             $this->apiContext->setProductId($this->getContextItemId())
@@ -145,7 +146,7 @@ abstract class Product extends MagentoProductView
             $this->_logger->warning("BoxalinoAPI PDP Error on {$this->getType()}: " . $exception->getTraceAsString());
         }
 
-        parent::_prepareLayout();
+        return $this;
     }
 
     /**
@@ -233,12 +234,11 @@ abstract class Product extends MagentoProductView
      */
     protected function _prepareData()
     {
-        if(!$this->currentApiResponseView->get() || !$this->getContextItemId())
+        if($this->currentApiResponseView->get() instanceof ApiResponseViewInterface  && $this->getContextItemId())
         {
-            return parent::_prepareData();
+            $this->getCollectionByTypeMatch();
         }
 
-        $this->getCollectionByTypeMatch();
         return $this;
     }
 
