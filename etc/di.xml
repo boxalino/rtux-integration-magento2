@@ -4,6 +4,8 @@
     <preference for="Magento\CatalogSearch\Block\Result" type="BoxalinoClientProject\BoxalinoIntegration\Block\Api\Search"/>
     <!-- PDP recommendations (strategy A) -->
     <preference for="Magento\Catalog\Block\Product\ProductList\Related" type="BoxalinoClientProject\BoxalinoIntegration\Block\Api\Product\Related"/>
+    <!-- PDP recommendations (strategy C) -->
+    <preference for="Magento\Checkout\Block\Cart\Crosssell" type="BoxalinoClientProject\BoxalinoIntegration\Block\Api\Product\Crosssell"/>
 
     <!-- registry-mock to access available API response structures -->
     <preference for="Boxalino\RealTimeUserExperience\Api\CurrentApiResponseRegistryInterface" type="Boxalino\RealTimeUserExperience\Registry\CurrentApiResponse"/>

@@ -72,5 +72,15 @@ class ItemContext extends ItemContextAbstract
         return ["id", "products_group_id", "title"];
     }
 
+    /**
+     * The product recommendations are grouped by ID
+     *
+     * @return string
+     */
+    public function getGroupBy() : string
+    {
+        return "id";
+    }
+
 
 }
