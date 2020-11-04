@@ -27,4 +27,17 @@
     <virtualType name="BoxalinoClientProject\BoxalinoIntegration\Block\Catalog\Product\View\Crosssell" type="BoxalinoClientProject\BoxalinoIntegration\Block\Api\Product\View"/>
     <preference for="Magento\Catalog\Block\Product\ProductList\Crosssell" type="BoxalinoClientProject\BoxalinoIntegration\Block\Catalog\Product\View\Crosssell"/>
 
+    <!-- Dynamic Controllers definitions -->
+    <type name="Magento\Framework\App\RouterList">
+        <arguments>
+            <argument name="routerList" xsi:type="array">
+                <item name="narrative_dynamic" xsi:type="array">
+                    <item name="class" xsi:type="string">BoxalinoClientProject\BoxalinoIntegration\Controller\Dynamic</item>
+                    <item name="disable" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="string">10</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
 </config>

@@ -152,24 +152,22 @@ class Related extends \Magento\Catalog\Block\Product\ProductList\Related
      */
     protected function _prepareData()
     {
-        if($this->isApiFallback() || !$this->getContextItemId())
+        if ($this->currentApiResponseView->get() instanceof ApiResponseViewInterface && $this->getContextItemId())
         {
-            return parent::_prepareData();
-        }
-
-        /** @var ApiBlockAccessorInterface $apiBlock */
-        foreach($this->currentApiResponseView->get()->getBlocks() as $apiBlock)
-        {
-            /** upsell, crosssell, related, other */
-            if($apiBlock->getType() === $this->getType())
-            {
-                /** @var ApiEntityCollection $collectionModel */
-                $collectionModel = $apiBlock->getModel();
-                $this->_itemCollection = $collectionModel->getCollection();
+            /** @var ApiBlockAccessorInterface $apiBlock */
+            foreach ($this->currentApiResponseView->get()->getBlocks() as $apiBlock) {
+                /** upsell, crosssell, related, other */
+                if ($apiBlock->getType() === $this->getType()) {
+                    /** @var ApiEntityCollection $collectionModel */
+                    $collectionModel = $apiBlock->getModel();
+                    $this->_itemCollection = $collectionModel->getCollection();
+                }
             }
+
+            return $this;
         }
 
-        return $this;
+        return parent::_prepareData();
     }
 
 }
