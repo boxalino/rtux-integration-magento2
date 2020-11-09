@@ -51,10 +51,11 @@ define([
                             success: $.proxy(function (data) {
                                 if (data.blocks.length) {
 
+                                    var html = '';
+
                                     let markupElement={uuid:data.advanced[0]['_bx_variant_uuid'], groupBy:data.advanced[0]['_bx_group_by']};
                                     $.each(data.blocks, function (index, element) {
-                                        var html,
-                                            isProduct = element.content[0] === 'product',
+                                        var isProduct = element.content[0] === 'product',
                                             childCount = element.blocks.length,
                                             accessor = isProduct ? 'bx-hit' : 'bx-acQuery',
                                             templateId = element.template[0],
@@ -70,29 +71,28 @@ define([
                                             }
                                             item.index = childIndex;
                                             item.class = childBlock.class[0];
-                                            html = template({data:item});
 
-
-                                            /** if there are item-type elements - add the header **/
                                             if(childIndex === 0) {
                                                 if(isProduct) {
-                                                    dropdown.append(sectionTitleTemplate({data:element}));
+                                                    html += sectionTitleTemplate({data:element});
                                                     /** add the required JS API tracker markup**/
                                                     markupElement.element="products-list";
-                                                    html = sectionJSmarkup({data:markupElement}) + html;
+                                                    html += sectionJSmarkup({data:markupElement});
                                                 }
                                                 /** if(isBlog){}.. **/
                                             }
+                                            html += template({data:item});
 
                                             if(childIndex === childCount - 1){
                                                 if(isProduct){
                                                     html += "</div>";
                                                 }
                                             }
-                                            dropdown.append(html);
+
                                         });
                                     }.bind(this));
 
+                                    dropdown.append(html);
 
                                     /** as seen on mage.quickSearch */
                                     this._resetResponseList(true);
@@ -176,5 +176,4 @@ define([
 
         return $.mage.quickSearch;
     };
-
 });
