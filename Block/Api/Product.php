@@ -8,6 +8,7 @@ use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
 use Boxalino\RealTimeUserExperience\Model\Response\Content\ApiEntityCollection;
 use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseViewRegistryInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
+use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\Accessor\BxAttributeList;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\ApiResponseViewInterface;
 use BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context\ItemContext;
 use Magento\Catalog\Api\ProductRepositoryInterface;
@@ -24,6 +25,7 @@ use Magento\Catalog\Block\Product\View as MagentoProductView;
  * and others
  *
  * It inherits from the \Magento\Catalog\Block\Product\View in order to avoid the use of the deprecated AbstractProduct element
+ * Update the template to support the API JS tracker mark-ups
  */
 abstract class Product extends MagentoProductView
     implements ApiRendererInterface
@@ -256,6 +258,8 @@ abstract class Product extends MagentoProductView
             /** upsell, crosssell, related, other */
             if($apiBlock->getType() === $this->getType())
             {
+                $this->setBlock($apiBlock);
+
                 /** @var ApiEntityCollection $collectionModel */
                 $collectionModel = $apiBlock->getModel();
                 $this->itemsCollection = $collectionModel->getCollection();
@@ -263,6 +267,27 @@ abstract class Product extends MagentoProductView
         }
 
         return $this;
+    }
+
+    /**
+     * Access the Boxalino response attributes for API JS tracker
+     *
+     * @return \ArrayIterator
+     */
+    public function getBxAttributes(): \ArrayIterator
+    {
+        if($this->currentApiResponseView->get())
+        {
+            /** @var ApiBlockAccessorInterface $apiBlock */
+            foreach ($this->currentApiResponseView->get()->getBlocks() as $apiBlock) {
+                /** upsell, crosssell, related, other */
+                if ($apiBlock->getType() === $this->getType()) {
+                    return $apiBlock->getBxAttributes();
+                }
+            }
+        }
+
+        return new BxAttributeList();
     }
 
 }

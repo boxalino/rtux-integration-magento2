@@ -7,6 +7,7 @@ use Boxalino\RealTimeUserExperience\Block\ApiBlockTrait;
 use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
 use Boxalino\RealTimeUserExperience\Model\Response\Content\ApiEntityCollection;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
+use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\Accessor\BxAttributeList;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\ApiResponseViewInterface;
 use BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context\ItemContext;
 use Magento\Catalog\Model\ResourceModel\Product\Collection;
@@ -21,7 +22,7 @@ use Magento\CatalogInventory\Helper\Stock as StockHelper;
  *
  * A much more simple version can be used (ex: a virtual type -- scenario #2C)
  *
- * Keep in mind to add the required JS API tracker HTML-mark-ups to Magento_Catalog::product/list/items.phtml
+ * Update the template to support the API JS tracker mark-ups: Magento_Catalog::product/list/items.phtml
  *
  * @package BoxalinoClientProject\BoxalinoIntegration\Block\Api\Product
  */
@@ -209,6 +210,27 @@ class Crosssell extends MagentoCrosssell
     protected function getApiRequestSubproductIds() : array
     {
         return array_diff($this->_getCartProductIds(), [$this->getMainItemId()]);
+    }
+
+    /**
+     * Access the Boxalino response attributes for API JS tracker
+     *
+     * @return \ArrayIterator
+     */
+    public function getBxAttributes(): \ArrayIterator
+    {
+        if($this->currentApiResponseView->get() && $this->getMainItemId())
+        {
+            /** @var ApiBlockAccessorInterface $apiBlock */
+            foreach ($this->currentApiResponseView->get()->getBlocks() as $apiBlock) {
+                /** upsell, crosssell, related, other */
+                if ($apiBlock->getType() === $this->getType()) {
+                    return $apiBlock->getBxAttributes();
+                }
+            }
+        }
+
+        return new BxAttributeList();
     }
 
 }

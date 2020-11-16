@@ -11,6 +11,7 @@ use Magento\Framework\App\Action\Action;
 $_product = $this->getProduct();
 $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
 $pos=null;
+$bxAttributes = $block->getBxAttributes();
 
 if ($block->getMode() == 'grid') {
     $viewMode = 'grid';
@@ -24,7 +25,11 @@ if ($block->getMode() == 'grid') {
     $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
 }
 ?>
-<li class="item product product-item bx-narrative-item" data-bx-item-id="<?= $_product->getId();?>">
+<li class="item product product-item <?php /* @escapeNotVerified */ echo  $bxAttributes->getClass(); ?>""
+    <?php foreach($bxAttributes as $attribute):?>
+        <?php /* @escapeNotVerified */ echo $attribute->getName()?>="<?php /* @escapeNotVerified */ echo $attribute->getValue();?>"
+    <?php endforeach;?>
+>
     <div class="product-item-info" data-container="product-<?= /* @noEscape */ $viewMode ?>">
         <?php
         $productImage = $block->getImage($_product, $imageDisplayArea);

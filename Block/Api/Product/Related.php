@@ -8,6 +8,7 @@ use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
 use Boxalino\RealTimeUserExperience\Model\Response\Content\ApiEntityCollection;
 use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseViewRegistryInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
+use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\Accessor\BxAttributeList;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\ApiResponseViewInterface;
 use BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context\ItemContext;
 
@@ -16,7 +17,7 @@ use BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context\ItemCont
  * It extends the original Related block for the fallback strategy (if chosen to)
  *
  * Due to the preference update, the default M2 template is used (Magento_Catalog::product/list/items.phtml)
- * Keep in mind to add the required JS API tracker HTML-mark-ups
+ * Update the template to support the API JS tracker mark-ups
  *
  * The product ID (context item ID) it is required due to the nature of the scenario
  *
@@ -168,6 +169,27 @@ class Related extends \Magento\Catalog\Block\Product\ProductList\Related
         }
 
         return parent::_prepareData();
+    }
+
+    /**
+     * Access the Boxalino response attributes for API JS tracker
+     *
+     * @return \ArrayIterator
+     */
+    public function getBxAttributes(): \ArrayIterator
+    {
+        if ($this->currentApiResponseView->get() instanceof ApiResponseViewInterface && $this->getContextItemId())
+        {
+            /** @var ApiBlockAccessorInterface $apiBlock */
+            foreach ($this->currentApiResponseView->get()->getBlocks() as $apiBlock) {
+                /** upsell, crosssell, related, other */
+                if ($apiBlock->getType() === $this->getType()) {
+                    return $apiBlock->getBxAttributes();
+                }
+            }
+        }
+
+        return new BxAttributeList();
     }
 
 }
