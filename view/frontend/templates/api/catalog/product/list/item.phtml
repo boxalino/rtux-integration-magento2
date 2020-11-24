@@ -69,6 +69,9 @@ if ($block->getMode() == 'grid') {
                                   data-product-sku="<?= $block->escapeHtmlAttr($_product->getSku()) ?>"
                                   action="<?= $block->escapeUrl($postParams['action']) ?>"
                                   method="post">
+                                <input type="hidden" class="bx-basket-quantity" value="<?= /* @noEscape */ $block->getMinimalQty($_product); ?>">
+                                <input type="hidden" class="bx-basket-price" value="<?= /* @noEscape */ $_product->getFinalPrice(); ?>">
+                                <input type="hidden" class="bx-basket-currency" value="<?= /* @noEscape */ $block->getCurrencyCode(); ?>">
                                 <input type="hidden"
                                        name="product"
                                        value="<?= /* @noEscape */ $postParams['data']['product'] ?>">
@@ -77,7 +80,7 @@ if ($block->getMode() == 'grid') {
                                 <?= $block->getBlockHtml('formkey') ?>
                                 <button type="submit"
                                         title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>"
-                                        class="action tocart primary">
+                                        class="action tocart primary bx-basket-add">
                                     <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
                                 </button>
                             </form>
