@@ -290,4 +290,14 @@ abstract class Product extends MagentoProductView
         return new BxAttributeList();
     }
 
+    /**
+     * @return string
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function getCurrencyCode() : string
+    {
+        return $this->_storeManager->getStore()->getCurrentCurrency()->getCode();
+    }
+
+
 }

@@ -192,4 +192,14 @@ class Related extends \Magento\Catalog\Block\Product\ProductList\Related
         return new BxAttributeList();
     }
 
+    /**
+     * @return string
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function getCurrencyCode() : string
+    {
+        return $this->_storeManager->getStore()->getCurrentCurrency()->getCode();
+    }
+
+
 }
