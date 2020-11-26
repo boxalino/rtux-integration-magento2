@@ -3,6 +3,8 @@
     <!-- registry-mock to access available API response structures -->
     <preference for="Boxalino\RealTimeUserExperience\Api\CurrentApiResponseRegistryInterface" type="Boxalino\RealTimeUserExperience\Registry\CurrentApiResponse"/>
     <preference for="Boxalino\RealTimeUserExperience\Api\CurrentApiResponseViewRegistryInterface" type="Boxalino\RealTimeUserExperience\Registry\CurrentApiResponseView"/>
+    <!-- PDP recommendations (strategy C) -->
+    <preference for="Magento\Checkout\Block\Cart\Crosssell" type="BoxalinoClientProject\BoxalinoIntegration\Block\Api\Product\Crosssell"/>
 
     <!-- the sorting model must be declared for the integration to work; even in absence of use, the default provided one can be used -->
     <preference for="Boxalino\RealTimeUserExperienceApi\Framework\Content\Listing\ApiSortingModelInterface" type="Boxalino\RealTimeUserExperience\Model\Response\Content\ApiSorting"/>

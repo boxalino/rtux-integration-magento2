@@ -8,15 +8,16 @@ use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
 use Boxalino\RealTimeUserExperience\Model\Response\Content\ApiEntityCollection;
 use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseViewRegistryInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
-use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\ResponseDefinitionInterface;
+use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\Accessor\BxAttributeList;
+use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\ApiResponseViewInterface;
 use BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context\ItemContext;
 
 /**
  * Catalog product related items block
  * It extends the original Related block for the fallback strategy (if chosen to)
  *
- * Using this block as a preference for the default Magento2 block does not require any template update
- * (the generic Magento2 Magento_Catalog::product/list/items.phtml is to be used)
+ * Due to the preference update, the default M2 template is used (Magento_Catalog::product/list/items.phtml)
+ * Update the template to support the API JS tracker mark-ups
  *
  * The product ID (context item ID) it is required due to the nature of the scenario
  *
@@ -117,7 +118,7 @@ class Related extends \Magento\Catalog\Block\Product\ProductList\Related
     protected function _prepareLayout()
     {
         try{
-            if($this->currentApiResponseView->get() instanceof ResponseDefinitionInterface)
+            if($this->currentApiResponseView->get() instanceof ApiResponseViewInterface)
             {
                 return parent::_prepareLayout();
             }
@@ -152,24 +153,43 @@ class Related extends \Magento\Catalog\Block\Product\ProductList\Related
      */
     protected function _prepareData()
     {
-        if(!$this->currentApiResponseView->get() || !$this->getContextItemId())
+        if ($this->currentApiResponseView->get() instanceof ApiResponseViewInterface && $this->getContextItemId())
         {
-            return parent::_prepareData();
+            /** @var ApiBlockAccessorInterface $apiBlock */
+            foreach ($this->currentApiResponseView->get()->getBlocks() as $apiBlock) {
+                /** upsell, crosssell, related, other */
+                if ($apiBlock->getType() === $this->getType()) {
+                    /** @var ApiEntityCollection $collectionModel */
+                    $collectionModel = $apiBlock->getModel();
+                    $this->_itemCollection = $collectionModel->getCollection();
+                }
+            }
+
+            return $this;
         }
 
-        /** @var ApiBlockAccessorInterface $apiBlock */
-        foreach($this->currentApiResponseView->get()->getBlocks() as $apiBlock)
+        return parent::_prepareData();
+    }
+
+    /**
+     * Access the Boxalino response attributes for API JS tracker
+     *
+     * @return \ArrayIterator
+     */
+    public function getBxAttributes(): \ArrayIterator
+    {
+        if ($this->currentApiResponseView->get() instanceof ApiResponseViewInterface && $this->getContextItemId())
         {
-            /** upsell, crosssell, related, other */
-            if($apiBlock->getType() === $this->getType())
-            {
-                /** @var ApiEntityCollection $collectionModel */
-                $collectionModel = $apiBlock->getModel();
-                $this->_itemCollection = $collectionModel->getCollection();
+            /** @var ApiBlockAccessorInterface $apiBlock */
+            foreach ($this->currentApiResponseView->get()->getBlocks() as $apiBlock) {
+                /** upsell, crosssell, related, other */
+                if ($apiBlock->getType() === $this->getType()) {
+                    return $apiBlock->getBxAttributes();
+                }
             }
         }
 
-        return $this;
+        return new BxAttributeList();
     }
 
 }

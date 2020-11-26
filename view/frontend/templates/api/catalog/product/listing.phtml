@@ -8,10 +8,13 @@
 ?>
 
 <?php $viewMode = $block->getMode();?>
-<div class="products wrapper <?php /* @escapeNotVerified */ echo $viewMode; ?> products-<?php /* @escapeNotVerified */ echo $viewMode; ?> bx-narrative"
-     data-bx-variant-uuid="<?php echo $this->getRtuxVariantUuid(); ?>"
-     data-bx-narrative-name="products-list"
-     data-bx-narrative-group-by="<?php echo $this->getRtuxGroupBy();?>">
+<?php $bxAttributes = $block->getBxAttributes();?>
+
+<div class="products wrapper <?php /* @escapeNotVerified */ echo $viewMode; ?> products-<?php /* @escapeNotVerified */ echo $viewMode; ?> <?php /* @escapeNotVerified */ echo  $bxAttributes->getClass(); ?>"
+    <?php foreach($bxAttributes as $attribute):?>
+        <?php /* @escapeNotVerified */ echo $attribute->getName()?>="<?php /* @escapeNotVerified */ echo $attribute->getValue();?>"
+    <?php endforeach;?>
+>
     <ol class="products list items product-items">
         <?php foreach($this->getBlocks() as $block) :?>
             <?php echo $this->getApiBlock($block)->toHtml();?>

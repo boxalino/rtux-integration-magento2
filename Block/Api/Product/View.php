@@ -13,6 +13,8 @@ use BoxalinoClientProject\BoxalinoIntegration\Block\Api\Product;
  * Magento\Catalog\Block\Product\ProductList\Upsell
  *
  * Can inherit directly from the replaced blocks (for a fallback strategy)
+ *
+ * Update the template to support the API JS tracker mark-ups
  */
 class View extends Product
     implements ApiRendererInterface
