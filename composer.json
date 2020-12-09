@@ -12,7 +12,7 @@
     "php": "^7.2",
     "boxalino/rtux-api-php": "~2.8.0",
     "boxalino/rtux-magento2": "~1.4.1",
-    "boxalino/exporter-magento2": "~2.3.2"
+    "boxalino/exporter-magento2": "~2.4.0"
   },
   "autoload": {
     "files": ["registration.php"],
