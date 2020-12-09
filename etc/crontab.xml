@@ -12,7 +12,7 @@
 
         <!-- C R O N -->
         <!-- to be used when the Boxalino Exporter Delta is in mode "Update on Save" -->
-        <job name="boxalino_exporter_delta" instance="Boxalino\Exporter\Model\Indexer\Delta" method="execute">
+        <job name="boxalino_exporter_delta" instance="Boxalino\Exporter\Model\Indexer\Delta" method="executeFull">
             <schedule>*/30 6-23 * * *</schedule>
         </job>
         <!-- M V I E W  -->
