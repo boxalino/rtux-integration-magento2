@@ -55,4 +55,7 @@
         </arguments>
     </type>
 
+    <!-- rewrite default search -->
+    <preference for="Magento\CatalogSearch\Controller\Result\Index" type="BoxalinoClientProject\BoxalinoIntegration\Controller\Result\Index" />
+
 </config>
