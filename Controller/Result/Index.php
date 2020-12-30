@@ -10,7 +10,6 @@ use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\ResourceConnection;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Search\Model\QueryFactory;
-use Magento\Tests\NamingConvention\true\string;
 
 /**
  * Class Index
@@ -22,11 +21,6 @@ use Magento\Tests\NamingConvention\true\string;
  */
 class Index extends \Magento\CatalogSearch\Controller\Result\Index
 {
-    /**
-     * @var QueryFactory
-     */
-    protected $_queryFactory;
-
 
     /**
      * @var \Psr\Log\LoggerInterface
