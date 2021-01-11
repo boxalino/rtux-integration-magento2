@@ -1,37 +1,53 @@
 # Boxalino Real Time User Experience (RTUX) Integration - Magento2
 
 ## Introduction
-This repository is to be used as a sample on how to integrate and define desired Boxalino features.
-The integration is managed by the client (also known as *integrator*).
-Boxalino can provide further documentation and assistance upon request.
+This repository is provided as guidelines (tutorials) on how to integrate Boxalino Winning Interractions in Magento 2.
+The integration is managed by the client. Boxalino can provide further documentation and assistance upon request.
 
 Included functionalities (with samples of templates):
-1. Autocomplete integration (javascript)
-2. Search integration
-3. PDP recommendations (upsell, crosssell, related, etc)
-4. Navigation
-5. CMS pages/blocks
+1. Search As you Type (Autocomplete Flyout) integration - Ajax (faster alternative to Server Side)
+2. Search result page with facets (refinement filters), pagination and sorting
+3. PDP product recommendations (upsell, crosssell, related, etc)
+4. Category Product-listing results (a.k.a. Navigation) with facets (refinement filters), pagination and sorting
+5. CMS elements pages/blocks
+6. Dynamic router (ex: for brand pages or landing pages)
 
+*If you are new to using Boxalino in a Magento 2 environment, please have first a look at our introduction documentation [here](https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/392396801/Magento+2)*
 
 The repository is being updated with new guidelines & scenario.
-The repository has dependencies for *Boxalino RTUX API PHP* library and the *Boxalino RTUX Magento2* plugin.
+**Check the wiki page for instructions https://github.com/boxalino/rtux-integration-magento2/wiki**
 
-https://github.com/boxalino/rtux-api-php
+**We value your feedback and we welcome the community's pull/merge-requests. Thank you.**
 
-https://github.com/boxalino/rtux-magento2
 
 ## Integration
-This repository is **not** subject to Boxalino maintenance on client setup.
-This means, the guidelines are supposed to be integrated in a repository/plugin maintainted & developed by the client`s team.
+Boxalino provides several repositories you will need. This one plays the role of the initial environment you will extend with your team.
+You also need the [data layer](https://github.com/boxalino/exporter-magento2) and the [framework layer](https://github.com/boxalino/rtux-magento2).
+The data layer repository manages the export of your data to Boxalino.
+The framework layout is built following Magento 2 practices and provides elements (blocks, observers, helpers, etc) which your integration plugin can re-use and which is maintained by Boxalino.
+
+While the other repositories (data layer and framework layer) will be maintained by Boxalino, this repository will not, as it is your integration environment in which you will work and use what you need and extend what you want.
+**Therefore, as this repository is provided as a guideline (tutorial), you will need to integrate it (which means replicate it) in a repository/moduled maintainted&developed by the client's team.**
+For this reason, this repository is generally not subject to Boxalino maintenance on client setup.
 
 This repository can be deployed for testing Boxalino features or in order to prepare your own integration.
 In order to deploy it as is in a local environment, check the *Setup* steps bellow.
 
-## Prerequisites
-A full data sync is required in order to activate the Boxalino client data index.
-For more information, check the [Boxalino Exporter for Magento2](https://github.com/boxalino/exporter-magento2)
+This repository can also be deployed for checking out Boxalino features (as a demo).
+By requiring this repository, it will also install other dependencies. Please review the [composer.json](https://github.com/boxalino/rtux-integration-magento2/blob/master/composer.json)
+and follow-up with other dependencies deployments guidelines.
+
+**In order to create your own integration layer All At Once - please check the [wiki on Initial Setup (All-At-Once)](https://github.com/boxalino/rtux-integration-magento2/wiki/Initial-Setup-(All-At-Once)).**
+
+**In order to create your own integration layer - please start in the [wiki](https://github.com/boxalino/rtux-integration-magento2/wiki#before-you-start).**
+
+
+**In order to deploy it for local demo (without Boxalino assistance or a need to maintain the code in a client setup), check the *Setup* steps bellow.**
+
 
 ## Setup (for local/testing purposes)
+**ONLY FOLLOW THESE STEPS IF YOU ARE DEPLOYING A LOCAL DEMO, OTHERWISE, GO TO THE [wiki](https://github.com/boxalino/rtux-integration-magento2/wiki#before-you-start).**
+
 1. Add the plugin to your project via composer 
 ``composer require boxalino/rtux-integration-magento2``
 
@@ -53,10 +69,13 @@ For more information, check the [Boxalino Exporter for Magento2](https://github.
 
 ## Documentation
 
-The latest documentation is available upon request.
-Specific feature integration is available in the [repository Wiki](https://github.com/boxalino/rtux-integration-magento2/wiki).
-Magento2 integration elements documentation is available on the [Magento2 Framework repository Wiki](https://github.com/boxalino/rtux-magento2/wiki)
-Core API documentation is available on the [RTUX API PHP wiki](https://github.com/boxalino/rtux-api-php/wiki)
+Documentation available in the [Magento 2 Integration Introduction](https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/392396801/Magento+2)
+
+More documentation is available on each dependency repository wiki page:
+1. [exporter layer](https://github.com/boxalino/exporter-magento2/wiki)
+2. [framework layer](https://github.com/boxalino/rtux-magento2/wiki)
+3. [integration usecases](https://github.com/boxalino/rtux-integration-magento2/wiki)
+4. [API php wiki](https://github.com/boxalino/rtux-api-php/wiki)
 
 ## Contact us!
 
