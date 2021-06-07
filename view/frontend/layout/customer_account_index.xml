@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="BoxalinoClientProject\BoxalinoIntegration\Block\Api\Blog" name="rtux.api.account.blog"
+                   template="Boxalino_RealTimeUserExperience::api/block.phtml" cacheable="false" after="address">
+                <arguments>
+                    <argument name="widget" xsi:type="string">read</argument>
+                    <argument name="hitCount" xsi:type="string">4</argument>
+                    <!-- the return fields are declared in the BlogContext element -->
+<!--                    <argument name="returnFields" xsi:type="array"></argument>-->
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
