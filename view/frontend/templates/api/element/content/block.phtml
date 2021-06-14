@@ -1,0 +1,54 @@
+<?php
+/**
+ * it is same structure as the provided sample from BoxalinoClientProject_BoxalinoIntegration::api/catalog/product/list/item.phtml
+ * which is based of the default Magento2 product grid item view
+ *
+ * NOTE: the getters are accessing the property directly (getDescription(), getTitle(), etc)
+ * BECAUSE THE PROPERTY IS LOCALIZED IN THE LAYOUT BLOCK SCHEMA
+ * WHEN THE PROPERTY IS NOT LOCALIZED - THE OUTPUT IS AN ARRAY
+ *
+ * ALWAYS CHECK YOUR API RESPONSE IN ORDER TO DESIGN THE TEMPLATES ACCORDINGLY
+ * MISSING PROPERTIES WILL TRIGGER AN EXCEPTION IN ORDER TO ASSIST WITH DEVELOPMENT/DEBUGGING
+ *
+ * (this template is compliant with the integration guidelines samples provided for the BLOG integration)
+ *
+ * @var $block Boxalino\RealTimeUserExperience\Block\Api\Block
+ */
+?>
+<?php
+/** @var  \ArrayIterator $bxAttributes required tracking HTML attributes */
+$bxAttributes = $block->getBxAttributes();
+?>
+
+<li class="item product product-item <?php /* @escapeNotVerified */ echo  $bxAttributes->getClass(); ?>""
+    <?php foreach($bxAttributes as $attribute):?>
+        <?php /* @escapeNotVerified */ echo $attribute->getName()?>="<?php /* @escapeNotVerified */ echo $attribute->getValue();?>"
+    <?php endforeach;?>
+    >
+    <div class="product-item-info" data-container="product-list">
+        <?php // Content Image ?>
+        <a href="<?= $block->escapeUrl($block->getLink()) ?>"
+           class="product photo product-item-photo"
+           tabindex="-1">
+            <img src="<?php echo $block->getImage();?>" alt="<?php echo $block->getTitle();?>">
+        </a>
+        <div class="product details product-item-details">
+            <?php
+            $_productNameStripped = $block->stripTags($block->getTitle(), null, true);
+            ?>
+            <strong class="product name product-item-name">
+                <a class="product-item-link"
+                   href="<?= $block->escapeUrl($block->getLink()) ?>">
+                    <?= /* @noEscape */ $block->getTitle() ?>
+                </a>
+            </strong>
+
+            <div class="product description product-item-description">
+                <p><?php echo $block->getDescription();?></p>
+                <a href="<?= $block->escapeUrl($block->getLink()) ?>"
+                   title="<?= /* @noEscape */ $_productNameStripped ?>"
+                   class="action more"><?= $block->escapeHtml(__('Learn More')) ?></a>
+            </div>
+        </div>
+    </div>
+</li>

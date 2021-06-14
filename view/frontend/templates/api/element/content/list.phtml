@@ -1,0 +1,22 @@
+<?php
+/**
+ * sequence from vendor/magento/module-catalog/view/frontend/templates/product/list.phtml
+ * it is same structure as the provided sample from BoxalinoClientProject_BoxalinoIntegration::api/catalog/product/listing.phtml
+ *
+ * @var $block Boxalino\RealTimeUserExperience\Block\Api\Block
+ */
+?>
+<?php /** generic structure to render child elements of the Layout Block */?>
+<?php $bxAttributes = $block->getBxAttributes();?>
+
+<div class="products wrapper grid products-list <?php /* @escapeNotVerified */ echo  $bxAttributes->getClass(); ?>"
+    <?php foreach($bxAttributes as $attribute):?>
+    <?php /* @escapeNotVerified */ echo $attribute->getName()?>="<?php /* @escapeNotVerified */ echo $attribute->getValue();?>"
+    <?php endforeach;?>
+    >
+    <ol class="products list items product-items">
+        <?php foreach($this->getBlocks() as $block) :?>
+            <?php echo $this->getApiBlock($block)->toHtml();?>
+        <?php endforeach; ?>
+    </ol>
+</div>
