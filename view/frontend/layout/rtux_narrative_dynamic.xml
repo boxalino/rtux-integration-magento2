@@ -27,9 +27,9 @@
 
         <!-- Sidebar Content : facets -->
         <referenceContainer name="sidebar.main">
-            <block class="Boxalino\RealTimeUserExperience\Block\Layout\Section" cacheable="false" name="rtux.api.left" before="-">
+            <!-- Similarly, the Boxalino\RealTimeUserExperience\Block\Layout\Left can be used -->
+            <block class="Boxalino\RealTimeUserExperience\Block\Layout\Position" cacheable="false" name="rtux.api.left" before="-">
                 <arguments>
-                    <argument name="widget" xsi:type="string">campaign</argument>
                     <argument name="position" xsi:type="string">left</argument>
                 </arguments>
             </block>
