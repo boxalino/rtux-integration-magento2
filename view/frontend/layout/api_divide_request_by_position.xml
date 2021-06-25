@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!-- This strategy is used for the Dynamic, Search, Navigation strategies as well -->
+<!-- For Search \ Navigation it is expected ONE API REQUEST ON THE VIEW -->
+
+<!-- The difference is in the use of "ApiBlockLoaderTrait" which is compatible with views with MULTIPLE API REQUESTS -->
+<!-- Since all elements are part of the Integration Layer, they are inter-changeable (strategy-wise) -->
+
+<!-- For integration cases in which the elements are part of ONE API REQUEST - review the rtux_narrative_dynamic.xml -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+
+            <!-- SET THE ACCESSOR IN INTELLIGENCE ADMIN TO LINK TO A DIFFERENT WIDGET -->
+            <block class="Boxalino\RealTimeUserExperience\Block\Layout\Section" name="rtux.api.position.some"
+                   cacheable="false" before="some-magento-block">
+                <arguments>
+                    <argument name="widget" xsi:type="string">MAIN_WIDGET_REQUEST</argument>
+                    <argument name="position" xsi:type="string">SOME_POSITION_SET_AS_A_LEVEL_0_LAYOUT_BLOCK_PROPERTY</argument>
+                </arguments>
+            </block>
+
+            <!-- Main element making the API request -->
+            <block class="BoxalinoClientProject\BoxalinoIntegration\Block\Api\Api" name="rtux.api.position.main"
+                   cacheable="false" after="some-magento-block">
+                <arguments>
+                    <!-- NOTICE: THE OBJECT MUST EXTEND ArgumentInterface IF IT IS USED AS AN ARGUMENT IN BLOCK XML DEFINITION -->
+                    <!-- NOTICE: REVIEW THE CONTEXT TO MATCH YOUR INTEGRATION REQUIREMENTS -->
+                    <argument name="apiContext" xsi:type="object" shared="false">BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context\ApiContext</argument>
+
+                    <!-- REQUIRED PROPERTIES FOR AN API REQUEST -->
+                    <argument name="widget" xsi:type="string">MAIN_WIDGET_REQUEST</argument>
+                    <argument name="hitCount" xsi:type="string">EXPECTED_NUMBER_OF_RESULTS</argument>
+                    <argument name="groupBy" xsi:type="string">products_group_id</argument>
+                    <argument name="returnFields" xsi:type="array">
+                        <item name="price" xsi:type="string">discountedPrice</item>
+                        <item name="title" xsi:type="string">title</item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <!-- SET THE ACCESSOR IN INTELLIGENCE ADMIN TO LINK TO A DIFFERENT WIDGET -->
+            <block class="Boxalino\RealTimeUserExperience\Block\Layout\Section" name="rtux.api.position.another" cacheable="false">
+                <arguments>
+                    <argument name="widget" xsi:type="string">MAIN_WIDGET_REQUEST</argument>
+                    <argument name="position" xsi:type="string">ANOTHER_POSITION_SET_AS_A_LEVEL_0_LAYOUT_BLOCK_PROPERTY</argument>
+                </arguments>
+            </block>
+
+        </referenceContainer>
+
+        <!-- SAME INTEGRATION STRATEGY AS USING THE Boxalino\RealTimeUserExperience\Block\Layout\Left BLOCK -->
+        <referenceContainer name="sidebar.main">
+            <block class="Boxalino\RealTimeUserExperience\Block\Layout\Section" cacheable="false" name="rtux.api.left" before="-">
+                <arguments>
+                    <argument name="widget" xsi:type="string">MAIN_WIDGET_REQUEST</argument>
+                    <argument name="position" xsi:type="string">left</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+    </body>
+</page>

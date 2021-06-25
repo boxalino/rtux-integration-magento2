@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!-- Use the BoxalinoClientProject\BoxalinoIntegration\Block\Api\Api as a base if you want to make multiple API requests on a context -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+
+            <block class="BoxalinoClientProject\BoxalinoIntegration\Block\Api\Api" name="rtux.api.multiple.home" cacheable="false">
+                <arguments>
+                    <!-- NOTICE: THE OBJECT MUST EXTEND ArgumentInterface IF IT IS USED AS AN ARGUMENT IN BLOCK XML DEFINITION -->
+                    <argument name="apiContext" xsi:type="object" shared="false">BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context\CmsContext</argument>
+                    <argument name="widget" xsi:type="string">home</argument>
+                    <argument name="hitCount" xsi:type="string">8</argument>
+                    <argument name="groupBy" xsi:type="string">products_group_id</argument>
+                    <argument name="returnFields" xsi:type="array">
+                        <item name="price" xsi:type="string">discountedPrice</item>
+                        <item name="title" xsi:type="string">title</item>
+                    </argument>
+                </arguments>
+            </block>
+
+            <block class="BoxalinoClientProject\BoxalinoIntegration\Block\Api\Api" name="rtux.api.multiple.blog" cacheable="false">
+                <arguments>
+                    <!-- NOTICE: THE OBJECT MUST EXTEND ArgumentInterface IF IT IS USED AS AN ARGUMENT IN BLOCK XML DEFINITION -->
+                    <argument name="apiContext" xsi:type="object" shared="false">BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context\BlogContext</argument>
+                    <argument name="widget" xsi:type="string">read</argument>
+                    <argument name="hitCount" xsi:type="string">4</argument>
+                    <argument name="groupBy" xsi:type="string">id</argument>
+                    <!-- declare the return fields in the apiContext object or IA widget -->
+                </arguments>
+            </block>
+
+        </referenceContainer>
+    </body>
+</page>

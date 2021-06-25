@@ -26,22 +26,22 @@ $item = $block->getApiItem();
     >
     <div class="product-item-info" data-container="product-list">
         <?php  $_nameStripped = $block->stripTags($item->get("title"), null, true); ?>
-        <a href="<?= $block->escapeUrl($item->get("id")) ?>"
+        <a href="<?= $block->escapeUrl($item->get("property_for_item_link")) ?>"
            class="product photo product-item-photo"
            tabindex="-1">
-            <img src="<?php echo $item->get("id");?>" alt="<?php echo $_nameStripped;?>"/>
+            <img src="<?php echo $item->get("property_for_item_image");?>" alt="<?php echo $_nameStripped;?>"/>
         </a>
         <div class="product details product-item-details">
             <strong class="product name product-item-name">
                 <a class="product-item-link"
-                   href="<?= $block->escapeUrl($item->get("id")) ?>">
+                   href="<?= $block->escapeUrl($item->get("property_for_item_link")) ?>">
                     <?= /* @noEscape */ $_nameStripped ?>
                 </a>
             </strong>
 
             <div class="product description product-item-description">
                 <p><?php echo $item->get("title");?></p>
-                <a href="<?= $block->escapeUrl($item->get("id")) ?>"
+                <a href="<?= $block->escapeUrl($item->get("property_for_item_link")) ?>"
                    title="<?= /* @noEscape */ $_nameStripped ?>"
                    class="action more"><?= $block->escapeHtml(__('Learn More')) ?></a>
             </div>

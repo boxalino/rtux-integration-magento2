@@ -16,8 +16,11 @@
     <?php endforeach;?>
 >
     <ol class="products list items product-items">
-        <?php foreach($this->getBlocks() as $block) :?>
-            <?php echo $this->getApiBlock($block)->toHtml();?>
-        <?php endforeach; ?>
+        <?php foreach($this->getBlocks() as $block):?>
+            <?php $apiBlock = $this->getApiBlock($block);?>
+            <?php if($apiBlock) : ?>
+                <?php echo $apiBlock->toHtml();?>
+            <?php endif; ?>
+        <?php endforeach;?>
     </ol>
 </div>

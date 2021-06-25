@@ -18,8 +18,10 @@ use Magento\Catalog\Model\Product\Visibility;
  *
  * Allows to set the nr of subphrases and products returned on each subphrase hit
  *
- * The list of filters applied on the context is part of the class function:
+ * Rewrite this function in order to set/add/remove default API request filters:
  * protected function addFilters(RequestInterface $request) : void
+ *
+ * NOTICE: THIS ContextInterface ADDS THE DEFAULT FILTERS ON THE REQUEST (status, visibility, root category id)
  *
  * @package BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context
  */
@@ -77,7 +79,6 @@ class SearchContext extends SearchContextAbstract
     {
         return ["id", "products_group_id", "title", "discountedPrice"];
     }
-
 
 
 }

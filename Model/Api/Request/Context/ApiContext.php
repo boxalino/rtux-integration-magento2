@@ -11,20 +11,20 @@ use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\ParameterFactoryInter
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestTransformerInterface;
 use BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\IntegrationContextTrait;
-use Magento\Catalog\Model\Product\Visibility;
+use Magento\Framework\View\Element\Block\ArgumentInterface;
 
 /**
- * Boxalino Navigation Request handler
+ * Class ApiContext
+ * Use the appropriate ContextInterface (as parent and interface) based on your integration requirement
  *
- * Rewrite this function in order to set/add/remove default API request filters:
- * protected function addFilters(RequestInterface $request) : void
- *
- * NOTICE: THIS ContextInterface ADDS THE DEFAULT PRODUCT FILTERS ON THE REQUEST (status, visibility, displayed category_id)
+ * NOTICE: MUST EXTEND ArgumentInterface IF IT IS USED AS AN ARGUMENT IN BLOCK XML DEFINITION
+ * NOTICE: THIS ContextInterface DOES NOT ADD ANY DEFAULT FILTERS ON THE REQUEST
+ * NOTICE: THIS ContextInterface WILL ADD FACETS AND SORTING/PAGINATION DETAILS TO API REQUEST (review other  ContextAbstract to avoid this)
  *
  * @package BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context
  */
-class NavigationContext extends ListingContextAbstract
-    implements ListingContextInterface
+class ApiContext extends ListingContextAbstract
+    implements ListingContextInterface, ArgumentInterface
 {
     use ContextTrait;
     use RequestParametersTrait;
@@ -38,47 +38,44 @@ class NavigationContext extends ListingContextAbstract
     ) {
         parent::__construct($requestTransformer, $parameterFactory);
         $this->storeConfigurationHelper = $storeConfigurationHelper;
+
         /** prepare context with configurations */
         $this->setRequestDefinition($requestDefinition);
-        $this->setWidget("navigation");
     }
 
     /**
-     * Product visibility on a navigation context
-     * (per Magento2 rules or project business rules)
+     * Remove all filters
      *
+     * @param RequestInterface $request
+     */
+    protected function addFilters(RequestInterface $request) : void
+    {}
+
+    /**
      * @return array
      */
     public function getContextVisibility() : array
     {
-        return [Visibility::VISIBILITY_BOTH, Visibility::VISIBILITY_IN_CATALOG];
+        return [];
     }
 
     /**
-     * For the navigation context - the viewed category ID
-     *
      * @param RequestInterface $request
      * @return string
      */
     public function getContextNavigationId(RequestInterface $request): array
     {
-        $categoryId = (int)$request->getParam('id', false);
-        if($categoryId)
-        {
-            return [$categoryId];
-        }
-
-        return [$this->storeConfigurationHelper->getMagentoRootCategoryId()];
+        return [];
     }
 
     /**
-     * Other fields can be: products_seo_url, products_image, discountedPrice, etc
-     * If the products are loaded using the ApiEntityCollection - the generic Magento2 collection is used
      * @return array
      */
     public function getReturnFields() : array
     {
-        return ["id", "products_group_id", "title"];
+        $configuredReturnFields = $this->getProperty("returnFields") ?? [];
+        return array_merge(array_values($configuredReturnFields), ["id", "products_group_id"]);
     }
+
 
 }

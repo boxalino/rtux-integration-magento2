@@ -111,10 +111,10 @@ class Search extends \Magento\CatalogSearch\Block\Result
 
         } catch (\Throwable $exception)
         {
-            $this->apiLoader->getApiResponsePage()->setFallback(true);
-
             $this->_logger->warning("BoxalinoAPI Search Error: " . $exception->getMessage());
-            $this->_logger->warning("BoxalinoAPI Search Error: " . $exception->getTraceAsString());
+            $this->_logger->debug("BoxalinoAPI Search Error: " . $exception->getTraceAsString());
+
+            $this->apiLoader->getApiResponsePage()->setFallback(true);
         }
 
         parent::_prepareLayout();

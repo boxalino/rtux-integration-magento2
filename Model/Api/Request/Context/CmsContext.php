@@ -12,17 +12,22 @@ use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestTransformerInterface;
 use BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\IntegrationContextTrait;
 use Magento\Catalog\Model\Product\Visibility;
+use Magento\Framework\View\Element\Block\ArgumentInterface;
 
 /**
  * Class CmsContext
  * Holds the request properties: widget, hitcount, returnfields, groupby, offset, etc
- * The list of filters applied on the context is part of the class function (which can be rewritten)
+ *
+ * Rewrite this function in order to set/add/remove default API request filters:
  * protected function addFilters(RequestInterface $request) : void
+ *
+ * NOTICE: THIS ContextInterface WILL ADD THE GENERIC PRODUCT FILTERS (status, visibility, category_id)
+ * NOTICE: MUST EXTEND ArgumentInterface IF IT IS USED AS AN ARGUMENT IN BLOCK XML DEFINITION
  *
  * @package BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context
  */
 class CmsContext extends ContextAbstract
-    implements ContextInterface
+    implements ContextInterface, ArgumentInterface
 {
     use ContextTrait;
     use RequestParametersTrait;
@@ -42,6 +47,8 @@ class CmsContext extends ContextAbstract
 
     /**
      * Product visibility on a CMS context
+     * IF MIXED CONTENT IS EXPECTED, ADJUST THE INTEGRATION STRATEGY
+     *
      * @return array
      */
     public function getContextVisibility() : array
@@ -75,7 +82,8 @@ class CmsContext extends ContextAbstract
      */
     public function getReturnFields() : array
     {
-        return ["id", "products_group_id", "title"];
+        $configuredReturnFields = $this->getProperty("returnFields") ?? [];
+        return array_merge(array_values($configuredReturnFields), ["id", "products_group_id", "title"]);
     }
 
 

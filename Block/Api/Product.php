@@ -142,10 +142,10 @@ abstract class Product extends MagentoProductView
                 ->load();
         } catch (\Throwable $exception)
         {
-            $this->apiLoader->getApiResponsePage()->setFallback(true);
-
             $this->_logger->warning("BoxalinoAPI PDP Error on {$this->getType()}: " . $exception->getMessage());
-            $this->_logger->warning("BoxalinoAPI PDP Error on {$this->getType()}: " . $exception->getTraceAsString());
+            $this->_logger->debug("BoxalinoAPI PDP Error on {$this->getType()}: " . $exception->getTraceAsString());
+
+            $this->apiLoader->getApiResponsePage()->setFallback(true);
         }
 
         return $this;

@@ -12,17 +12,21 @@ use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestTransformerInterface;
 use BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\IntegrationContextTrait;
 use Magento\Catalog\Model\Product\Visibility;
+use Magento\Framework\View\Element\Block\ArgumentInterface;
 
 /**
  * Boxalino Dynamic Request handler
  *
- * The list of filters applied on the context is part of the class function:
+ * Rewrite this function in order to set/add/remove default API request filters:
  * protected function addFilters(RequestInterface $request) : void
+ *
+ * NOTICE: THIS ContextInterface DOES NOT ADD ANY DEFAULT FILTERS ON THE REQUEST
+ * NOTICE: MUST EXTEND ArgumentInterface IF IT IS USED AS AN ARGUMENT IN BLOCK XML DEFINITION
  *
  * @package BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context
  */
 class DynamicContext extends ListingContextAbstract
-    implements ListingContextInterface
+    implements ListingContextInterface, ArgumentInterface
 {
     use ContextTrait;
     use RequestParametersTrait;
@@ -36,6 +40,7 @@ class DynamicContext extends ListingContextAbstract
     ) {
         parent::__construct($requestTransformer, $parameterFactory);
         $this->storeConfigurationHelper = $storeConfigurationHelper;
+
         /** prepare context with configurations */
         $this->setRequestDefinition($requestDefinition);
     }
@@ -60,13 +65,8 @@ class DynamicContext extends ListingContextAbstract
      */
     public function getReturnFields() : array
     {
-        $returnFields = $this->getProperty("returnFields");
-        if(is_array($returnFields))
-        {
-            return $returnFields;
-        }
-
-        return [];
+        $configuredReturnFields = $this->getProperty("returnFields") ?? [];
+        return array_merge(array_values($configuredReturnFields), ["id", "products_group_id"]);
     }
 
     /**

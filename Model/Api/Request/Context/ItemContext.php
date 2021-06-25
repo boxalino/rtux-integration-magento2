@@ -16,8 +16,11 @@ use Magento\Catalog\Model\Product\Visibility;
 /**
  * Class ItemContext
  * Holds the request properties: widget, hitcount, returnfields, groupby, offset, etc
- * The list of filters applied on the context is part of the class function:
+ *
+ * Rewrite this function in order to set/add/remove default API request filters:
  * protected function addFilters(RequestInterface $request) : void
+ *
+ * NOTICE: THIS ContextInterface ADDS THE DEFAULT FILTERS ON THE REQUEST (visibility, status, root category id)
  *
  * @package BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context
  */
@@ -50,7 +53,8 @@ class ItemContext extends ItemContextAbstract
 
     /**
      * For the item context - generally the root category ID is used
-     * If it is desired to apply no category filter on returned products - update the class function:
+     *
+     * If it is desired to apply no category filter on returned products - redefine the class function:
      * addFilters(RequestInterface $request) : void
      *
      * @param RequestInterface $request

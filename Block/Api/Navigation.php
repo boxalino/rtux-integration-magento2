@@ -84,10 +84,10 @@ class Navigation extends View
                 ->load();
         } catch (\Throwable $exception)
         {
-            $this->apiLoader->getApiResponsePage()->setFallback(true);
-
             $this->_logger->warning("BoxalinoAPI Navigation Error: " . $exception->getMessage());
-            $this->_logger->warning("BoxalinoAPI Navigation Error: " . $exception->getTraceAsString());
+            $this->_logger->debug("BoxalinoAPI Navigation Error: " . $exception->getTraceAsString());
+
+            $this->apiLoader->getApiResponsePage()->setFallback(true);
         }
 
         parent::_prepareLayout();

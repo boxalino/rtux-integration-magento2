@@ -10,7 +10,7 @@
     <body>
         <!-- displaying the elements with the position:top ; adding the cacheable=false will make the view non-cacheable-->
         <referenceContainer name="content">
-            <block class="Boxalino\RealTimeUserExperience\Block\Layout\Top" name="rtux.api.top" before="-"/>
+            <block class="Boxalino\RealTimeUserExperience\Block\Layout\Top" cacheable="false" name="rtux.api.top" before="-"/>
         </referenceContainer>
     </body>
 </page>

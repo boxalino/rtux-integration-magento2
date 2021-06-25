@@ -123,10 +123,10 @@ class Crosssell extends MagentoCrosssell
             }
         } catch (\Throwable $exception)
         {
-            $this->apiLoader->getApiResponsePage()->setFallback(true);
-
             $this->_logger->warning("BoxalinoAPI PDP Error on {$this->getType()}: " . $exception->getMessage());
-            $this->_logger->warning("BoxalinoAPI PDP Error on {$this->getType()}: " . $exception->getTraceAsString());
+            $this->_logger->debug("BoxalinoAPI PDP Error on {$this->getType()}: " . $exception->getTraceAsString());
+
+            $this->apiLoader->getApiResponsePage()->setFallback(true);
         }
 
         parent::_prepareLayout();

@@ -136,10 +136,10 @@ class Related extends \Magento\Catalog\Block\Product\ProductList\Related
             }
         } catch (\Throwable $exception)
         {
-            $this->apiLoader->getApiResponsePage()->setFallback(true);
-
             $this->_logger->warning("BoxalinoAPI Related PDP Error: " . $exception->getMessage());
-            $this->_logger->warning("BoxalinoAPI Related PDP Error: " . $exception->getTraceAsString());
+            $this->_logger->debug("BoxalinoAPI Related PDP Error: " . $exception->getTraceAsString());
+
+            $this->apiLoader->getApiResponsePage()->setFallback(true);
         }
 
         parent::_prepareLayout();

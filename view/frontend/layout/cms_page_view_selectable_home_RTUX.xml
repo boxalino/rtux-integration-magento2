@@ -2,14 +2,19 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-            <block class="BoxalinoClientProject\BoxalinoIntegration\Block\Api\Cms" name="rtux_api_narrative"
-                   after="cms_page" template="Boxalino_RealTimeUserExperience::api/block.phtml">
+            <block class="BoxalinoClientProject\BoxalinoIntegration\Block\Api\Api" name="rtux_api_narrative"
+                   after="cms_page" template="Boxalino_RealTimeUserExperience::api/block.phtml" cacheable="false">
                 <arguments>
+                    <!-- NOTICE: THE OBJECT MUST EXTEND ArgumentInterface IF IT IS USED AS AN ARGUMENT IN BLOCK XML DEFINITION -->
+                    <argument name="apiContext" xsi:type="object" shared="false">BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context\CmsContext</argument>
+
                     <argument name="widget" xsi:type="string">home</argument>
                     <argument name="hitCount" xsi:type="string">5</argument>
                     <argument name="groupBy" xsi:type="string">products_group_id</argument>
                     <argument name="returnFields" xsi:type="array">
                         <item name="id" xsi:type="string">id</item>
+                        <!-- the group by field must be part of API return fields -->
+                        <item name="groupBy" xsi:type="string">products_group_id</item>
                         <item name="price" xsi:type="string">discountedPrice</item>
                         <item name="title" xsi:type="string">title</item>
                     </argument>

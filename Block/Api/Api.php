@@ -6,15 +6,13 @@ use Boxalino\RealTimeUserExperience\Api\ApiResponseBlockInterface;
 use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseRegistryInterface;
 use Boxalino\RealTimeUserExperience\Api\CurrentApiResponseViewRegistryInterface;
 use Boxalino\RealTimeUserExperience\Block\ApiBlockLoaderTrait;
-use Boxalino\RealTimeUserExperience\Block\ApiBlockTrait;
 use Boxalino\RealTimeUserExperience\Model\Request\ApiPageLoader;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\ResponseDefinitionInterface;
-use BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context\DynamicContext;
 use Magento\Framework\View\Element\Template;
 
 /**
- * Class Dynamic
+ * Class Api
  *
  * AS A RECOMMENDATION, There should be a single API request on the page
  * USE THE CurrentApiResponseRegistryInterface / CurrentApiResponseViewRegistryInterface FOR RESPONSE ACCESS THROUGHOUT BLOCKS
@@ -30,68 +28,56 @@ use Magento\Framework\View\Element\Template;
  *
  * @package BoxalinoClientProject\BoxalinoIntegration\Block
  */
-class Dynamic extends \Magento\Framework\View\Element\Template
+class Api extends \Magento\Framework\View\Element\Template
     implements ApiRendererInterface
 {
 
-    use ApiBlockTrait;
-
-    /**
-     * @var ApiPageLoader
-     */
-    protected $apiLoader;
-
-    /**
-     * @var DynamicContext
-     */
-    protected $apiContext;
-
-    /**
-     * @var RequestInterface
-     */
-    protected $requestWrapper;
+    use ApiBlockLoaderTrait;
 
     public function __construct(
+        CurrentApiResponseRegistryInterface $currentApiResponse,
+        CurrentApiResponseViewRegistryInterface $currentApiResponseView,
         ApiPageLoader $apiPageLoader,
-        DynamicContext $apiContext,
         RequestInterface $requestWrapper,
         Template\Context $context,
         array $data = []
     ){
         parent::__construct($context, $data);
+        $this->currentApiResponse = $currentApiResponse;
+        $this->currentApiResponseView = $currentApiResponseView;
         $this->requestWrapper = $requestWrapper;
         $this->apiLoader = $apiPageLoader;
-        $this->apiContext = $apiContext;
     }
 
     protected function _prepareLayout()
     {
-        parent::_prepareLayout();
-
         try{
-            /** the configurations for the context can be defined via XML or directly in the $apiContext model */
-            $this->apiContext
-                ->setWidget($this->getData("widget"))
-                ->setHitCount($this->getData("hitCount"))
-                ->setGroupBy($this->getData("groupBy"))
-                ->set("returnFields", array_values($this->getData("returnFields")));
+            if($this->currentApiResponse->getByWidget($this->getData("widget")) instanceof ResponseDefinitionInterface)
+            {
+                return parent::_prepareLayout();
+            }
 
-            $this->apiLoader
-                ->setRequest($this->requestWrapper->setRequest($this->_request))
-                ->setApiContext($this->apiContext)
-                ->load();
+            /** If there is no apiContext - it is not the main block that makes the page request */
+            if(!$this->getData("apiContext"))
+            {
+                return parent::_prepareLayout();
+            }
+
+            $this->_prepareApiContext();
+            $this->_prepareApiLoader();
+
+            $this->getApiLoader()->load();
+            $this->addResponseToRegistry();
+
         } catch (\Throwable $exception)
         {
-            $this->_logger->warning("BoxalinoAPI Dynamic {$this->getData("widget")} Error: " . $exception->getMessage());
-            $this->_logger->debug("BoxalinoAPI Dynamic {$this->getData("widget")} Error: " . $exception->getTraceAsString());
+            $this->_logger->warning("BoxalinoAPI API {$this->getData("widget")} Block Error: " . $exception->getMessage());
+            $this->_logger->debug("BoxalinoAPI API {$this->getData("widget")} Block Error: " . $exception->getTraceAsString());
 
-            $this->apiLoader->getApiResponsePage()->setFallback(true);
+            $this->getApiLoader()->getApiResponsePage()->setFallback(true);
         }
-    }
 
-    public function getBlocks() : \ArrayIterator
-    {
-        return $this->apiLoader->getApiResponsePage()->getBlocks();
+        return parent::_prepareLayout();
     }
 
     /**
