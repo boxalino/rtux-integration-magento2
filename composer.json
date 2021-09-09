@@ -9,9 +9,9 @@
   },
   "license": ["MIT"],
   "require": {
-    "php": "^7.2",
-    "boxalino/rtux-api-php": "~3.2.0",
-    "boxalino/rtux-magento2": "~2.1.0",
+    "php": ">=7.4",
+    "boxalino/rtux-api-php": "~3.2.0 || ~3.3.0",
+    "boxalino/rtux-magento2": "~2.1.0 || ~2.2.0",
     "boxalino/exporter-magento2": "~2.4.0"
   },
   "autoload": {
