@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Boxalino Data Integration for DOC_PRODUCT Data Sync
+ * (global preferences)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- doc_product INTEGRATION -->
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocProductHandlerInterface">
+        <arguments>
+            <!-- add propertyHandlers that would return data for the document; the handlers here are DI-logic layer -->
+            <argument name="propertyHandlers" xsi:type="array">
+                <item name="entity" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Entity</item>
+                <item name="product_relations" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\ProductRelation</item>
+                <item name="translation" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Translation</item>
+                <item name="brands" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Brand</item>
+                <item name="categories" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Category</item>
+                <item name="images" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Image</item>
+                <item name="link" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Link</item>
+                <item name="pricing" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Pricing</item>
+                <item name="visibility" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Visibility</item>
+                <item name="status" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Status</item>
+                <item name="price" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Price</item>
+                <item name="type" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Type</item>
+                <item name="stock" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Stock</item>
+                <item name="individually_visible" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\IndividuallyVisible</item>
+                <item name="varchar_global" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeVarchar</item>
+                <item name="varchar_localized" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeVarcharLocalized</item>
+                <item name="text_global" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeText</item>
+                <item name="text_localized" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeTextLocalized</item>
+                <item name="int_global" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeInt</item>
+                <item name="int_localized" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeIntLocalized</item>
+                <item name="decimal_global" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeDecimal</item>
+                <item name="decimal_localized" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeDecimalLocalized</item>
+                <item name="datetime_global" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeDatetime</item>
+                <item name="datetime_localized" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeDatetimeLocalized</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="docProductSchemaDataProviderResolver" type="Boxalino\DataIntegration\Model\DataProvider\DiSchemaDataProviderResolver">
+        <arguments>
+            <argument name="document" xsi:type="string">doc_product</argument>
+            <!-- add dataProviders that would return data for each of the declared propertyHandlers above; the handlers here are Magento2-logic layer -->
+            <argument name="dataProviders" xsi:type="array">
+                <item name="entity" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Entity</item>
+                <item name="product_relations" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\ProductRelation</item>
+                <item name="translation" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Translation</item>
+                <item name="brands" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Brand</item>
+                <item name="categories" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Category</item>
+                <item name="images" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Image</item>
+                <item name="link" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Link</item>
+                <item name="pricing" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Pricing</item>
+                <item name="visibility" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Visibility</item>
+                <item name="status" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Status</item>
+                <item name="price" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Price</item>
+                <item name="type" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Type</item>
+                <item name="stock" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Stock</item>
+                <item name="individually_visible" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\IndividuallyVisible</item>
+                <item name="varchar_global" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeVarchar</item>
+                <item name="varchar_localized" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeVarcharLocalized</item>
+                <item name="text_global" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeText</item>
+                <item name="text_localized" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeTextLocalized</item>
+                <item name="int_global" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeInt</item>
+                <item name="int_localized" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeIntLocalized</item>
+                <item name="decimal_global" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeDecimal</item>
+                <item name="decimal_localized" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeDecimalLocalized</item>
+                <item name="datetime_global" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeDatetime</item>
+                <item name="datetime_localized" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeDatetimeLocalized</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Boxalino\DataIntegration\Service\Document\Product\IntegrationPropertyHandlerAbstract">
+        <arguments>
+            <argument name="diSchemaDataProviderResolver" xsi:type="object">docProductSchemaDataProviderResolver</argument>
+        </arguments>
+    </type>
+</config>

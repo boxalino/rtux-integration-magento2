@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Boxalino Data Integration Product Data Sync CLI Command
+ * (global preferences)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- USER INTEGRATION -->
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="boxalino:di:full:user" xsi:type="object">Boxalino\DataIntegrationDoc\Framework\Console\User\FullDataIntegration</item>
+                <item name="boxalino:di:delta:user" xsi:type="object">Boxalino\DataIntegrationDoc\Framework\Console\User\DeltaDataIntegration</item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>

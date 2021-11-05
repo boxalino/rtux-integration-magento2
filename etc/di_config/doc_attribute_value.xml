@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Boxalino Data Integration ATTRIBUTE VALUES SYNC
+ * (global preferences)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- doc_attribute_value INTEGRATION -->
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocAttributeValuesHandlerInterface">
+        <arguments>
+            <!-- add propertyHandlers that would return data for the document; the handlers here are DI-logic layer -->
+            <argument name="propertyHandlers" xsi:type="array">
+                <item name="categories" xsi:type="object">Boxalino\DataIntegration\Service\Document\AttributeValue\Category</item>
+                <item name="eavAttributesOption" xsi:type="object">Boxalino\DataIntegration\Service\Document\AttributeValue\EavAttributeOption</item>
+                <item name="eavAttributesSourceModel" xsi:type="object">Boxalino\DataIntegration\Service\Document\AttributeValue\EavAttributeSourceModel</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="docAttributeValueSchemaDataProviderResolver" type="Boxalino\DataIntegration\Model\DataProvider\DiSchemaDataProviderResolver">
+        <arguments>
+            <argument name="document" xsi:type="string">doc_attribute_value</argument>
+            <!-- add dataProviders that would return data for each of the declared propertyHandlers above; the handlers here are Magento2-logic layer -->
+            <argument name="dataProviders" xsi:type="array">
+                <item name="categories" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\AttributeValue\Category</item>
+                <item name="eavAttributesOption" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\AttributeValue\EavAttributeOption</item>
+                <item name="eavAttributesSourceModel" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\AttributeValue\EavAttributeSourceModel</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Boxalino\DataIntegration\Service\Document\AttributeValue\IntegrationPropertyHandlerAbstract">
+        <arguments>
+            <argument name="diSchemaDataProviderResolver" xsi:type="object">docAttributeValueSchemaDataProviderResolver</argument>
+        </arguments>
+    </type>
+
+</config>

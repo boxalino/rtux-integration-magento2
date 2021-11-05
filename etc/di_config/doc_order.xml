@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Boxalino Data Integration for DOC_ORDER Data Sync
+ * (global preferences)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Boxalino\DataIntegrationDoc\Service\Integration\OrderIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\Order\FullIntegrationHandler"/>
+    <preference for="Boxalino\DataIntegrationDoc\Service\Integration\OrderDeltaIntegrationHandlerInterface" type="BBoxalino\DataIntegration\Service\Integration\Order\DeltaIntegrationHandler"/>
+</config>

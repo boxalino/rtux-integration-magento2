@@ -1,0 +1,24 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Indexer/etc/indexer.xsd">
+    <!-- Product data indexer  // for MVIEW usage -->
+    <indexer id="boxalino_di_delta_product" view_id="boxalino_di_delta_product" class="Boxalino\DataIntegration\Model\Indexer\Product\Delta">
+        <title translate="true">Boxalino Delta: Product DI</title>
+        <description translate="true">Delta sync for products to Boxalino GCP ecosystem</description>
+    </indexer>
+    <indexer id="boxalino_di_instant_product" view_id="boxalino_di_instant_product" class="Boxalino\DataIntegration\Model\Indexer\ProductInstant">
+        <title translate="true">Boxalino Instant: Product DI</title>
+        <description translate="true">Instant / Real-Time data update for products</description>
+    </indexer>
+
+    <!-- ORDER DATA INDEXERs // for MVIEW usage -->
+    <indexer id="boxalino_di_delta_order" view_id="boxalino_di_delta_order" class="Boxalino\DataIntegration\Model\Indexer\Order\Delta">
+        <title translate="true">Boxalino Delta: Product DI</title>
+        <description translate="true">Delta sync for orders to Boxalino GCP ecosystem</description>
+    </indexer>
+
+    <!-- USER DATA INDEXERs // for MVIEW usage -->
+    <indexer id="boxalino_di_delta_user" view_id="boxalino_di_delta_user" class="Boxalino\DataIntegration\Model\Indexer\User\Delta">
+        <title translate="true">Boxalino Delta: Product DI</title>
+        <description translate="true">Delta sync for customer data to Boxalino GCP ecosystem</description>
+    </indexer>
+
+</config>
