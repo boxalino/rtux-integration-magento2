@@ -35,6 +35,8 @@
                 <item name="decimal_localized" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeDecimalLocalized</item>
                 <item name="datetime_global" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeDatetime</item>
                 <item name="datetime_localized" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeDatetimeLocalized</item>
+                <item name="option_int" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeOptionInt</item>
+                <item name="option_varchar" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeOptionVarchar</item>
             </argument>
         </arguments>
     </type>
@@ -67,10 +69,12 @@
                 <item name="decimal_localized" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeDecimalLocalized</item>
                 <item name="datetime_global" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeDatetime</item>
                 <item name="datetime_localized" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeDatetimeLocalized</item>
+                <item name="option_int" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeOptionInt</item>
+                <item name="option_varchar" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeOptionVarchar</item>
             </argument>
         </arguments>
     </virtualType>
-    <type name="Boxalino\DataIntegration\Service\Document\Product\IntegrationPropertyHandlerAbstract">
+    <type name="Boxalino\DataIntegration\Service\Document\Product\Attribute\IntegrationPropertyHandlerAbstract">
         <arguments>
             <argument name="diSchemaDataProviderResolver" xsi:type="object">docProductSchemaDataProviderResolver</argument>
         </arguments>
