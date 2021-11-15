@@ -29,6 +29,7 @@ class ItemContext extends ItemContextAbstract
 {
     use ContextTrait;
     use RequestParametersTrait;
+    use IntegrationContextTrait;
 
     public function __construct(
         RequestTransformerInterface $requestTransformer,
