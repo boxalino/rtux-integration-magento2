@@ -6,6 +6,4 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="Boxalino\DataIntegrationDoc\Framework\Util\DiConfigurationInterface" type="Boxalino\DataIntegration\Helper\Di\Configuration"/>
-    <preference for="Boxalino\DataIntegration\Model\DataProvider\DiSchemaDataProviderResolverInterface" type="Boxalino\DataIntegration\Model\DataProvider\DiSchemaDataProviderResolver"/>
 </config>
