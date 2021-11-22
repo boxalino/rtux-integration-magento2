@@ -37,6 +37,9 @@
                 <item name="datetime_localized" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeDatetimeLocalized</item>
                 <item name="option_int" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeOptionInt</item>
                 <item name="option_varchar" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeOptionVarchar</item>
+                <item name="option_text" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeOptionText</item>
+                <item name="source_model_global" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeSourceModelInt</item>
+                <item name="source_model_localized" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeSourceModelIntLocalized</item>
             </argument>
         </arguments>
     </type>
@@ -71,12 +74,17 @@
                 <item name="datetime_localized" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeDatetimeLocalized</item>
                 <item name="option_int" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeOptionInt</item>
                 <item name="option_varchar" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeOptionVarchar</item>
+                <item name="option_text" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeOptionText</item>
+                <item name="source_model_global" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeSourceModelInt</item>
+                <item name="source_model_localized" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeSourceModelIntLocalized</item>
             </argument>
         </arguments>
     </virtualType>
     <type name="Boxalino\DataIntegration\Service\Document\Product\Attribute\IntegrationPropertyHandlerAbstract">
         <arguments>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Logger</argument>
             <argument name="diSchemaDataProviderResolver" xsi:type="object">docProductSchemaDataProviderResolver</argument>
         </arguments>
     </type>
+
 </config>
