@@ -1,6 +1,8 @@
 <?php declare(strict_types=1);
 namespace BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\Context;
 
+use Boxalino\RealTimeUserExperience\Api\ApiFilterablePropertiesProviderInterface;
+use Boxalino\RealTimeUserExperience\Model\Api\Context\ListingContextFilterablePropertiesTrait;
 use Boxalino\RealTimeUserExperience\Service\Api\Util\ContextTrait;
 use Boxalino\RealTimeUserExperience\Service\Api\Util\RequestParametersTrait;
 use Boxalino\RealTimeUserExperience\Helper\Configuration as StoreConfigurationHelper;
@@ -31,20 +33,27 @@ class SearchContext extends SearchContextAbstract
     use ContextTrait;
     use RequestParametersTrait;
     use IntegrationContextTrait;
+    use ListingContextFilterablePropertiesTrait;
 
     public function __construct(
         RequestTransformerInterface $requestTransformer,
         ParameterFactoryInterface $parameterFactory,
         SearchRequestDefinitionInterface $requestDefinition,
-        StoreConfigurationHelper $storeConfigurationHelper
+        StoreConfigurationHelper $storeConfigurationHelper,
+        ApiFilterablePropertiesProviderInterface $apiFilterablePropertiesList
     ) {
         parent::__construct($requestTransformer, $parameterFactory);
         $this->storeConfigurationHelper = $storeConfigurationHelper;
+        $this->filterablePropertyProvider = $apiFilterablePropertiesList;
+//        $this->filterablePropertyProvider->setPropertyPrefix("products_");
         /** prepare context with configurations */
         $this->setRequestDefinition($requestDefinition);
         $this->setWidget("search");
         $this->setSubPhrasesCount(5);
         $this->setSubPhrasesProductsCount(5);
+
+        /** add this to include all filterable properties on API request */
+        $this->addStoreFilterablePropertiesToApiRequest(true);
     }
 
     /**
