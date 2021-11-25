@@ -10,7 +10,8 @@
   "license": ["MIT"],
   "require": {
     "php": "^7.2",
-    "boxalino/rtux-magento2": "~2.4.0"
+    "boxalino/rtux-magento2": "~2.4.0",
+    "boxalino/data-integration-magento2": "~1.1.10"
   },
   "autoload": {
     "files": ["registration.php"],
