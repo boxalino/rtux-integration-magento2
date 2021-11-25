@@ -7,12 +7,12 @@
  */
 define([
     'jquery',
-    'Boxalino_RealTimeUserExperience/js/tracker/events/view-page',
-    'Boxalino_RealTimeUserExperience/js/tracker/events/view-navigation',
-    'Boxalino_RealTimeUserExperience/js/tracker/events/view-search',
-    'Boxalino_RealTimeUserExperience/js/tracker/events/view-product',
-    'Boxalino_RealTimeUserExperience/js/tracker/events/add-to-cart',
-    'Boxalino_RealTimeUserExperience/js/tracker/events/purchase',
+    'Boxalino_RealTimeUserExperience/js/api/events/view-page',
+    'Boxalino_RealTimeUserExperience/js/api/events/view-navigation',
+    'Boxalino_RealTimeUserExperience/js/api/events/view-search',
+    'Boxalino_RealTimeUserExperience/js/api/events/view-product',
+    'Boxalino_RealTimeUserExperience/js/api/events/add-to-cart',
+    'Boxalino_RealTimeUserExperience/js/api/events/purchase',
 ], function (
     $,
     ViewPageEvent,
