@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The MVIEW must be part of the INTEGRATION LAYER -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Mview/etc/mview.xsd">
+    <!-- MVIEW HANDLER FOR CUSTOMER DELTA  -->
+    <view id="boxalino_di_delta_user" class="Boxalino\DataIntegration\Model\Indexer\User\Delta" group="boxalino_di">
+        <subscriptions>
+            <table name="customer_entity" entity_column="entity_id" />
+            <table name="customer_entity_datetime" entity_column="entity_id" />
+            <table name="customer_entity_decimal" entity_column="entity_id" />
+            <table name="customer_entity_int" entity_column="entity_id" />
+            <table name="customer_entity_text" entity_column="entity_id" />
+            <table name="customer_entity_varchar" entity_column="entity_id" />
+            <table name="customer_address_entity" entity_column="parent_id" />
+        </subscriptions>
+    </view>
+
+</config>

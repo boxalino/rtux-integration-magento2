@@ -6,6 +6,7 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- PRODUCT DELTA INTEGRATION -->
     <preference for="Boxalino\DataIntegrationDoc\Service\Integration\ProductDeltaIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\Product\DeltaIntegrationHandler"/>
     <type name="Boxalino\DataIntegrationDoc\Service\Integration\ProductDeltaIntegrationHandlerInterface">
         <arguments>
@@ -18,4 +19,5 @@
             <argument name="timeout" xsi:type="number">300</argument>
         </arguments>
     </type>
+
 </config>

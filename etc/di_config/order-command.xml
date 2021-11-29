@@ -11,6 +11,7 @@
         <arguments>
             <argument name="commands" xsi:type="array">
                 <item name="boxalino:di:full:order" xsi:type="object">Boxalino\DataIntegrationDoc\Framework\Console\Order\FullDataIntegration</item>
+                <item name="boxalino:di:delta:order" xsi:type="object">Boxalino\DataIntegrationDoc\Framework\Console\Order\DeltasDataIntegration</item>
             </argument>
         </arguments>
     </type>

@@ -10,7 +10,7 @@
         <arguments>
             <argument name="commands" xsi:type="array">
                 <item name="boxalino:di:full:product" xsi:type="object">Boxalino\DataIntegrationDoc\Framework\Console\Product\FullDataIntegration</item>
-                <!--                <item name="boxalino:di:full:delta" xsi:type="object">Boxalino\DataIntegrationDoc\Framework\Console\Product\DeltaDataIntegration</item>-->
+                <item name="boxalino:di:full:delta" xsi:type="object">Boxalino\DataIntegrationDoc\Framework\Console\Product\DeltaDataIntegration</item>
                 <!--                <item name="boxalino:di:full:instant" xsi:type="object">Boxalino\DataIntegrationDoc\Framework\Console\Product\InstantDataIntegration</item>-->
             </argument>
         </arguments>
