@@ -1,14 +1,10 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
     <group id="default">
-        <!-- FULL DATA SYNCHRONIZATION (cron) -->
+        <!-- FULL DATA SYNCHRONIZATION (cli) -->
 
         <!-- the Boxalino Data Integration (full data sync) is run daily; set a time when the products have already been updated by any relevant 3rd party process -->
-        <!-- minimum requirement: a full per day-->
-        <job name="boxalino_di_full_product" instance="Boxalino\DataIntegration\Model\Indexer\Full" method="executeFull">
-            <schedule>0 2 * * *</schedule>
-        </job>
-
+        <!-- minimum requirement for product DI: a full per day-->
         <!-- the full for orders and users is only needed at account kick-off and with every DI services update/per request -->
 
         <!-- DELTA DATA SYNCHRONIZATION (cron or mview) -->
@@ -33,6 +29,8 @@
 
         <!-- M V I E W  -->
         <!-- to be used when Boxalino DI Delta indexers (if activated) is in mode "Update by Schedule" -->
+        <!-- the mview group "boxalino_di" must be included in a script of it`s own for triggering -->
+        <!-- the crons above are not needed -->
         <job name="boxalino_di_mview_update" instance="Boxalino\DataIntegration\Model\Indexer\Mview" method="update">
             <schedule>*/30 6-23 * * *</schedule>
         </job>
