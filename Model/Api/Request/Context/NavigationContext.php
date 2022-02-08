@@ -82,7 +82,7 @@ class NavigationContext extends ListingContextAbstract
     }
 
     /**
-     * Other fields can be: products_seo_url, products_image, discountedPrice, etc
+     * Other fields can be: link, image, discountedPrice, etc
      * If the products are loaded using the ApiEntityCollection - the generic Magento2 collection is used
      * @return array
      */

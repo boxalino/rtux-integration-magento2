@@ -165,8 +165,8 @@ define([
                     'acHighlightPost':"</em>",  //textual suggestion highlight end for match word
                     'query':value,
                     'filters': [
-                        {"field": "products_visibility", "values": [1,3], "negative":true},
-                        {"field": "products_status","values": [1]}
+                        {"field": "visibility", "values": [1,3], "negative":true},
+                        {"field": "status","values": [1]}
                     ]
                 };
                 return $.boxalino.rtuxApiHelper.getApiRequestData(
