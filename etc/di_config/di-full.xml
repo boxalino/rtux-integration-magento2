@@ -92,6 +92,13 @@
             </argument>
         </arguments>
     </type>
+    <type name="Boxalino\DataIntegration\Service\Document\Product\Attribute\Brand">
+        <arguments>
+            <argument name="docAttributePropertiesMapping" xsi:type="array">
+                <item name="brands" xsi:type="string">brand</item>
+            </argument>
+        </arguments>
+    </type>
     <virtualType name="docProductSchemaDataProviderResolver" type="Boxalino\DataIntegration\Model\DataProvider\DiSchemaDataProviderResolver">
         <arguments>
             <argument name="document" xsi:type="string">doc_product</argument>
