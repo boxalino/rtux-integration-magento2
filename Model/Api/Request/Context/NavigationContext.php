@@ -43,6 +43,7 @@ class NavigationContext extends ListingContextAbstract
         parent::__construct($requestTransformer, $parameterFactory);
         $this->storeConfigurationHelper = $storeConfigurationHelper;
         $this->filterablePropertyProvider = $apiFilterablePropertiesList;
+        /** add this if your integration uses boxalino/exporter-magento2 for data sync */
 //        $this->filterablePropertyProvider->setPropertyPrefix("products_");
         
         /** prepare context with configurations */
@@ -51,6 +52,9 @@ class NavigationContext extends ListingContextAbstract
 
         /** add this to include all filterable properties on API request */
         $this->addStoreFilterablePropertiesToApiRequest(true);
+
+        /** add this to enable filtering by facet option id instead of facet option value */
+//        $this->addFilterByFacetOptionId(true);
     }
 
     /**

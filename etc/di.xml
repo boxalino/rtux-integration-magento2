@@ -53,6 +53,8 @@
     <type name="Boxalino\RealTimeUserExperience\Model\Response\Content\ApiFacet">
         <arguments>
             <argument name="facetValuesDelimiter" xsi:type="string">|</argument>
+            <!-- enable this to allow the system to filter facets by option ID -->
+            <!--            <argument name="useFacetOptionIdFilter" xsi:type="string">true</argument>-->
         </arguments>
     </type>
 

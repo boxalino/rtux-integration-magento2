@@ -45,7 +45,9 @@ class SearchContext extends SearchContextAbstract
         parent::__construct($requestTransformer, $parameterFactory);
         $this->storeConfigurationHelper = $storeConfigurationHelper;
         $this->filterablePropertyProvider = $apiFilterablePropertiesList;
+        /** add this if your integration is using boxalino/exporter-magento2 for data sync */
 //        $this->filterablePropertyProvider->setPropertyPrefix("products_");
+
         /** prepare context with configurations */
         $this->setRequestDefinition($requestDefinition);
         $this->setWidget("search");
@@ -54,6 +56,9 @@ class SearchContext extends SearchContextAbstract
 
         /** add this to include all filterable properties on API request */
         $this->addStoreFilterablePropertiesToApiRequest(true);
+
+        /** add this to enable filtering by facet option id instead of facet option value */
+//        $this->addFilterByFacetOptionId(true);
     }
 
     /**
