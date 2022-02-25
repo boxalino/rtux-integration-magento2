@@ -12,12 +12,12 @@
 
     <type name="Boxalino\DataIntegration\Framework\Console\Product\FullMviewDataIntegration">
         <arguments>
-            <item name="mviewViewId" xsi:type="string">boxalino_di_delta_product</item>
+            <argument name="mviewViewId" xsi:type="string">boxalino_di_delta_product</argument>
         </arguments>
     </type>
     <type name="Boxalino\DataIntegration\Framework\Console\Product\DeltaMviewDataIntegration">
         <arguments>
-            <item name="mviewViewId" xsi:type="string">boxalino_di_delta_product</item>
+            <argument name="mviewViewId" xsi:type="string">boxalino_di_delta_product</argument>
         </arguments>
     </type>
 
@@ -33,12 +33,12 @@
 
     <type name="Boxalino\DataIntegration\Framework\Console\Order\FullMviewDataIntegration">
         <arguments>
-            <item name="mviewViewId" xsi:type="string">boxalino_di_delta_order</item>
+            <argument name="mviewViewId" xsi:type="string">boxalino_di_delta_order</argument>
         </arguments>
     </type>
     <type name="Boxalino\DataIntegration\Framework\Console\Order\DeltaMviewDataIntegration">
         <arguments>
-            <item name="mviewViewId" xsi:type="string">boxalino_di_delta_order</item>
+            <argument name="mviewViewId" xsi:type="string">boxalino_di_delta_order</argument>
         </arguments>
     </type>
 
@@ -54,12 +54,12 @@
 
     <type name="Boxalino\DataIntegration\Framework\Console\User\FullMviewDataIntegration">
         <arguments>
-            <item name="mviewViewId" xsi:type="string">boxalino_di_delta_user</item>
+            <argument name="mviewViewId" xsi:type="string">boxalino_di_delta_user</argument>
         </arguments>
     </type>
     <type name="Boxalino\DataIntegration\Framework\Console\User\DeltaMviewDataIntegration">
         <arguments>
-            <item name="mviewViewId" xsi:type="string">boxalino_di_delta_user</item>
+            <argument name="mviewViewId" xsi:type="string">boxalino_di_delta_user</argument>
         </arguments>
     </type>
 </config>
