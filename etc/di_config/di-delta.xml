@@ -19,7 +19,7 @@
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="boxalino:di:delta:product" xsi:type="object">Boxalino\DataIntegrationDoc\Framework\Console\Product\DeltaDataIntegration</item>
+                <item name="boxalino:di:delta:product" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Product\DeltaDataIntegration</item>
             </argument>
         </arguments>
     </type>
@@ -38,7 +38,7 @@
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="boxalino:di:delta:order" xsi:type="object">Boxalino\DataIntegrationDoc\Framework\Console\Order\DeltaDataIntegration</item>
+                <item name="boxalino:di:delta:order" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Order\DeltaDataIntegration</item>
             </argument>
         </arguments>
     </type>
@@ -57,7 +57,7 @@
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="boxalino:di:delta:user" xsi:type="object">Boxalino\DataIntegrationDoc\Framework\Console\User\DeltaDataIntegration</item>
+                <item name="boxalino:di:delta:user" xsi:type="object">Boxalino\DataIntegration\Framework\Console\User\DeltaDataIntegration</item>
             </argument>
         </arguments>
     </type>

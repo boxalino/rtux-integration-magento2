@@ -10,8 +10,8 @@
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="boxalino:di:full:user" xsi:type="object">Boxalino\DataIntegrationDoc\Framework\Console\User\FullDataIntegration</item>
-                <item name="boxalino:di:delta:user" xsi:type="object">Boxalino\DataIntegrationDoc\Framework\Console\User\DeltaDataIntegration</item>
+                <item name="boxalino:di:full:user" xsi:type="object">Boxalino\DataIntegration\Framework\Console\User\FullDataIntegration</item>
+                <item name="boxalino:di:delta:user" xsi:type="object">Boxalino\DataIntegration\Framework\Console\User\DeltaDataIntegration</item>
             </argument>
         </arguments>
     </type>
