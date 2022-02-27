@@ -25,19 +25,5 @@
         <job name="boxalino_di_delta_user" instance="Boxalino\DataIntegration\Model\Indexer\User\Delta" method="executeFull">
             <schedule>0 4 * * *</schedule>
         </job>
-
-
-        <!-- M V I E W  -->
-        <!-- to be used when Boxalino DI Delta indexers (if activated) is in mode "Update by Schedule" -->
-        <!-- the mview group "boxalino_di" must be included in a script of it`s own for triggering -->
-        <!-- the crons above are not needed -->
-        <job name="boxalino_di_mview_update" instance="Boxalino\DataIntegration\Model\Indexer\Mview" method="update">
-            <schedule>*/30 6-23 * * *</schedule>
-        </job>
-        <!-- the mview log must be cleared before the full data sync daily run -->
-        <job name="boxalino_di_mview_clear" instance="Boxalino\DataIntegration\Model\Indexer\Mview" method="clearChangeLog">
-            <schedule>0 1 * * *</schedule>
-        </job>
-
     </group>
 </config>
