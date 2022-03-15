@@ -12,7 +12,7 @@
 <?php
 $rangeValue = $block->getFilter()->getValues()[0];
 $minValue = $rangeValue->getMinValue();
-$maxValue = $rangeValue->getMaxValue();
+$maxValue = ($rangeValue->getMaxValue() === $minValue) ? $minValue + 0.01 : $rangeValue->getMaxValue();
 $minSelectedValue = $rangeValue->getMinSelectedValue() ?? $rangeValue->getMinValue();
 $maxSelectedValue = $rangeValue->getMaxSelectedValue() ?? $rangeValue->getMaxValue();
 $rangeFrom = $block->getFilter()->getRangeFromField();
