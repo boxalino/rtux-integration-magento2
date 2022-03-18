@@ -14,6 +14,13 @@
             <argument name="mviewViewId" xsi:type="string">boxalino_di_delta_product</argument>
         </arguments>
     </type>
+    <type name="Boxalino\DataIntegration\Model\Indexer\Mview\View">
+        <arguments>
+            <argument name="mviewViewIdsResourceCollection" xsi:type="array">
+                <item name="boxalino_di_delta_product" xsi:type="object">Boxalino\DataIntegration\Model\ResourceModel\Indexer\Mview\ProductMviewIds</item>
+            </argument>
+        </arguments>
+    </type>
 
     <!-- ORDER MVIEW FULL & DELTA -->
     <type name="Magento\Framework\Console\CommandListInterface">

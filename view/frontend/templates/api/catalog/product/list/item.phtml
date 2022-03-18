@@ -10,7 +10,7 @@ use Magento\Framework\App\Action\Action;
 
 $_product = $this->getProduct();
 $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
-$pos=null;
+$pos=null; $position = "";
 $bxAttributes = $block->getBxAttributes();
 
 if ($block->getMode() == 'grid') {
@@ -24,33 +24,26 @@ if ($block->getMode() == 'grid') {
     $showDescription = true;
     $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
 }
+
+$productImage = $block->getImage($_product, $imageDisplayArea);
+if ($pos != null) {
+    $position = ' style="left:' . $productImage->getWidth() . 'px;'
+        . 'top:' . $productImage->getHeight() . 'px;"';
+}
 ?>
-<li class="item product product-item <?php /* @escapeNotVerified */ echo  $bxAttributes->getClass(); ?>""
+<li class="item product product-item <?php /* @escapeNotVerified */ echo  $bxAttributes->getClass(); ?>"
     <?php foreach($bxAttributes as $attribute):?>
         <?php /* @escapeNotVerified */ echo $attribute->getName()?>="<?php /* @escapeNotVerified */ echo $attribute->getValue();?>"
     <?php endforeach;?>
 >
     <div class="product-item-info" data-container="product-<?= /* @noEscape */ $viewMode ?>">
-        <?php
-        $productImage = $block->getImage($_product, $imageDisplayArea);
-        if ($pos != null) {
-            $position = ' style="left:' . $productImage->getWidth() . 'px;'
-                . 'top:' . $productImage->getHeight() . 'px;"';
-        }
-        ?>
         <?php // Product Image ?>
-        <a href="<?= $block->escapeUrl($_product->getProductUrl()) ?>"
-           class="product photo product-item-photo"
-           tabindex="-1">
+        <a href="<?= $block->escapeUrl($_product->getProductUrl()) ?>" class="product photo product-item-photo" tabindex="-1">
             <?= $productImage->toHtml() ?>
         </a>
         <div class="product details product-item-details">
-            <?php
-            $_productNameStripped = $block->stripTags($_product->getName(), null, true);
-            ?>
             <strong class="product name product-item-name">
-                <a class="product-item-link"
-                   href="<?= $block->escapeUrl($_product->getProductUrl()) ?>">
+                <a class="product-item-link" href="<?= $block->escapeUrl($_product->getProductUrl()) ?>">
                     <?= /* @noEscape */ $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
                 </a>
             </strong>
@@ -78,9 +71,7 @@ if ($block->getMode() == 'grid') {
                                 <input type="hidden" name="<?= /* @noEscape */ Action::PARAM_NAME_URL_ENCODED ?>"
                                        value="<?= /* @noEscape */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
                                 <?= $block->getBlockHtml('formkey') ?>
-                                <button type="submit"
-                                        title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>"
-                                        class="action tocart primary bx-basket-add">
+                                <button type="submit" title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>" class="action tocart primary bx-basket-add">
                                     <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
                                 </button>
                             </form>
@@ -101,9 +92,7 @@ if ($block->getMode() == 'grid') {
                 <?php if ($showDescription) :?>
                     <div class="product description product-item-description">
                         <?= /* @noEscape */ $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
-                        <a href="<?= $block->escapeUrl($_product->getProductUrl()) ?>"
-                           title="<?= /* @noEscape */ $_productNameStripped ?>"
-                           class="action more"><?= $block->escapeHtml(__('Learn More')) ?></a>
+                        <a href="<?= $block->escapeUrl($_product->getProductUrl()) ?>" title="<?= /* @noEscape */ $block->stripTags($_product->getName(), null, true) ?>" class="action more"><?= $block->escapeHtml(__('Learn More')) ?></a>
                     </div>
                 <?php endif; ?>
             </div>
