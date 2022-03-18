@@ -43,6 +43,15 @@
             </argument>
         </arguments>
     </type>
+    <type name="Boxalino\DataIntegration\Service\Document\Product\Attribute\Brand">
+        <arguments>
+            <argument name="docAttributePropertiesMapping" xsi:type="array">
+                <!-- DECLARE THE BRAND PROPERTY MAPPING (if exists) -->
+                <item name="brands" xsi:type="string">brand</item>
+            </argument>
+        </arguments>
+    </type>
+
     <virtualType name="docProductSchemaDataProviderResolver" type="Boxalino\DataIntegration\Model\DataProvider\DiSchemaDataProviderResolver">
         <arguments>
             <argument name="document" xsi:type="string">doc_product</argument>
@@ -84,6 +93,12 @@
         <arguments>
             <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Logger</argument>
             <argument name="diSchemaDataProviderResolver" xsi:type="object">docProductSchemaDataProviderResolver</argument>
+        </arguments>
+    </type>
+    <type name="Boxalino\DataIntegration\Model\DataProvider\Document\Product\Image">
+        <arguments>
+            <argument name="addMediaPath" xsi:type="boolean">false</argument>
+            <argument name="addPlaceholder" xsi:type="boolean">false</argument>
         </arguments>
     </type>
 
