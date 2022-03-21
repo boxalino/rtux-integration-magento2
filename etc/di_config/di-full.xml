@@ -66,6 +66,7 @@
                 <item name="brands" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Brand</item>
                 <item name="categories" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Category</item>
                 <item name="images" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Image</item>
+                <item name="gallery" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Gallery</item>
                 <item name="link" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Link</item>
                 <item name="pricing" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Pricing</item>
                 <item name="visibility" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Visibility</item>
@@ -92,11 +93,25 @@
             </argument>
         </arguments>
     </type>
+    <!-- ADD THE MAPPING FOR THE BRAND ATTRIBUTE EXPORT -->
     <type name="Boxalino\DataIntegration\Service\Document\Product\Attribute\Brand">
         <arguments>
             <argument name="docAttributePropertiesMapping" xsi:type="array">
                 <item name="brands" xsi:type="string">brand</item>
             </argument>
+        </arguments>
+    </type>
+    <!-- DEFINE THE OPTIONS FOR IMAGE EXPORT: default - true -->
+    <type name="Boxalino\DataIntegration\Model\DataProvider\Document\Product\Image">
+        <arguments>
+            <argument name="addMediaPath" xsi:type="boolean">false</argument>
+            <argument name="addPlaceholder" xsi:type="boolean">false</argument>
+        </arguments>
+    </type>
+    <!-- DEFINE THE OPTIONS FOR GALLERY EXPORT: default - true -->
+    <type name="Boxalino\DataIntegration\Model\DataProvider\Document\Product\Gallery">
+        <arguments>
+            <argument name="addMediaPath" xsi:type="boolean">false</argument>
         </arguments>
     </type>
     <virtualType name="docProductSchemaDataProviderResolver" type="Boxalino\DataIntegration\Model\DataProvider\DiSchemaDataProviderResolver">
@@ -110,6 +125,7 @@
                 <item name="brands" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Brand</item>
                 <item name="categories" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Category</item>
                 <item name="images" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Image</item>
+                <item name="gallery" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Gallery</item>
                 <item name="link" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Link</item>
                 <item name="pricing" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Pricing</item>
                 <item name="visibility" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Visibility</item>
