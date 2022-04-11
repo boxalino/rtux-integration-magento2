@@ -48,7 +48,7 @@ trait IntegrationContextTrait
     public function getActiveFilter(RequestInterface $request) : ParameterInterface
     {
         return $this->getParameterFactory()->get(ParameterFactoryInterface::BOXALINO_API_REQUEST_PARAMETER_TYPE_FILTER)
-            ->add("status", [\Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED]);
+            ->add("product_group_status", [\Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED]);
     }
 
 
