@@ -9,6 +9,7 @@ use Boxalino\RealTimeUserExperience\Helper\Configuration as StoreConfigurationHe
 use Boxalino\RealTimeUserExperienceApi\Framework\Request\SearchContextAbstract;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\Context\SearchContextInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\Definition\SearchRequestDefinitionInterface;
+use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\Parameter\FacetDefinition;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\ParameterFactoryInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestTransformerInterface;
@@ -59,6 +60,9 @@ class SearchContext extends SearchContextAbstract
 
         /** add this to enable filtering by facet option id instead of facet option value */
 //        $this->addFilterByFacetOptionId(true);
+
+        /** add this to request the facetValueExtraInfo from old DI */
+//        $this->setFacetValueCorrelation(FacetDefinition::BOXALINO_REQUEST_FACET_VALUE_CORRELATION_EXTRAINFO);
     }
 
     /**

@@ -10,8 +10,8 @@
   "license": ["MIT"],
   "require": {
     "php": ">=7.4",
-    "boxalino/rtux-api-php": "~3.3.6",
-    "boxalino/rtux-magento2": "~2.4.4",
+    "boxalino/rtux-api-php": "~3.3.12",
+    "boxalino/rtux-magento2": "~2.4.8",
     "boxalino/data-integration-magento2": "~1.2.34"
   },
   "autoload": {
