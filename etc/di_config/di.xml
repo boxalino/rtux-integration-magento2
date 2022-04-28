@@ -1,0 +1,311 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--  DATA INTEGRATION -->
+    <!-- doc_attribute INTEGRATION -->
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocAttributeHandlerInterface">
+        <arguments>
+            <!-- add propertyHandlers that would return data for the document; the handlers here are DI-logic layer -->
+            <argument name="propertyHandlers" xsi:type="array">
+                <item name="eavAttributes" xsi:type="object">Boxalino\DataIntegration\Service\Document\Attribute\EavAttribute</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="docAttributeSchemaDataProviderResolver" type="Boxalino\DataIntegration\Model\DataProvider\DiSchemaDataProviderResolver">
+        <arguments>
+            <argument name="document" xsi:type="string">doc_attribute</argument>
+            <!-- add dataProviders that would return data for each of the declared propertyHandlers above; the handlers here are Magento2-logic layer -->
+            <argument name="dataProviders" xsi:type="array">
+                <item name="eavAttributes" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Attribute\EavAttribute</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Boxalino\DataIntegration\Service\Document\Attribute\IntegrationPropertyHandlerAbstract">
+        <arguments>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Logger</argument>
+            <argument name="diSchemaDataProviderResolver" xsi:type="object">docAttributeSchemaDataProviderResolver</argument>
+        </arguments>
+    </type>
+
+    <!-- doc_attribute_value INTEGRATION -->
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocAttributeValuesHandlerInterface">
+        <arguments>
+            <!-- add propertyHandlers that would return data for the document; the handlers here are DI-logic layer -->
+            <argument name="propertyHandlers" xsi:type="array">
+                <item name="categories" xsi:type="object">Boxalino\DataIntegration\Service\Document\AttributeValue\Category</item>
+                <item name="eavAttributesOption" xsi:type="object">Boxalino\DataIntegration\Service\Document\AttributeValue\EavAttributeOption</item>
+                <item name="eavAttributesSourceModel" xsi:type="object">Boxalino\DataIntegration\Service\Document\AttributeValue\EavAttributeSourceModel</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="docAttributeValueSchemaDataProviderResolver" type="Boxalino\DataIntegration\Model\DataProvider\DiSchemaDataProviderResolver">
+        <arguments>
+            <argument name="document" xsi:type="string">doc_attribute_value</argument>
+            <!-- add dataProviders that would return data for each of the declared propertyHandlers above; the handlers here are Magento2-logic layer -->
+            <argument name="dataProviders" xsi:type="array">
+                <item name="categories" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\AttributeValue\Category</item>
+                <item name="eavAttributesOption" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\AttributeValue\EavAttributeOption</item>
+                <item name="eavAttributesSourceModel" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\AttributeValue\EavAttributeSourceModel</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Boxalino\DataIntegration\Service\Document\AttributeValue\IntegrationPropertyHandlerAbstract">
+        <arguments>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Logger</argument>
+            <argument name="diSchemaDataProviderResolver" xsi:type="object">docAttributeValueSchemaDataProviderResolver</argument>
+        </arguments>
+    </type>
+
+    <!-- doc_product INTEGRATION -->
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocProductHandlerInterface">
+        <arguments>
+            <!-- add propertyHandlers that would return data for the document; the handlers here are DI-logic layer -->
+            <argument name="propertyHandlers" xsi:type="array">
+                <item name="entity" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Entity</item>
+                <item name="product_relations" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\ProductRelation</item>
+                <item name="translation" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Translation</item>
+                <item name="brands" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Brand</item>
+                <item name="categories" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Category</item>
+                <item name="images" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Image</item>
+                <item name="gallery" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Gallery</item>
+                <item name="link" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Link</item>
+                <item name="pricing" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Pricing</item>
+                <item name="visibility" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Visibility</item>
+                <item name="status" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Status</item>
+                <item name="price" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Price</item>
+                <item name="type" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Type</item>
+                <item name="stock" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Stock</item>
+                <item name="individually_visible" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\IndividuallyVisible</item>
+                <item name="varchar_global" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeVarchar</item>
+                <item name="varchar_localized" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeVarcharLocalized</item>
+                <item name="text_global" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeText</item>
+                <item name="text_localized" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeTextLocalized</item>
+                <item name="int_global" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeInt</item>
+                <item name="int_localized" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeIntLocalized</item>
+                <item name="decimal_global" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeDecimal</item>
+                <item name="decimal_localized" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeDecimalLocalized</item>
+                <item name="datetime_global" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeDatetime</item>
+                <item name="datetime_localized" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeDatetimeLocalized</item>
+                <item name="option_int" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeOptionInt</item>
+                <item name="option_varchar" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeOptionVarchar</item>
+                <item name="option_text" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeOptionText</item>
+                <item name="source_model_global" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeSourceModelInt</item>
+                <item name="source_model_localized" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeSourceModelIntLocalized</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- ADD THE MAPPING FOR THE BRAND ATTRIBUTE EXPORT -->
+    <type name="Boxalino\DataIntegration\Service\Document\Product\Attribute\Brand">
+        <arguments>
+            <argument name="docAttributePropertiesMapping" xsi:type="array">
+                <item name="brands" xsi:type="string">brand</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- DEFINE THE OPTIONS FOR IMAGE EXPORT: default - true -->
+    <type name="Boxalino\DataIntegration\Model\DataProvider\Document\Product\Image">
+        <arguments>
+            <argument name="addMediaPath" xsi:type="boolean">false</argument>
+            <argument name="addPlaceholder" xsi:type="boolean">false</argument>
+        </arguments>
+    </type>
+    <!-- DEFINE THE OPTIONS FOR GALLERY EXPORT: default - true -->
+    <type name="Boxalino\DataIntegration\Model\DataProvider\Document\Product\Gallery">
+        <arguments>
+            <argument name="addMediaPath" xsi:type="boolean">false</argument>
+        </arguments>
+    </type>
+    <virtualType name="docProductSchemaDataProviderResolver" type="Boxalino\DataIntegration\Model\DataProvider\DiSchemaDataProviderResolver">
+        <arguments>
+            <argument name="document" xsi:type="string">doc_product</argument>
+            <!-- add dataProviders that would return data for each of the declared propertyHandlers above; the handlers here are Magento2-logic layer -->
+            <argument name="dataProviders" xsi:type="array">
+                <item name="entity" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Entity</item>
+                <item name="product_relations" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\ProductRelation</item>
+                <item name="translation" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Translation</item>
+                <item name="brands" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Brand</item>
+                <item name="categories" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Category</item>
+                <item name="images" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Image</item>
+                <item name="gallery" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Gallery</item>
+                <item name="link" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Link</item>
+                <item name="pricing" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Pricing</item>
+                <item name="visibility" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Visibility</item>
+                <item name="status" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Status</item>
+                <item name="price" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Price</item>
+                <item name="type" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Type</item>
+                <item name="stock" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Stock</item>
+                <item name="individually_visible" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\IndividuallyVisible</item>
+                <item name="varchar_global" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeVarchar</item>
+                <item name="varchar_localized" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeVarcharLocalized</item>
+                <item name="text_global" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeText</item>
+                <item name="text_localized" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeTextLocalized</item>
+                <item name="int_global" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeInt</item>
+                <item name="int_localized" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeIntLocalized</item>
+                <item name="decimal_global" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeDecimal</item>
+                <item name="decimal_localized" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeDecimalLocalized</item>
+                <item name="datetime_global" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeDatetime</item>
+                <item name="datetime_localized" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeDatetimeLocalized</item>
+                <item name="option_int" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeOptionInt</item>
+                <item name="option_varchar" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeOptionVarchar</item>
+                <item name="option_text" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeOptionText</item>
+                <item name="source_model_global" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeSourceModelInt</item>
+                <item name="source_model_localized" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeSourceModelIntLocalized</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Boxalino\DataIntegration\Service\Document\Product\Attribute\IntegrationPropertyHandlerAbstract">
+        <arguments>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Logger</argument>
+            <argument name="diSchemaDataProviderResolver" xsi:type="object">docProductSchemaDataProviderResolver</argument>
+        </arguments>
+    </type>
+
+    <preference for="Boxalino\DataIntegrationDoc\Service\Integration\ProductIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\Product\FullIntegrationHandler"/>
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\ProductIntegrationHandlerInterface">
+        <arguments>
+            <argument name="docHandlers" xsi:type="array">
+                <item name="doc_language" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocLanguagesHandlerInterface</item>
+                <item name="doc_attribute_value" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocAttributeValuesHandlerInterface</item>
+                <item name="doc_attribute" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocAttributeHandlerInterface</item>
+                <item name="doc_product" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocProductHandlerInterface</item>
+            </argument>
+            <argument name="timeout" xsi:type="number">3600</argument>
+        </arguments>
+    </type>
+    <!-- PRODUCT DELTA INTEGRATION -->
+    <preference for="Boxalino\DataIntegrationDoc\Service\Integration\ProductDeltaIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\Product\DeltaIntegrationHandler"/>
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\ProductDeltaIntegrationHandlerInterface">
+        <arguments>
+            <argument name="docHandlers" xsi:type="array">
+                <item name="doc_language" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocLanguagesHandlerInterface</item>
+                <item name="doc_attribute_value" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocAttributeValuesHandlerInterface</item>
+                <item name="doc_attribute" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocAttributeHandlerInterface</item>
+                <item name="doc_product" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocProductHandlerInterface</item>
+            </argument>
+            <argument name="timeout" xsi:type="number">300</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="boxalino:di:full:product" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Product\FullDataIntegration</item>
+                <item name="boxalino:di:delta:product" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Product\DeltaDataIntegration</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- ORDER INTEGRATION -->
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocOrderHandlerInterface">
+        <arguments>
+            <!-- add propertyHandlers that would return data for the document; the handlers here are DI-logic layer -->
+            <argument name="propertyHandlers" xsi:type="array">
+                <item name="entity" xsi:type="object">Boxalino\DataIntegration\Service\Document\Order\Entity</item>
+                <item name="products" xsi:type="object">Boxalino\DataIntegration\Service\Document\Order\Item</item>
+                <item name="contacts" xsi:type="object">Boxalino\DataIntegration\Service\Document\Order\Contact</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="docOrderSchemaDataProviderResolver" type="Boxalino\DataIntegration\Model\DataProvider\DiSchemaDataProviderResolver">
+        <arguments>
+            <argument name="document" xsi:type="string">doc_order</argument>
+            <!-- add dataProviders that would return data for each of the declared propertyHandlers above; the handlers here are Magento2-logic layer -->
+            <argument name="dataProviders" xsi:type="array">
+                <item name="entity" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Order\Entity</item>
+                <item name="products" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Order\Item</item>
+                <item name="contacts" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Order\Contact</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Boxalino\DataIntegration\Service\Document\Order\IntegrationPropertyHandlerAbstract">
+        <arguments>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Logger</argument>
+            <argument name="diSchemaDataProviderResolver" xsi:type="object">docOrderSchemaDataProviderResolver</argument>
+        </arguments>
+    </type>
+
+    <preference for="Boxalino\DataIntegrationDoc\Service\Integration\OrderIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\Order\FullIntegrationHandler"/>
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\OrderIntegrationHandlerInterface">
+        <arguments>
+            <argument name="docHandlers" xsi:type="array">
+                <item name="doc_order" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocOrderHandlerInterface</item>
+            </argument>
+            <argument name="timeout" xsi:type="number">3600</argument>
+        </arguments>
+    </type>
+    <!-- ORDER DELTA INTEGRATION -->
+    <preference for="Boxalino\DataIntegrationDoc\Service\Integration\OrderDeltaIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\Order\DeltaIntegrationHandler"/>
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\OrderDeltaIntegrationHandlerInterface">
+        <arguments>
+            <argument name="docHandlers" xsi:type="array">
+                <item name="doc_order" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocOrderHandlerInterface</item>
+            </argument>
+            <argument name="timeout" xsi:type="number">300</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="boxalino:di:full:order" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Order\FullDataIntegration</item>
+                <item name="boxalino:di:delta:order" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Order\DeltaDataIntegration</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- USER INTEGRATION -->
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocUserHandlerInterface">
+        <arguments>
+            <!-- add propertyHandlers that would return data for the document; the handlers here are DI-logic layer -->
+            <argument name="propertyHandlers" xsi:type="array">
+                <item name="entity" xsi:type="object">Boxalino\DataIntegration\Service\Document\User\Entity</item>
+                <item name="contacts" xsi:type="object">Boxalino\DataIntegration\Service\Document\User\Contact</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="docUserSchemaDataProviderResolver" type="Boxalino\DataIntegration\Model\DataProvider\DiSchemaDataProviderResolver">
+        <arguments>
+            <argument name="document" xsi:type="string">doc_user</argument>
+            <!-- add dataProviders that would return data for each of the declared propertyHandlers above; the handlers here are Magento2-logic layer -->
+            <argument name="dataProviders" xsi:type="array">
+                <item name="entity" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\User\Entity</item>
+                <item name="contacts" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\User\Contact</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Boxalino\DataIntegration\Service\Document\User\IntegrationPropertyHandlerAbstract">
+        <arguments>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Logger</argument>
+            <argument name="diSchemaDataProviderResolver" xsi:type="object">docUserSchemaDataProviderResolver</argument>
+        </arguments>
+    </type>
+
+    <preference for="Boxalino\DataIntegrationDoc\Service\Integration\UserIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\User\FullIntegrationHandler"/>
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\UserIntegrationHandlerInterface">
+        <arguments>
+            <argument name="docHandlers" xsi:type="array">
+                <item name="doc_user" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocUserHandlerInterface</item>
+            </argument>
+            <argument name="timeout" xsi:type="number">3600</argument>
+        </arguments>
+    </type>
+
+    <!-- USER DELTA INTEGRATION -->
+    <preference for="Boxalino\DataIntegrationDoc\Service\Integration\UserDeltaIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\User\DeltaIntegrationHandler"/>
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\UserDeltaIntegrationHandlerInterface">
+        <arguments>
+            <argument name="docHandlers" xsi:type="array">
+                <item name="doc_user" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocUserHandlerInterface</item>
+            </argument>
+            <argument name="timeout" xsi:type="number">300</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="boxalino:di:full:user" xsi:type="object">Boxalino\DataIntegration\Framework\Console\User\FullDataIntegration</item>
+                <item name="boxalino:di:delta:user" xsi:type="object">Boxalino\DataIntegration\Framework\Console\User\DeltaDataIntegration</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
