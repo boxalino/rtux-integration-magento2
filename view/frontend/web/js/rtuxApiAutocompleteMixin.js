@@ -35,6 +35,7 @@ define([
                     dropdown = $('<ul role="listbox"></ul>'),
                     value = this.element.val();
 
+                /** adjust the minSearchLength in configurations if it is to display AC recos on any case **/
                 if (value.length >= parseInt(this.options.minSearchLength, 10))
                 {
                     let requestData = JSON.stringify(this._getApiRequestData(value));
@@ -50,10 +51,8 @@ define([
                             data: requestData,
                             success: $.proxy(function (data) {
                                 if (data.blocks.length) {
-
                                     var html = '';
 
-                                    let markupElement={uuid:data.advanced[0]['_bx_variant_uuid'], groupBy:data.advanced[0]['_bx_group_by']};
                                     $.each(data.blocks, function (index, element) {
                                         var isProduct = element.content[0] === 'product',
                                             childCount = element.blocks.length,
@@ -61,7 +60,8 @@ define([
                                             templateId = element.template[0],
                                             sectionTitleTemplate = mageTemplate(this.options.sectionTitleTemplateId),
                                             sectionJSmarkup = mageTemplate(this.options.sectionJSmarkupTemplateId),
-                                            template = mageTemplate(templateId);
+                                            template = mageTemplate(templateId),
+                                            parentBxAttributesElement=this._getBxAttributeElement(element);
 
                                         $.each(element.blocks, function(childIndex, childBlock) {
                                             let item = childBlock[accessor];
@@ -70,26 +70,29 @@ define([
                                                 return;
                                             }
                                             item.index = childIndex;
-                                            item.class = childBlock.class[0];
+                                            item.bxAttributes = this._getBxAttributeElement(childBlock);
+                                            item.parentBxAttributes = parentBxAttributesElement;
 
+                                            /** this can be a custom property class defined on the Layout Block **/
+                                            item.class = childBlock.class[0];
                                             if(childIndex === 0) {
+                                                /** render the title of the section - if configured **/
+                                                html += sectionTitleTemplate({data:element});
                                                 if(isProduct) {
-                                                    html += sectionTitleTemplate({data:element});
-                                                    /** add the required JS API tracker markup**/
-                                                    markupElement.element="products-list";
-                                                    html += sectionJSmarkup({data:markupElement});
+                                                    html += sectionJSmarkup({data:parentBxAttributesElement});
                                                 }
                                                 /** if(isBlog){}.. **/
                                             }
+
                                             html += template({data:item});
 
+                                            /** close the DIV from the product item template **/
                                             if(childIndex === childCount - 1){
                                                 if(isProduct){
                                                     html += "</div>";
                                                 }
                                             }
-
-                                        });
+                                        }.bind(this));
                                     }.bind(this));
 
                                     dropdown.append(html);
@@ -167,6 +170,9 @@ define([
                     'filters': [
                         {"field": "visibility", "values": [1,3], "negative":true},
                         {"field": "status","values": [1]}
+                    ],
+                    'queries': [
+                        {"name": "brand", "minHitCount": 4}
                     ]
                 };
                 return $.boxalino.rtuxApiHelper.getApiRequestData(
@@ -175,6 +181,26 @@ define([
                     this.options.groupBy,
                     otherParameters
                 );
+            },
+
+            /**
+             * helper function to access the bx-attributes easier in the js markup
+             * removes the - from the name and creates a camelcase key for bx-attributes name
+             *
+             * @param element
+             * @returns {{}}
+             * @private
+             */
+            _getBxAttributeElement(element) {
+                let bxAttributesElement={};
+                $.each(element["bx-attributes"], function(bxAttrElIndex, bxAttrElement){
+                    let key = bxAttrElement.name.replace(/(-.)/g, function(x) {
+                        return x[1].toUpperCase();
+                    });
+                    bxAttributesElement[key] = bxAttrElement.value;
+                })
+
+                return bxAttributesElement;
             }
         });
 
