@@ -63,6 +63,9 @@ class SearchContext extends SearchContextAbstract
 
         /** add this to request the facetValueExtraInfo from old DI */
 //        $this->setFacetValueCorrelation(FacetDefinition::BOXALINO_REQUEST_FACET_VALUE_CORRELATION_EXTRAINFO);
+
+        /** add this to enable filtering by a different facet option property instead of facet option "value" or "id" */
+//        $this->addFilterByFacetValueKey("key");
     }
 
     /**
