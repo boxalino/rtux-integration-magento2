@@ -66,6 +66,9 @@ class SearchContext extends SearchContextAbstract
 
         /** add this to enable filtering by a different facet option property instead of facet option "value" or "id" */
 //        $this->addFilterByFacetValueKey("key");
+
+        /** add this to add categories filter to API request + load the "categories" facet from JSON samples */
+        $this->addCategoriesFilter(true);
     }
 
     /**

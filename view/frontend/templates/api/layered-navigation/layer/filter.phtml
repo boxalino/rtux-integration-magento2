@@ -10,10 +10,12 @@
 // phpcs:disable Magento2.Security.IncludeFile.FoundIncludeFile
 // phpcs:disable PSR2.Methods.FunctionCallSignature.SpaceBeforeOpenBracket
 ?>
-<?php if($block->getFilter()->getVisualisation() == 'range' || $block->getFilter()->getField() == 'discountedPrice') :?>
+<?php if($block->getFilter()->getVisualisation() == 'range' || $block->getFilter()->getField() == 'discountedPrice'): ?>
     <?php include ($block->getTemplateFile('BoxalinoClientProject_BoxalinoIntegration::api/layered-navigation/layer/filter/range.phtml')) ?>
 <?php elseif($block->getFilter()->getVisualisation() == 'yesno'):?>
     <?php include ($block->getTemplateFile('BoxalinoClientProject_BoxalinoIntegration::api/layered-navigation/layer/filter/yesno.phtml')) ?>
+<?php elseif($block->getFilter()->getField() == 'category_id'):?>
+    <?php include ($block->getTemplateFile('BoxalinoClientProject_BoxalinoIntegration::api/layered-navigation/layer/filter/category.phtml')) ?>
 <?php else:?>
     <?php include ($block->getTemplateFile('BoxalinoClientProject_BoxalinoIntegration::api/layered-navigation/layer/filter/generic.phtml')) ?>
 <?php endif;?>
