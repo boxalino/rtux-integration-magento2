@@ -50,15 +50,18 @@
     </type>
 
     <!-- configuration for the facet values delimiter in the URL -->
-    <type name="Boxalino\RealTimeUserExperience\Model\Response\Content\ApiFacet">
-        <arguments>
-            <argument name="facetValuesDelimiter" xsi:type="string">|</argument>
-            <!-- enable this to allow the system to filter facets by option ID -->
+<!--    <type name="Boxalino\RealTimeUserExperience\Model\Response\Content\ApiFacet">-->
+<!--        <arguments>-->
+            <!-- default: | ; enable this in order to set a different facetValueDelimiter -->
+            <!--            <argument name="facetValuesDelimiter" xsi:type="string">|</argument>-->
+            <!-- default: false ; enable this to allow the system to filter facets by option ID -->
             <!--            <argument name="useFacetOptionIdFilter" xsi:type="string">true</argument>-->
-            <!-- our recommendation is to always use a facet prefix (ex: api or f_ or prop) in order to avoid wrongfully applied filters in API request -->
-            <argument name="facetPrefix" xsi:type="string">api</argument>
-        </arguments>
-    </type>
+            <!-- default: bx_ ; our recommendation is to always use a facet prefix (ex: api_ or bx_ ) in order to avoid wrongfully applied filters in API request -->
+            <!--            <argument name="facetPrefix" xsi:type="string">api_</argument>-->
+            <!-- default: value ; enable this to allow the system to use a different facet correlation as facet value -->
+            <!--            <argument name="facetValueKey" xsi:type="string">key</argument>-->
+<!--        </arguments>-->
+<!--    </type>-->
 
     <!-- rewrite default search -->
     <preference for="Magento\CatalogSearch\Controller\Result\Index" type="BoxalinoClientProject\BoxalinoIntegration\Controller\Result\Index" />

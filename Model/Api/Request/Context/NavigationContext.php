@@ -9,10 +9,11 @@ use Boxalino\RealTimeUserExperience\Helper\Configuration as StoreConfigurationHe
 use Boxalino\RealTimeUserExperienceApi\Framework\Request\ListingContextAbstract;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\Context\ListingContextInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\Definition\ListingRequestDefinitionInterface;
-use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\Parameter\FacetDefinition;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\ParameterFactoryInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestTransformerInterface;
+use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\Parameter\FacetDefinition;
+use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\Accessor\AccessorFacetModelInterface;
 use BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\IntegrationContextTrait;
 use Magento\Catalog\Model\Product\Visibility;
 
@@ -44,9 +45,10 @@ class NavigationContext extends ListingContextAbstract
         parent::__construct($requestTransformer, $parameterFactory);
         $this->storeConfigurationHelper = $storeConfigurationHelper;
         $this->filterablePropertyProvider = $apiFilterablePropertiesList;
-        /** add this if your integration uses boxalino/exporter-magento2 for data sync */
-//        $this->filterablePropertyProvider->setPropertyPrefix("products_");
-        
+        /** configure the di field prefix & property prefix when using boxalino/exporter-magento2 */
+//        $this->filterablePropertyProvider->setPropertyPrefix(AccessorFacetModelInterface::BOXALINO_STORE_FACET_PREFIX);
+//        $this->addDiFieldPrefix(AccessorFacetModelInterface::BOXALINO_STORE_FACET_PREFIX);
+
         /** prepare context with configurations */
         $this->setRequestDefinition($requestDefinition);
         $this->setWidget("navigation");
@@ -104,5 +106,6 @@ class NavigationContext extends ListingContextAbstract
     {
         return ["id", "products_group_id", "title"];
     }
+
 
 }

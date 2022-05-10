@@ -13,6 +13,7 @@ use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\Parameter\FacetDefini
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\ParameterFactoryInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestInterface;
 use Boxalino\RealTimeUserExperienceApi\Service\Api\Request\RequestTransformerInterface;
+use Boxalino\RealTimeUserExperienceApi\Service\Api\Response\Accessor\AccessorFacetModelInterface;
 use BoxalinoClientProject\BoxalinoIntegration\Model\Api\Request\IntegrationContextTrait;
 use Magento\Catalog\Model\Product\Visibility;
 
@@ -46,8 +47,9 @@ class SearchContext extends SearchContextAbstract
         parent::__construct($requestTransformer, $parameterFactory);
         $this->storeConfigurationHelper = $storeConfigurationHelper;
         $this->filterablePropertyProvider = $apiFilterablePropertiesList;
-        /** add this if your integration is using boxalino/exporter-magento2 for data sync */
-//        $this->filterablePropertyProvider->setPropertyPrefix("products_");
+        /** configure the di field prefix & property prefix when using boxalino/exporter-magento2 */
+//        $this->filterablePropertyProvider->setPropertyPrefix(AccessorFacetModelInterface::BOXALINO_STORE_FACET_PREFIX);
+//        $this->addDiFieldPrefix(AccessorFacetModelInterface::BOXALINO_STORE_FACET_PREFIX);
 
         /** prepare context with configurations */
         $this->setRequestDefinition($requestDefinition);
