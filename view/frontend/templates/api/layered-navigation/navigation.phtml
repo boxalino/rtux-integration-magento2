@@ -25,6 +25,9 @@
                 <?php if($filter->getVisualisation() == 'range' && $filter->getValues()[0]->getHitCount() === 1) : ?>
                     <?php continue;?>
                 <?php endif;?>
+                <?php if($filter->getField() == \Boxalino\RealTimeUserExperienceApi\Service\Api\Response\Accessor\Facet::RTUX_API_FACET_CATEGORY && $filter->getValues()->count() === 1 && $filter->isSelected()) : ?>
+                    <?php continue;?>
+                <?php endif;?>
                 <?php if (!$wrapOptions) : ?>
                     <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle">
                         <?php /* @escapeNotVerified */ echo __('Shopping Options') ?>

@@ -17,6 +17,7 @@ $filter = $block->getFilter();
 ?>
 <ol class="items">
     <?php foreach ($block->getFilter()->getValues() as $index => $filterItem) : ?>
+        <?php if($filterItem->isSelected()) : continue; endif;?>
         <?php if((!$filterItem->isShow() || $filter->getEnumDisplayMaxSize() < $index) && !$showedMoreLink):?>
             <?php $showedMoreLink = true; $more_values = __('more values');?>
                 <li style="cursor:pointer" class="show-more-values"><?= /* @noEscape */ $more_values ?></li>

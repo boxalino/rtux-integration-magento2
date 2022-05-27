@@ -11,6 +11,7 @@
 <?php foreach($filter->getSelectedValues() as $selectedValue) :?>
     <li class="item">
         <span class="filter-label"><?= $block->escapeHtml(__($filter->getLabel())) ?></span>
+<!--        <span class="filter-value">--><?//= $block->escapeHtml($block->stripTags(implode(" >> ", $selectedValue->getPath()))) ?><!--</span>-->
         <span class="filter-value"><?= $block->escapeHtml($block->stripTags($selectedValue->getLabel())) ?></span>
         <?php $currentFilterName = $block->escapeHtmlAttr(__($filter->getLabel()) . " " . $block->stripTags($selectedValue->getLabel()));?>
         <a class="action remove" href="<?= $block->escapeUrl($selectedValue->getRemoveUrl()) ?>"
