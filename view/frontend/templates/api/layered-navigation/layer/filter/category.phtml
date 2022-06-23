@@ -28,7 +28,7 @@ $filter = $block->getFilter();
             <?php if ($filterItem->getHitCount() > 0): ?>
                 <a href="<?php echo $block->escapeUrl($filterItem->getSelectUrl()) ?>">
                     <!-- to be used $filterItem->getPath() if path is desired to be shown -->
-                    <?php /* @escapeNotVerified */ echo $filterItem->getLabel() ?>
+                    <?php /* @escapeNotVerified */ echo $filterItem->getFullLabel() ?>
                     <?php if ($showCount): ?>
                         <span class="count"><?php /* @escapeNotVerified */ echo $filterItem->getHitCount()?>
                             <span class="filter-count-label">
@@ -43,7 +43,7 @@ $filter = $block->getFilter();
                 </a>
             <?php else:?>
                 <!-- to be used $filterItem->getPath() if path is desired to be shown -->
-                <?php /* @escapeNotVerified */ echo $filterItem->getLabel() ?>
+                <?php /* @escapeNotVerified */ echo $filterItem->getFullLabel() ?>
                 <?php if ($showCount): ?>
                     <span class="count"><?php /* @escapeNotVerified */ echo $filterItem->getHitCount()?>
                         <span class="filter-count-label">
