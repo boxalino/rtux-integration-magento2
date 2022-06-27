@@ -18,13 +18,13 @@ $filter = $block->getFilter();
 <ol class="items">
     <?php foreach ($block->getFilter()->getValues() as $index => $filterItem) : ?>
         <?php if($filterItem->isSelected()) : continue; endif;?>
-        <?php if((!$filterItem->isShow() || $filter->getEnumDisplayMaxSize() < $index) && !$showedMoreLink):?>
+        <?php if(!$filterItem->isShow()):?>
             <?php $showedMoreLink = true; $more_values = __('more values');?>
                 <li style="cursor:pointer" class="show-more-values"><?= /* @noEscape */ $more_values ?></li>
         <?php endif;?>
         <li class="item <?php echo $block->getFilter()->getVisualisation(); echo $filterItem->isSelected() == true ? ' selected':'';?>
-            <?php echo ($filterItem->isShow() && $filter->getEnumDisplayMaxSize() >= $index)  ? '':' hidden-items';?>"
-            style="<?php echo ($filterItem->isShow() && $filter->getEnumDisplayMaxSize() >= $index) ? "" : "display:none";?>">
+            <?php echo ($filterItem->isShow())  ? '':' hidden-items';?>"
+            style="<?php echo ($filterItem->isShow()) ? "" : "display:none";?>">
             <?php if ($filterItem->getHitCount() > 0): ?>
                 <a href="<?php echo $block->escapeUrl($filterItem->getSelectUrl()) ?>">
                     <!-- to be used $filterItem->getPath() if path is desired to be shown -->
