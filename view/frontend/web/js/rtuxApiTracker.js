@@ -34,6 +34,7 @@ define([
          */
         _create: function () {
             if(!$.boxalino.rtuxApiHelper.hasCookieRestriction()) {
+                // use the addTrackerNoDebug() to disable debugging assistance
                 $.boxalino.rtuxApiHelper.addTracker();
 
                 this.events = [];
