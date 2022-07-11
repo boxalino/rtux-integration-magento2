@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <!-- DATA INTEGRATION INSTANT -->
-    <!-- PRODUCT INSANT INTEGRATION -->
+    <!-- PRODUCT INSTANT INTEGRATION -->
     <preference for="Boxalino\DataIntegrationDoc\Service\Integration\ProductInstantIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\Product\InstantIntegrationHandler"/>
     <type name="Boxalino\DataIntegrationDoc\Service\Integration\ProductInstantIntegrationHandlerInterface">
         <arguments>
@@ -11,19 +11,7 @@
             <argument name="timeout" xsi:type="number">10</argument>
         </arguments>
     </type>
-
-    <type name="Boxalino\DataIntegration\Framework\Console\Product\InstantMviewDataIntegration">
-        <arguments>
-            <argument name="mviewViewId" xsi:type="string">boxalino_di_instant_product</argument>
-        </arguments>
-    </type>
-    <type name="Boxalino\DataIntegration\Model\Indexer\Mview\View">
-        <arguments>
-            <argument name="mviewViewIdsResourceCollection" xsi:type="array">
-                <item name="boxalino_di_instant_product" xsi:type="object">Boxalino\DataIntegration\Model\ResourceModel\Indexer\Mview\ProductMviewIds</item>
-            </argument>
-        </arguments>
-    </type>
+   
     <!-- DECLARE ON THE PROPERTY HANDLERS THAT THEY ARE ENABLED FOR THE INSTANT MODE -->
     <type name="Boxalino\DataIntegration\Service\Document\Product\Attribute\Status">
         <arguments>
@@ -41,6 +29,21 @@
         </arguments>
     </type>
 
+    <!-- CONFIGURE THE INSTANT MVIEW ID ON THE CLI SERVICE -->
+    <type name="Boxalino\DataIntegration\Framework\Console\Product\InstantMviewDataIntegration">
+        <arguments>
+            <argument name="mviewViewId" xsi:type="string">boxalino_di_instant_product</argument>
+        </arguments>
+    </type>
+    <!-- CONFIGURE THE MVIEW IDS RESOURCE COLLECTION FOR INSTANT-->
+    <type name="Boxalino\DataIntegration\Model\Indexer\Mview\View">
+        <arguments>
+            <argument name="mviewViewIdsResourceCollection" xsi:type="array">
+                <item name="boxalino_di_instant_product" xsi:type="object">Boxalino\DataIntegration\Model\ResourceModel\Indexer\Mview\ProductMviewIds</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- ADD THE CLI COMMAND -->
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
