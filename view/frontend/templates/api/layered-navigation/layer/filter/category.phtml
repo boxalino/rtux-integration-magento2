@@ -6,7 +6,7 @@
  *
  * 
  * @var $block Boxalino\RealTimeUserExperience\Block\LayeredNavigation\Layer\Filter
- * @var $filterItem \Boxalino\RealTimeUserExperience\Service\Api\Response\Accessor\FacetValueHierarchical
+ * @var $filterItem \Boxalino\RealTimeUserExperience\Service\Api\Response\Accessor\FacetValue
  * @var $filter \Boxalino\RealTimeUserExperience\Service\Api\Response\Accessor\Facet
  */
 ?>
@@ -18,7 +18,7 @@ $filter = $block->getFilter();
 <ol class="items">
     <?php foreach ($block->getFilter()->getValues() as $index => $filterItem) : ?>
         <?php if($filterItem->isSelected()) : continue; endif;?>
-        <?php if(!$filterItem->isShow()):?>
+        <?php if(!$filterItem->isShow() && !$showedMoreLink):?>
             <?php $showedMoreLink = true; $more_values = __('more values');?>
                 <li style="cursor:pointer" class="show-more-values"><?= /* @noEscape */ $more_values ?></li>
         <?php endif;?>

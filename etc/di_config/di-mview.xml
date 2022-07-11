@@ -100,6 +100,22 @@
             </argument>
         </arguments>
     </type>
+    <!-- ENABLE WHICH PROPERTIES ARE EXPORTED AS PART OF THE INSTANT UPDATE (as seen in di-instant.xml) -->
+    <type name="Boxalino\DataIntegration\Service\Document\Product\Attribute\Status">
+        <arguments>
+            <argument name="instantMode" xsi:type="boolean">true</argument>
+        </arguments>
+    </type>
+    <type name="Boxalino\DataIntegration\Service\Document\Product\Attribute\Stock">
+        <arguments>
+            <argument name="instantMode" xsi:type="boolean">true</argument>
+        </arguments>
+    </type>
+    <type name="Boxalino\DataIntegration\Service\Document\Product\Attribute\Visibility">
+        <arguments>
+            <argument name="instantMode" xsi:type="boolean">true</argument>
+        </arguments>
+    </type>
     <!-- DEFINE THE OPTIONS FOR IMAGE EXPORT: default - true -->
     <type name="Boxalino\DataIntegration\Model\DataProvider\Document\Product\Image">
         <arguments>
@@ -187,11 +203,23 @@
         </arguments>
     </type>
 
+    <!-- PRODUCT INSTANT INTEGRATION -->
+    <preference for="Boxalino\DataIntegrationDoc\Service\Integration\ProductInstantIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\Product\InstantIntegrationHandler"/>
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\ProductInstantIntegrationHandlerInterface">
+        <arguments>
+            <argument name="docHandlers" xsi:type="array">
+                <item name="doc_product" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocProductHandlerInterface</item>
+            </argument>
+            <argument name="timeout" xsi:type="number">10</argument>
+        </arguments>
+    </type>
+
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
                 <item name="boxalino:di:full:mview:product" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Product\FullMviewDataIntegration</item>
                 <item name="boxalino:di:delta:mview:product" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Product\DeltaMviewDataIntegration</item>
+                <item name="boxalino:di:instant:mview:product" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Product\InstantMviewDataIntegration</item>
             </argument>
         </arguments>
     </type>
@@ -206,10 +234,16 @@
             <argument name="mviewViewId" xsi:type="string">boxalino_di_delta_product</argument>
         </arguments>
     </type>
+    <type name="Boxalino\DataIntegration\Framework\Console\Product\InstantMviewDataIntegration">
+        <arguments>
+            <argument name="mviewViewId" xsi:type="string">boxalino_di_instant_product</argument>
+        </arguments>
+    </type>
     <type name="Boxalino\DataIntegration\Model\Indexer\Mview\View">
         <arguments>
             <argument name="mviewViewIdsResourceCollection" xsi:type="array">
                 <item name="boxalino_di_delta_product" xsi:type="object">Boxalino\DataIntegration\Model\ResourceModel\Indexer\Mview\ProductMviewIds</item>
+                <item name="boxalino_di_instant_product" xsi:type="object">Boxalino\DataIntegration\Model\ResourceModel\Indexer\Mview\ProductMviewIds</item>
             </argument>
         </arguments>
     </type>
@@ -359,6 +393,7 @@
         <arguments>
             <argument name="changelogBatchSize" xsi:type="array">
                 <item name="boxalino_di_delta_product" xsi:type="number">100000</item>
+                <item name="boxalino_di_instant_product" xsi:type="number">100000</item>
                 <item name="boxalino_di_delta_order" xsi:type="number">100000</item>
                 <item name="boxalino_di_delta_user" xsi:type="number">100000</item>
             </argument>

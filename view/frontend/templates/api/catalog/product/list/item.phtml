@@ -71,7 +71,9 @@ if ($pos != null) {
                                 <input type="hidden" name="<?= /* @noEscape */ Action::PARAM_NAME_URL_ENCODED ?>"
                                        value="<?= /* @noEscape */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
                                 <?= $block->getBlockHtml('formkey') ?>
-                                <button type="submit" title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>" class="action tocart primary bx-basket-add">
+                                <button type="submit"
+                                        title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>"
+                                        class="action tocart primary bx-basket-add">
                                     <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
                                 </button>
                             </form>

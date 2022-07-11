@@ -4,4 +4,10 @@
         <title translate="true">Boxalino Delta: Product DI</title>
         <description translate="true">Delta sync for products to Boxalino GCP ecosystem</description>
     </indexer>
+
+    <!-- Product data indexer  // for MVIEW usage only -->
+    <indexer id="boxalino_di_instant_product" view_id="boxalino_di_instant_product" class="Boxalino\DataIntegration\Model\Indexer\Product\Instant">
+        <title translate="true">Boxalino Instant: Product DI</title>
+        <description translate="true">Instant sync for products to Boxalino GCP ecosystem</description>
+    </indexer>
 </config>

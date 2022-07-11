@@ -46,6 +46,13 @@
                     <item name="reverse" xsi:type="boolean">true</item>
                 </item>
             </argument>
+            <!-- configure additional sorting fields (extras to the selected sorting option) -->
+<!--            <argument name="additionalSortingList" xsi:type="array">-->
+<!--                <item name="price-asc" xsi:type="array">-->
+<!--                    <item name="api-field" xsi:type="string">products_bx_hasprice</item>-->
+<!--                    <item name="reverse" xsi:type="boolean">false</item>-->
+<!--                </item>-->
+<!--            </argument>-->
         </arguments>
     </type>
 
