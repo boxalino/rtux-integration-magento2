@@ -23,6 +23,7 @@
                 <item name="visibility" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Visibility</item>
                 <item name="status" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Status</item>
                 <item name="price" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Price</item>
+                <item name="tier_price" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\TierPrice</item>
                 <item name="type" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Type</item>
                 <item name="stock" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Stock</item>
                 <item name="individually_visible" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\IndividuallyVisible</item>
@@ -83,6 +84,7 @@
                 <item name="visibility" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Visibility</item>
                 <item name="status" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Status</item>
                 <item name="price" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Price</item>
+                <item name="tier_price" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\TierPrice</item>
                 <item name="type" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Type</item>
                 <item name="stock" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Stock</item>
                 <item name="individually_visible" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\IndividuallyVisible</item>

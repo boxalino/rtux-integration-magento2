@@ -11,7 +11,13 @@
             <argument name="timeout" xsi:type="number">10</argument>
         </arguments>
     </type>
-   
+
+    <type name="Boxalino\DataIntegration\Framework\Console\Product\InstantMviewDataIntegration">
+        <arguments>
+            <argument name="mviewViewId" xsi:type="string">boxalino_di_instant_product</argument>
+        </arguments>
+    </type>
+
     <!-- DECLARE ON THE PROPERTY HANDLERS THAT THEY ARE ENABLED FOR THE INSTANT MODE -->
     <type name="Boxalino\DataIntegration\Service\Document\Product\Attribute\Status">
         <arguments>
