@@ -70,6 +70,20 @@ class NavigationContext extends ListingContextAbstract
     }
 
     /**
+     * Define the `addCorrelations` function from Boxalino\RealTimeUserExperienceApi\Framework\Request\ContextAbstract
+     * in order to request for categories detail
+     *
+     * (to be adjusted per integration use-case)
+     *
+     * @param RequestInterface $request
+     * @return void
+     */
+    public function addCorrelations(RequestInterface $request): void
+    {
+        $this->getApiRequest()->addCorrelations($this->getCategoriesCorrelation($request));
+    }
+
+    /**
      * Product visibility on a navigation context
      * (per Magento2 rules or project business rules)
      *
