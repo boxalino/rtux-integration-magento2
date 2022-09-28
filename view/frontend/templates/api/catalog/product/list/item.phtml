@@ -10,7 +10,7 @@ use Magento\Framework\App\Action\Action;
 
 $_product = $this->getProduct();
 $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
-$pos=null; $position = "";
+$pos=$block->getPositioned(); $position = "";
 $bxAttributes = $block->getBxAttributes();
 
 if ($block->getMode() == 'grid') {
@@ -54,8 +54,8 @@ if ($pos != null) {
             <?php endif; ?>
 
             <div class="product-item-inner">
-                <div class="product actions product-item-actions"<?= strpos($pos, $viewMode . '-actions') ? $block->escapeHtmlAttr($position) : '' ?>>
-                    <div class="actions-primary"<?= strpos($pos, $viewMode . '-primary') ? $block->escapeHtmlAttr($position) : '' ?>>
+                <div class="product actions product-item-actions"<?= $pos && strpos($pos, $viewMode . '-actions') ? $block->escapeHtmlAttr($position) : '' ?>>
+                    <div class="actions-primary"<?= $pos && strpos($pos, $viewMode . '-primary') ? $block->escapeHtmlAttr($position) : '' ?>>
                         <?php if ($_product->isSaleable()) :?>
                             <?php $postParams = $block->getAddToCartPostParams($_product); ?>
                             <form data-role="tocart-form"
@@ -85,7 +85,7 @@ if ($pos != null) {
                             <?php endif; ?>
                         <?php endif; ?>
                     </div>
-                    <div data-role="add-to-links" class="actions-secondary"<?= strpos($pos, $viewMode . '-secondary') ? $block->escapeHtmlAttr($position) : '' ?>>
+                    <div data-role="add-to-links" class="actions-secondary"<?= $pos && strpos($pos, $viewMode . '-secondary') ? $block->escapeHtmlAttr($position) : '' ?>>
                         <?php if ($addToBlock = $block->getChildBlock('addto')) :?>
                             <?= $addToBlock->setProduct($_product)->toHtml() ?>
                         <?php endif; ?>

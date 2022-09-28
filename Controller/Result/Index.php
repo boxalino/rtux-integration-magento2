@@ -92,7 +92,7 @@ class Index extends \Magento\CatalogSearch\Controller\Result\Index
                 $this->getResponse()->setRedirect($this->getRedirectLink($responseRedirectLink));
                 return;
             }
-        }catch(\Exception $exception){
+        } catch(\Throwable $exception) {
             $this->apiLoader->getApiResponsePage()->setFallback(true);
 
             $this->_logger->warning("BoxalinoAPI Search Controller Error: " . $exception->getMessage());
