@@ -117,13 +117,13 @@
         </arguments>
     </type>
     <!-- DEFINE THE ATTRIBUTE NAME USED FOR GROUPING PRODUCTS ON LISTING -->
-    <type name="Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeVisibilityGrouping">
-        <arguments>
-            <argument name="docAttributePropertiesMapping" xsi:type="array">
-                <item name="attribute_visibility_grouping" xsi:type="string">material</item>
-            </argument>
-        </arguments>
-    </type>
+<!--    <type name="Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeVisibilityGrouping">-->
+<!--        <arguments>-->
+<!--            <argument name="docAttributePropertiesMapping" xsi:type="array">-->
+<!--                <item name="attribute_visibility_grouping" xsi:type="string">material</item>-->
+<!--            </argument>-->
+<!--        </arguments>-->
+<!--    </type>-->
     <virtualType name="docProductSchemaDataProviderResolver" type="Boxalino\DataIntegration\Model\DataProvider\DiSchemaDataProviderResolver">
         <arguments>
             <argument name="document" xsi:type="string">doc_product</argument>
