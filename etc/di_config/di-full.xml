@@ -91,6 +91,7 @@
                 <item name="option_text" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeOptionText</item>
                 <item name="source_model_global" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeSourceModelInt</item>
                 <item name="source_model_localized" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeSourceModelIntLocalized</item>
+<!--                <item name="attribute_visibility_grouping" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeVisibilityGrouping</item>-->
             </argument>
         </arguments>
     </type>
@@ -113,6 +114,14 @@
     <type name="Boxalino\DataIntegration\Model\DataProvider\Document\Product\Gallery">
         <arguments>
             <argument name="addMediaPath" xsi:type="boolean">false</argument>
+        </arguments>
+    </type>
+    <!-- DEFINE THE ATTRIBUTE NAME USED FOR GROUPING PRODUCTS ON LISTING -->
+    <type name="Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeVisibilityGrouping">
+        <arguments>
+            <argument name="docAttributePropertiesMapping" xsi:type="array">
+                <item name="attribute_visibility_grouping" xsi:type="string">material</item>
+            </argument>
         </arguments>
     </type>
     <virtualType name="docProductSchemaDataProviderResolver" type="Boxalino\DataIntegration\Model\DataProvider\DiSchemaDataProviderResolver">
@@ -151,6 +160,7 @@
                 <item name="option_text" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeOptionText</item>
                 <item name="source_model_global" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeSourceModelInt</item>
                 <item name="source_model_localized" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeSourceModelIntLocalized</item>
+<!--                <item name="attribute_visibility_grouping" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeVisibilityGrouping</item>-->
             </argument>
         </arguments>
     </virtualType>
