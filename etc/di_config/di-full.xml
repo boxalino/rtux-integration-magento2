@@ -164,6 +164,12 @@
             </argument>
         </arguments>
     </virtualType>
+    <!-- DEFINE THE ATTRIBUTE TABLE SOURCE USED FOR GROUPING PRODUCTS ON LISTING (default: varchar)-->
+<!--    <type name="Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeVisibilityGrouping">-->
+<!--        <arguments>-->
+<!--            <argument name="eavAttributeType" xsi:type="string">text</argument>-->
+<!--        </arguments>-->
+<!--    </type>-->
     <type name="Boxalino\DataIntegration\Service\Document\Product\Attribute\IntegrationPropertyHandlerAbstract">
         <arguments>
             <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Logger</argument>
