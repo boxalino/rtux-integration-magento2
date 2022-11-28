@@ -16,7 +16,9 @@
                 <item name="doc_attribute" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocAttributeHandlerInterface</item>
                 <item name="doc_product" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocProductHandlerInterface</item>
             </argument>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Logger</argument>
             <argument name="timeout" xsi:type="number">300</argument>
+            <argument name="fullConversionThreshold" xsi:type="string">0.3</argument>
         </arguments>
     </type>
 
