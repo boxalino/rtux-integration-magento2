@@ -168,7 +168,7 @@
                 <item name="doc_attribute" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocAttributeHandlerInterface</item>
                 <item name="doc_product" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocProductHandlerInterface</item>
             </argument>
-            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Logger</argument>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Full\Logger</argument>
             <argument name="timeout" xsi:type="number">3600</argument>
         </arguments>
     </type>
@@ -182,9 +182,9 @@
                 <item name="doc_attribute" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocAttributeHandlerInterface</item>
                 <item name="doc_product" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocProductHandlerInterface</item>
             </argument>
-            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Logger</argument>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Delta\Logger</argument>
             <argument name="timeout" xsi:type="number">300</argument>
-            <argument name="fullConversionThreshold" xsi:type="string">0.3</argument>
+            <argument name="fullConversionThreshold" xsi:type="number">12000</argument>
         </arguments>
     </type>
 
@@ -232,7 +232,7 @@
             <argument name="docHandlers" xsi:type="array">
                 <item name="doc_order" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocOrderHandlerInterface</item>
             </argument>
-            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Logger</argument>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Full\Logger</argument>
             <argument name="timeout" xsi:type="number">3600</argument>
         </arguments>
     </type>
@@ -243,7 +243,7 @@
             <argument name="docHandlers" xsi:type="array">
                 <item name="doc_order" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocOrderHandlerInterface</item>
             </argument>
-            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Logger</argument>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Delta\Logger</argument>
             <argument name="timeout" xsi:type="number">300</argument>
         </arguments>
     </type>
@@ -290,7 +290,7 @@
             <argument name="docHandlers" xsi:type="array">
                 <item name="doc_user" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocUserHandlerInterface</item>
             </argument>
-            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Logger</argument>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Full\Logger</argument>
             <argument name="timeout" xsi:type="number">3600</argument>
         </arguments>
     </type>
@@ -302,7 +302,7 @@
             <argument name="docHandlers" xsi:type="array">
                 <item name="doc_user" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocUserHandlerInterface</item>
             </argument>
-            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Logger</argument>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Delta\Logger</argument>
             <argument name="timeout" xsi:type="number">300</argument>
         </arguments>
     </type>
