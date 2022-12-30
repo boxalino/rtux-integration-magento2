@@ -180,12 +180,6 @@
     <preference for="Boxalino\DataIntegrationDoc\Service\Integration\ProductIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\Product\FullIntegrationHandler"/>
     <type name="Boxalino\DataIntegrationDoc\Service\Integration\ProductIntegrationHandlerInterface">
         <arguments>
-            <argument name="docHandlers" xsi:type="array">
-                <item name="doc_language" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocLanguagesHandlerInterface</item>
-                <item name="doc_attribute_value" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocAttributeValuesHandlerInterface</item>
-                <item name="doc_attribute" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocAttributeHandlerInterface</item>
-                <item name="doc_product" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocProductHandlerInterface</item>
-            </argument>
             <argument name="timeout" xsi:type="number">3600</argument>
         </arguments>
     </type>
@@ -230,9 +224,6 @@
     <preference for="Boxalino\DataIntegrationDoc\Service\Integration\OrderIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\Order\FullIntegrationHandler"/>
     <type name="Boxalino\DataIntegrationDoc\Service\Integration\OrderIntegrationHandlerInterface">
         <arguments>
-            <argument name="docHandlers" xsi:type="array">
-                <item name="doc_order" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocOrderHandlerInterface</item>
-            </argument>
             <argument name="timeout" xsi:type="number">3600</argument>
         </arguments>
     </type>
@@ -275,9 +266,6 @@
     <preference for="Boxalino\DataIntegrationDoc\Service\Integration\UserIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\User\FullIntegrationHandler"/>
     <type name="Boxalino\DataIntegrationDoc\Service\Integration\UserIntegrationHandlerInterface">
         <arguments>
-            <argument name="docHandlers" xsi:type="array">
-                <item name="doc_user" xsi:type="object">Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocUserHandlerInterface</item>
-            </argument>
             <argument name="timeout" xsi:type="number">3600</argument>
         </arguments>
     </type>
