@@ -74,12 +74,17 @@ class ApiContext extends ListingContextAbstract
     }
 
     /**
+     * Includes, by default, the recommended selected_X fields
+     * https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/856129551/Selected+fields+Render+products+without+database+look-up
+     *
      * @return array
      */
     public function getReturnFields() : array
     {
         $configuredReturnFields = $this->getProperty("returnFields") ?? [];
-        return array_merge(array_values($configuredReturnFields), ["id", "products_group_id"]);
+        return array_merge(array_values($configuredReturnFields),
+            ["id", "products_group_id", "selected_title", "selected_link", "selected_list_price", "selected_sales_price", "selected_image"]
+        );
     }
 
 

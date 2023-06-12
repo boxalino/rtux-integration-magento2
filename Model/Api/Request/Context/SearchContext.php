@@ -99,11 +99,16 @@ class SearchContext extends SearchContextAbstract
      * Other fields can be: link, image, discountedPrice, etc
      * If the products are loaded using the ApiEntityCollection - the generic Magento2 collection is used
      *
+     * Use the recommended selected_X fields
+     * https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/856129551/Selected+fields+Render+products+without+database+look-up
+     *
      * @return array
      */
     public function getReturnFields() : array
     {
-        return ["id", "products_group_id", "title", "discountedPrice"];
+        return ["id", "products_group_id", "title", "discountedPrice",
+            "selected_title", "selected_link", "selected_list_price", "selected_sales_price", "selected_image"
+        ];
     }
 
 

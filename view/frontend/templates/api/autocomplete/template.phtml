@@ -8,11 +8,11 @@
 ?>
 <script type="text/x-magento-template" id="rtux-product-template">
     <div class="<%- data.bxAttributes.class %>" data-bx-item-id="<%- data.bxAttributes.dataBxItemId %>">
-        <a href="<%- data.link[0] %>">
+        <a href="<%- data.selected_link[0] %>">
             <li class="<%- data.class %> text_suggest_<%- data.index %>" role="option">
-                <span class="product-image"><img src="<%- data.image[0] %>"></span>
-                <span class="product-name"><%- data.title %></span>
-                <span class="product-price">CHF <%- data.discountedPrice %></span>
+                <span class="product-image"><img src="<%- data.selected_image[0] %>"></span>
+                <span class="product-name"><%- data.selected_title %></span>
+                <span class="product-price">CHF <%- data.selected_list_price %></span>
             </li>
         </a>
     </div>

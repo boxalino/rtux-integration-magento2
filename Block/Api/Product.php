@@ -132,6 +132,11 @@ abstract class Product extends MagentoProductView
                 return $this;
             }
 
+            if($this->isApiFallback())
+            {
+                return $this;
+            }
+
             $this->apiContext->setProductId($this->getContextItemId())
                 ->setWidget($this->getWidget())
                 ->setHitCount($this->getHitCount());

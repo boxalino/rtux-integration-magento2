@@ -78,6 +78,11 @@ class Navigation extends View
                 return parent::_prepareLayout();
             }
 
+            if($this->isApiFallback())
+            {
+                return parent::_prepareLayout();
+            }
+
             $this->apiLoader
                 ->setRequest($this->requestWrapper->setRequest($this->_request))
                 ->setApiContext($this->apiContext)

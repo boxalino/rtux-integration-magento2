@@ -57,6 +57,11 @@ class Api extends \Magento\Framework\View\Element\Template
                 return parent::_prepareLayout();
             }
 
+            if($this->isApiFallback())
+            {
+                return $this;
+            }
+
             /** If there is no apiContext - it is not the main block that makes the page request */
             if(!$this->getData("apiContext"))
             {
