@@ -163,7 +163,7 @@
     <type name="Boxalino\DataIntegrationDoc\Service\Integration\ProductIntegrationHandlerInterface">
         <arguments>
             <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Full\Logger</argument>
-            <argument name="timeout" xsi:type="number">3600</argument>
+            <argument name="timeout" xsi:type="number">120</argument>
         </arguments>
     </type>
     <!-- PRODUCT DELTA INTEGRATION -->
@@ -218,7 +218,7 @@
     <type name="Boxalino\DataIntegrationDoc\Service\Integration\OrderIntegrationHandlerInterface">
         <arguments>
             <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Full\Logger</argument>
-            <argument name="timeout" xsi:type="number">3600</argument>
+            <argument name="timeout" xsi:type="number">120</argument>
         </arguments>
     </type>
     <!-- ORDER DELTA INTEGRATION -->
@@ -270,7 +270,7 @@
     <type name="Boxalino\DataIntegrationDoc\Service\Integration\UserIntegrationHandlerInterface">
         <arguments>
             <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Full\Logger</argument>
-            <argument name="timeout" xsi:type="number">3600</argument>
+            <argument name="timeout" xsi:type="number">120</argument>
         </arguments>
     </type>
 

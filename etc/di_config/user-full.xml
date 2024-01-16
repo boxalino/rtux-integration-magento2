@@ -10,7 +10,7 @@
     <preference for="Boxalino\DataIntegrationDoc\Service\Integration\UserIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\User\FullIntegrationHandler"/>
     <type name="Boxalino\DataIntegrationDoc\Service\Integration\UserIntegrationHandlerInterface">
         <arguments>
-            <argument name="timeout" xsi:type="number">3600</argument>
+            <argument name="timeout" xsi:type="number">120</argument>
         </arguments>
     </type>
 
