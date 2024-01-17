@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Boxalino Data Integration for DOC_USER_SELECTION Data Sync
+ * (global preferences)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- USER SELECTION INTEGRATION -->
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocUserSelectionHandlerInterface">
+        <arguments>
+            <!-- add propertyHandlers that would return data for the document; the handlers here are DI-logic layer -->
+            <argument name="propertyHandlers" xsi:type="array">
+                <item name="wishlist" xsi:type="object">Boxalino\DataIntegration\Service\Document\UserSelection\Wishlist</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Boxalino\DataIntegration\Service\Document\UserSelection\Wishlist" type="Boxalino\DataIntegration\Service\Document\GenericDocLineHandler">
+        <arguments>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Content\Logger</argument>
+            <argument name="dataProvider" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\UserSelection\Wishlist</argument>
+            <argument name="docSchema" xsi:type="object">Boxalino\DataIntegrationDoc\Doc\UserSelection</argument>
+            <argument name="resolverType" xsi:type="string">wishlist</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- user_selection HANDLERS -->
+    <preference for="Boxalino\DataIntegrationDoc\Service\Integration\UserSelectionDeltaIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\UserSelection\DeltaIntegrationHandler"/>
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\UserSelectionDeltaIntegrationHandlerInterface">
+        <arguments>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Delta\Content\Logger</argument>
+            <argument name="timeout" xsi:type="number">60</argument>
+        </arguments>
+    </type>
+
+    <preference for="Boxalino\DataIntegrationDoc\Service\Integration\UserSelectionIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\UserSelection\FullIntegrationHandler"/>
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\UserSelectionIntegrationHandlerInterface">
+        <arguments>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Content\Logger</argument>
+            <argument name="timeout" xsi:type="number">120</argument>
+        </arguments>
+    </type>
+    <!-- user_selection COMMAND -->
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="boxalino:di:full:user_selection" xsi:type="object">Boxalino\DataIntegrationDoc\Framework\Console\UserSelection\FullDataIntegration</item>
+                <item name="boxalino:di:delta:user_selection" xsi:type="object">Boxalino\DataIntegrationDoc\Framework\Console\UserSelection\DeltaDataIntegration</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

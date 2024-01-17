@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Boxalino Data Integration for DOC_USER_GENERATED_CONTENT Data Sync
+ * (global preferences)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- USER GENERATED CONTENT INTEGRATION -->
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocUserGeneratedContentHandlerInterface">
+        <arguments>
+            <argument name="propertyHandlers" xsi:type="array">
+                <item name="review" xsi:type="object">Boxalino\DataIntegration\Service\Document\UserGeneratedContent\Review</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Boxalino\DataIntegration\Service\Document\UserGeneratedContent\Review" type="Boxalino\DataIntegration\Service\Document\GenericDocLineHandler">
+        <arguments>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Content\Logger</argument>
+            <argument name="dataProvider" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\UserGeneratedContent\Review</argument>
+            <argument name="docSchema" xsi:type="object">Boxalino\DataIntegrationDoc\Doc\UserGeneratedContent</argument>
+            <argument name="resolverType" xsi:type="string">review</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- user_generated_content HANDLERS -->
+    <preference for="Boxalino\DataIntegrationDoc\Service\Integration\UserGeneratedContentDeltaIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\UserGeneratedContent\DeltaIntegrationHandler"/>
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\UserGeneratedContentDeltaIntegrationHandlerInterface">
+        <arguments>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Delta\Content\Logger</argument>
+            <argument name="timeout" xsi:type="number">60</argument>
+        </arguments>
+    </type>
+
+    <preference for="Boxalino\DataIntegrationDoc\Service\Integration\UserGeneratedContentIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\UserGeneratedContent\FullIntegrationHandler"/>
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\UserGeneratedContentIntegrationHandlerInterface">
+        <arguments>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Content\Logger</argument>
+            <argument name="timeout" xsi:type="number">120</argument>
+        </arguments>
+    </type>
+    <!-- user_generated_content COMMAND -->
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="boxalino:di:full:user_generated_content" xsi:type="object">Boxalino\DataIntegrationDoc\Framework\Console\UserGeneratedContent\FullDataIntegration</item>
+                <item name="boxalino:di:delta:user_generated_content" xsi:type="object">Boxalino\DataIntegrationDoc\Framework\Console\UserGeneratedContent\DeltaDataIntegration</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
