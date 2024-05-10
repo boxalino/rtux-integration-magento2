@@ -20,6 +20,8 @@
                     <?php include ($block->getTemplateFile('BoxalinoClientProject_BoxalinoIntegration::api/layered-navigation/layer/state/range.phtml')) ?>
                 <?php elseif($filter->getField() === \Boxalino\RealTimeUserExperienceApi\Service\Api\Response\Accessor\Facet::RTUX_API_FACET_CATEGORY):?>
                     <?php include ($block->getTemplateFile('BoxalinoClientProject_BoxalinoIntegration::api/layered-navigation/layer/state/category.phtml')) ?>
+                <?php elseif($filter->getField() === \Boxalino\RealTimeUserExperienceApi\Service\Api\Response\Accessor\Facet::RTUX_API_FACET_CATEGORIES):?>
+                    <?php include ($block->getTemplateFile('BoxalinoClientProject_BoxalinoIntegration::api/layered-navigation/layer/state/category.phtml')) ?>
                 <?php else:?>
                     <?php include ($block->getTemplateFile('BoxalinoClientProject_BoxalinoIntegration::api/layered-navigation/layer/state/generic.phtml')) ?>
                 <?php endif;?>
