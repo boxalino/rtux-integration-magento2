@@ -2,7 +2,7 @@
 
 # SEARCH & NAVIGATION INTEGRATION
 The search integration on Magento2 is done with the use of the content of this branch.
-More explanation & details into the technical decisions are presented on wiki 
+More explanation & details into the technical decisions are presented on wiki
 https://github.com/boxalino/rtux-integration-magento2/wiki/Search-Context
 https://github.com/boxalino/rtux-integration-magento2/wiki/Navigation-Context
 
@@ -12,7 +12,7 @@ https://github.com/boxalino/rtux-integration-magento2/wiki/Navigation-Context
 
 ## Recommendations
 The recommended approach is to include the code presented in this branch in your integration layer.
-*Make sure to replace `BoxalinoClientProject_BoxalinoIntegration` and `BoxalinoClientProject\BoxalinoIntegration` with your own project namespace.*
+**Make sure to replace `BoxalinoClientProject_BoxalinoIntegration` and `BoxalinoClientProject\BoxalinoIntegration` with your own project namespace.**
 
 Once the generic/base Magento2 + Boxalino API search is working, you can pursue to make adjustments:
 1. Add extensive facets configurations in Intelligence Admin
@@ -20,7 +20,7 @@ Once the generic/base Magento2 + Boxalino API search is working, you can pursue 
 3. Add top facets (changes both in IA narrative layout and in your projects` layout.xml)
 4. Add listing injections https://boxalino.atlassian.net/wiki/spaces/BPKB/pages/844857345/Listing+Injections
 
-* You can reach out to Boxalino to load the default narrative & layout blocks for Search and Navigation.*
+**You can reach out to Boxalino to load the default narrative & layout blocks for Search and Navigation.**
 
 ## Introduction
 This repository is provided as guidelines (tutorials) on how to integrate Boxalino Winning Interractions in Magento 2.
