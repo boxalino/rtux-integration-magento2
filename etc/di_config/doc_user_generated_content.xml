@@ -7,6 +7,7 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <!-- USER GENERATED CONTENT INTEGRATION -->
+    <!-- this service is the doc_user_generated_content document handler - it loops through all propertyHandlers services to create the final data -->
     <type name="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocUserGeneratedContentHandlerInterface">
         <arguments>
             <argument name="propertyHandlers" xsi:type="array">
