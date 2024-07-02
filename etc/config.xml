@@ -11,6 +11,9 @@
             <tracker>
                 <status>1</status>
             </tracker>
+            <rti>
+                <status>1</status>
+            </rti>
             <api>
                 <test>1</test>
                 <dev>0</dev>
