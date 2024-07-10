@@ -7,8 +7,14 @@
 */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <!-- NOUISLIDER CSS for the range facet (discountedPrice) sample -->
+        <css src="BoxalinoClientProject_BoxalinoIntegration::css/nouislider.css"/>
+    </head>
+
     <body>
-        <!-- displaying the elements with the position:top ; adding the cacheable=false will make the view non-cacheable; USE ONLY FOR TOP FACETS -->
+        <!--OPTIONAL: USE ONLY FOR TOP FACETS LAYOUTS -->
+        <!-- displaying the elements with the position:top ; adding the cacheable=false will make the view non-cacheable; -->
         <referenceContainer name="content">
             <block class="Boxalino\RealTimeUserExperience\Block\Layout\Top" cacheable="false" name="rtux.api.top" before="-"/>
         </referenceContainer>
