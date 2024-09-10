@@ -16,7 +16,7 @@
     <preference for="Boxalino\DataIntegrationDoc\Service\Integration\OrderDeltaIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\Order\DeltaIntegrationHandler"/>
     <type name="Boxalino\DataIntegrationDoc\Service\Integration\OrderDeltaIntegrationHandlerInterface">
         <arguments>
-            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Delta\Logger</argument>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Order\Logger</argument>
             <argument name="timeout" xsi:type="number">60</argument>
         </arguments>
     </type>
@@ -25,7 +25,7 @@
     <preference for="Boxalino\DataIntegrationDoc\Service\Integration\UserDeltaIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\User\DeltaIntegrationHandler"/>
     <type name="Boxalino\DataIntegrationDoc\Service\Integration\UserDeltaIntegrationHandlerInterface">
         <arguments>
-            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Delta\Logger</argument>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\User\Logger</argument>
             <argument name="timeout" xsi:type="number">60</argument>
         </arguments>
     </type>

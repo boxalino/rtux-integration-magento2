@@ -28,7 +28,6 @@
     </virtualType>
     <type name="Boxalino\DataIntegration\Service\Document\User\IntegrationPropertyHandlerAbstract">
         <arguments>
-            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Logger</argument>
             <argument name="diSchemaDataProviderResolver" xsi:type="object">docUserSchemaDataProviderResolver</argument>
         </arguments>
     </type>

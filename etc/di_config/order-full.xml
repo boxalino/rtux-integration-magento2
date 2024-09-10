@@ -10,6 +10,7 @@
     <preference for="Boxalino\DataIntegrationDoc\Service\Integration\OrderIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\Order\FullIntegrationHandler"/>
     <type name="Boxalino\DataIntegrationDoc\Service\Integration\OrderIntegrationHandlerInterface">
         <arguments>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Order\Logger</argument>
             <argument name="timeout" xsi:type="number">120</argument>
         </arguments>
     </type>
