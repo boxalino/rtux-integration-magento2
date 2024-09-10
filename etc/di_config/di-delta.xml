@@ -11,13 +11,6 @@
         </arguments>
     </type>
 
-    <type name="Magento\Framework\Console\CommandListInterface">
-        <arguments>
-            <argument name="commands" xsi:type="array">
-                <item name="boxalino:di:delta:product" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Product\DeltaDataIntegration</item>
-            </argument>
-        </arguments>
-    </type>
 
     <!-- ORDER DELTA INTEGRATION -->
     <preference for="Boxalino\DataIntegrationDoc\Service\Integration\OrderDeltaIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\Order\DeltaIntegrationHandler"/>
@@ -25,14 +18,6 @@
         <arguments>
             <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Delta\Logger</argument>
             <argument name="timeout" xsi:type="number">60</argument>
-        </arguments>
-    </type>
-
-    <type name="Magento\Framework\Console\CommandListInterface">
-        <arguments>
-            <argument name="commands" xsi:type="array">
-                <item name="boxalino:di:delta:order" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Order\DeltaDataIntegration</item>
-            </argument>
         </arguments>
     </type>
 
@@ -45,10 +30,13 @@
         </arguments>
     </type>
 
+    <!-- CLI COMMANDS -->
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
+                <item name="boxalino:di:delta:product" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Product\DeltaDataIntegration</item>
                 <item name="boxalino:di:delta:user" xsi:type="object">Boxalino\DataIntegration\Framework\Console\User\DeltaDataIntegration</item>
+                <item name="boxalino:di:delta:order" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Order\DeltaDataIntegration</item>
             </argument>
         </arguments>
     </type>

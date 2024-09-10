@@ -72,6 +72,7 @@
                 <item name="visibility" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Visibility</item>
                 <item name="status" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Status</item>
                 <item name="price" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Price</item>
+                <item name="tier_price_json" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\TierPrice</item>
                 <item name="type" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Type</item>
                 <item name="stock" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Stock</item>
                 <item name="individually_visible" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\IndividuallyVisible</item>
@@ -90,6 +91,7 @@
                 <item name="option_text" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeOptionText</item>
                 <item name="source_model_global" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeSourceModelInt</item>
                 <item name="source_model_localized" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeSourceModelIntLocalized</item>
+                <!--                <item name="attribute_visibility_grouping" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeVisibilityGrouping</item>-->
             </argument>
         </arguments>
     </type>
@@ -97,21 +99,21 @@
     <type name="Boxalino\DataIntegration\Service\Document\Product\Attribute\Brand">
         <arguments>
             <argument name="docAttributePropertiesMapping" xsi:type="array">
-                <item name="brands" xsi:type="string">brand</item>
+                <item name="brands" xsi:type="string">manufacturer</item>
             </argument>
         </arguments>
     </type>
     <!-- DEFINE THE OPTIONS FOR IMAGE EXPORT: default - true -->
     <type name="Boxalino\DataIntegration\Model\DataProvider\Document\Product\Image">
         <arguments>
-            <argument name="addMediaPath" xsi:type="boolean">false</argument>
+            <argument name="addMediaPath" xsi:type="boolean">true</argument>
             <argument name="addPlaceholder" xsi:type="boolean">false</argument>
         </arguments>
     </type>
     <!-- DEFINE THE OPTIONS FOR GALLERY EXPORT: default - true -->
     <type name="Boxalino\DataIntegration\Model\DataProvider\Document\Product\Gallery">
         <arguments>
-            <argument name="addMediaPath" xsi:type="boolean">false</argument>
+            <argument name="addMediaPath" xsi:type="boolean">true</argument>
         </arguments>
     </type>
     <virtualType name="docProductSchemaDataProviderResolver" type="Boxalino\DataIntegration\Model\DataProvider\DiSchemaDataProviderResolver">
@@ -131,6 +133,7 @@
                 <item name="visibility" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Visibility</item>
                 <item name="status" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Status</item>
                 <item name="price" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Price</item>
+                <item name="tier_price_json" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\TierPrice</item>
                 <item name="type" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Type</item>
                 <item name="stock" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Stock</item>
                 <item name="individually_visible" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\IndividuallyVisible</item>
@@ -149,6 +152,7 @@
                 <item name="option_text" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeOptionText</item>
                 <item name="source_model_global" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeSourceModelInt</item>
                 <item name="source_model_localized" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeSourceModelIntLocalized</item>
+                <!--                <item name="attribute_visibility_grouping" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeVisibilityGrouping</item>-->
             </argument>
         </arguments>
     </virtualType>
@@ -173,15 +177,6 @@
             <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Delta\Logger</argument>
             <argument name="timeout" xsi:type="number">300</argument>
             <argument name="fullConversionThreshold" xsi:type="number">12000</argument>
-        </arguments>
-    </type>
-
-    <type name="Magento\Framework\Console\CommandListInterface">
-        <arguments>
-            <argument name="commands" xsi:type="array">
-                <item name="boxalino:di:full:product" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Product\FullDataIntegration</item>
-                <item name="boxalino:di:delta:product" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Product\DeltaDataIntegration</item>
-            </argument>
         </arguments>
     </type>
 
@@ -230,15 +225,6 @@
         </arguments>
     </type>
 
-    <type name="Magento\Framework\Console\CommandListInterface">
-        <arguments>
-            <argument name="commands" xsi:type="array">
-                <item name="boxalino:di:full:order" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Order\FullDataIntegration</item>
-                <item name="boxalino:di:delta:order" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Order\DeltaDataIntegration</item>
-            </argument>
-        </arguments>
-    </type>
-
     <!-- USER INTEGRATION -->
     <type name="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocUserHandlerInterface">
         <arguments>
@@ -283,11 +269,66 @@
         </arguments>
     </type>
 
+    <!-- USER GENERATED CONTENT INTEGRATION -->
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocUserGeneratedContentHandlerInterface">
+        <arguments>
+            <argument name="propertyHandlers" xsi:type="array">
+                <item name="review" xsi:type="object">Boxalino\DataIntegration\Service\Document\UserGeneratedContent\Review</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Boxalino\DataIntegration\Service\Document\UserGeneratedContent\Review" type="Boxalino\DataIntegration\Service\Document\GenericDocLineHandler">
+        <arguments>
+            <argument name="dataProvider" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\UserGeneratedContent\Review</argument>
+            <argument name="docSchema" xsi:type="object">Boxalino\DataIntegrationDoc\Doc\UserGeneratedContent</argument>
+            <argument name="resolverType" xsi:type="string">review</argument>
+        </arguments>
+    </virtualType>
+    <preference for="Boxalino\DataIntegrationDoc\Service\Integration\UserGeneratedContentIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\UserGeneratedContent\FullIntegrationHandler"/>
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\UserGeneratedContentIntegrationHandlerInterface">
+        <arguments>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Content\Logger</argument>
+            <argument name="timeout" xsi:type="number">40</argument>
+        </arguments>
+    </type>
+
+    <!-- USER SELECTION INTEGRATION -->
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocUserSelectionHandlerInterface">
+        <arguments>
+            <!-- add propertyHandlers that would return data for the document; the handlers here are DI-logic layer -->
+            <argument name="propertyHandlers" xsi:type="array">
+                <item name="wishlist" xsi:type="object">Boxalino\DataIntegration\Service\Document\UserSelection\Wishlist</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Boxalino\DataIntegration\Service\Document\UserSelection\Wishlist" type="Boxalino\DataIntegration\Service\Document\GenericDocLineHandler">
+        <arguments>
+            <argument name="dataProvider" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\UserSelection\Wishlist</argument>
+            <argument name="docSchema" xsi:type="object">Boxalino\DataIntegrationDoc\Doc\UserSelection</argument>
+            <argument name="resolverType" xsi:type="string">wishlist</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- user_selection HANDLERS -->
+    <preference for="Boxalino\DataIntegrationDoc\Service\Integration\UserSelectionIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\UserSelection\FullIntegrationHandler"/>
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\UserSelectionIntegrationHandlerInterface">
+        <arguments>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Content\Logger</argument>
+            <argument name="timeout" xsi:type="number">40</argument>
+        </arguments>
+    </type>
+
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
+                <item name="boxalino:di:full:product" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Product\FullDataIntegration</item>
+                <item name="boxalino:di:delta:product" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Product\DeltaDataIntegration</item>
+                <item name="boxalino:di:full:order" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Order\FullDataIntegration</item>
+                <item name="boxalino:di:delta:order" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Order\DeltaDataIntegration</item>
                 <item name="boxalino:di:full:user" xsi:type="object">Boxalino\DataIntegration\Framework\Console\User\FullDataIntegration</item>
                 <item name="boxalino:di:delta:user" xsi:type="object">Boxalino\DataIntegration\Framework\Console\User\DeltaDataIntegration</item>
+                <item name="boxalino:di:full:user_generated_content" xsi:type="object">Boxalino\DataIntegrationDoc\Framework\Console\UserGeneratedContent\FullDataIntegration</item>
+                <item name="boxalino:di:full:user_selection" xsi:type="object">Boxalino\DataIntegrationDoc\Framework\Console\UserSelection\FullDataIntegration</item>
             </argument>
         </arguments>
     </type>

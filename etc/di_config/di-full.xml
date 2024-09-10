@@ -99,7 +99,7 @@
     <type name="Boxalino\DataIntegration\Service\Document\Product\Attribute\Brand">
         <arguments>
             <argument name="docAttributePropertiesMapping" xsi:type="array">
-                <item name="brands" xsi:type="string">brand</item>
+                <item name="brands" xsi:type="string">manufacturer</item>
             </argument>
         </arguments>
     </type>
@@ -184,14 +184,6 @@
         </arguments>
     </type>
 
-    <type name="Magento\Framework\Console\CommandListInterface">
-        <arguments>
-            <argument name="commands" xsi:type="array">
-                <item name="boxalino:di:full:product" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Product\FullDataIntegration</item>
-            </argument>
-        </arguments>
-    </type>
-
     <!-- ORDER INTEGRATION -->
     <type name="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocOrderHandlerInterface">
         <arguments>
@@ -225,14 +217,6 @@
     <type name="Boxalino\DataIntegrationDoc\Service\Integration\OrderIntegrationHandlerInterface">
         <arguments>
             <argument name="timeout" xsi:type="number">120</argument>
-        </arguments>
-    </type>
-
-    <type name="Magento\Framework\Console\CommandListInterface">
-        <arguments>
-            <argument name="commands" xsi:type="array">
-                <item name="boxalino:di:full:order" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Order\FullDataIntegration</item>
-            </argument>
         </arguments>
     </type>
 
@@ -270,10 +254,64 @@
         </arguments>
     </type>
 
+    <!-- USER GENERATED CONTENT INTEGRATION -->
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocUserGeneratedContentHandlerInterface">
+        <arguments>
+            <argument name="propertyHandlers" xsi:type="array">
+                <item name="review" xsi:type="object">Boxalino\DataIntegration\Service\Document\UserGeneratedContent\Review</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Boxalino\DataIntegration\Service\Document\UserGeneratedContent\Review" type="Boxalino\DataIntegration\Service\Document\GenericDocLineHandler">
+        <arguments>
+            <argument name="dataProvider" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\UserGeneratedContent\Review</argument>
+            <argument name="docSchema" xsi:type="object">Boxalino\DataIntegrationDoc\Doc\UserGeneratedContent</argument>
+            <argument name="resolverType" xsi:type="string">review</argument>
+        </arguments>
+    </virtualType>
+    <preference for="Boxalino\DataIntegrationDoc\Service\Integration\UserGeneratedContentIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\UserGeneratedContent\FullIntegrationHandler"/>
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\UserGeneratedContentIntegrationHandlerInterface">
+        <arguments>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Content\Logger</argument>
+            <argument name="timeout" xsi:type="number">40</argument>
+        </arguments>
+    </type>
+
+    <!-- USER SELECTION INTEGRATION -->
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\Doc\DocUserSelectionHandlerInterface">
+        <arguments>
+            <!-- add propertyHandlers that would return data for the document; the handlers here are DI-logic layer -->
+            <argument name="propertyHandlers" xsi:type="array">
+                <item name="wishlist" xsi:type="object">Boxalino\DataIntegration\Service\Document\UserSelection\Wishlist</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Boxalino\DataIntegration\Service\Document\UserSelection\Wishlist" type="Boxalino\DataIntegration\Service\Document\GenericDocLineHandler">
+        <arguments>
+            <argument name="dataProvider" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\UserSelection\Wishlist</argument>
+            <argument name="docSchema" xsi:type="object">Boxalino\DataIntegrationDoc\Doc\UserSelection</argument>
+            <argument name="resolverType" xsi:type="string">wishlist</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- user_selection HANDLERS -->
+    <preference for="Boxalino\DataIntegrationDoc\Service\Integration\UserSelectionIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\UserSelection\FullIntegrationHandler"/>
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\UserSelectionIntegrationHandlerInterface">
+        <arguments>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Content\Logger</argument>
+            <argument name="timeout" xsi:type="number">40</argument>
+        </arguments>
+    </type>
+
+    <!-- CLI COMMANDS -->
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
+                <item name="boxalino:di:full:product" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Product\FullDataIntegration</item>
+                <item name="boxalino:di:full:order" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Order\FullDataIntegration</item>
                 <item name="boxalino:di:full:user" xsi:type="object">Boxalino\DataIntegration\Framework\Console\User\FullDataIntegration</item>
+                <item name="boxalino:di:full:user_generated_content" xsi:type="object">Boxalino\DataIntegrationDoc\Framework\Console\UserGeneratedContent\FullDataIntegration</item>
+                <item name="boxalino:di:full:user_selection" xsi:type="object">Boxalino\DataIntegrationDoc\Framework\Console\UserSelection\FullDataIntegration</item>
             </argument>
         </arguments>
     </type>

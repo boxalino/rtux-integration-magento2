@@ -46,6 +46,7 @@
             </argument>
         </arguments>
     </type>
+
     <!-- ADD THE CLI COMMAND -->
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>

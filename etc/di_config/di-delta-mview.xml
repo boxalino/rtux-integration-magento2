@@ -1,14 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <!-- PRODUCT MVIEW FULL & DELTA -->
-    <type name="Magento\Framework\Console\CommandListInterface">
-        <arguments>
-            <argument name="commands" xsi:type="array">
-                <item name="boxalino:di:delta:mview:product" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Product\DeltaMviewDataIntegration</item>
-            </argument>
-        </arguments>
-    </type>
-
+    <!-- PRODUCT MVIEW DELTA -->
     <type name="Boxalino\DataIntegration\Framework\Console\Product\DeltaMviewDataIntegration">
         <arguments>
             <argument name="mviewViewId" xsi:type="string">boxalino_di_delta_product</argument>
@@ -22,33 +14,29 @@
         </arguments>
     </type>
 
-    <!-- ORDER MVIEW FULL & DELTA -->
-    <type name="Magento\Framework\Console\CommandListInterface">
-        <arguments>
-            <argument name="commands" xsi:type="array">
-                <item name="boxalino:di:delta:mview:order" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Order\DeltaMviewDataIntegration</item>
-            </argument>
-        </arguments>
-    </type>
-
+    <!-- ORDER MVIEW DELTA -->
     <type name="Boxalino\DataIntegration\Framework\Console\Order\DeltaMviewDataIntegration">
         <arguments>
             <argument name="mviewViewId" xsi:type="string">boxalino_di_delta_order</argument>
         </arguments>
     </type>
 
-    <!-- USER MVIEW FULL & DELTA -->
-    <type name="Magento\Framework\Console\CommandListInterface">
-        <arguments>
-            <argument name="commands" xsi:type="array">
-                <item name="boxalino:di:delta:mview:user" xsi:type="object">Boxalino\DataIntegration\Framework\Console\User\DeltaMviewDataIntegration</item>
-            </argument>
-        </arguments>
-    </type>
-
+    <!-- USER MVIEW DELTA -->
     <type name="Boxalino\DataIntegration\Framework\Console\User\DeltaMviewDataIntegration">
         <arguments>
             <argument name="mviewViewId" xsi:type="string">boxalino_di_delta_user</argument>
         </arguments>
     </type>
+
+    <!-- CLI COMMANDS -->
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="boxalino:di:delta:mview:product" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Product\DeltaMviewDataIntegration</item>
+                <item name="boxalino:di:delta:mview:order" xsi:type="object">Boxalino\DataIntegration\Framework\Console\Order\DeltaMviewDataIntegration</item>
+                <item name="boxalino:di:delta:mview:user" xsi:type="object">Boxalino\DataIntegration\Framework\Console\User\DeltaMviewDataIntegration</item>
+            </argument>
+        </arguments>
+    </type>
+
 </config>

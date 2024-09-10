@@ -17,7 +17,7 @@
                 <item name="brands" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Brand</item>
                 <item name="categories" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Category</item>
                 <item name="images" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Image</item>
-                <item name="gallery" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\Gallery</item>
+                <item name="gallery" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Gallery</item>
                 <item name="link" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Link</item>
                 <item name="pricing" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Pricing</item>
                 <item name="visibility" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\Visibility</item>
@@ -42,6 +42,7 @@
                 <item name="option_text" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeOptionText</item>
                 <item name="source_model_global" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeSourceModelInt</item>
                 <item name="source_model_localized" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeSourceModelIntLocalized</item>
+                <!--                <item name="attribute_visibility_grouping" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeVisibilityGrouping</item>-->
             </argument>
         </arguments>
     </type>
@@ -49,24 +50,23 @@
     <type name="Boxalino\DataIntegration\Service\Document\Product\Attribute\Brand">
         <arguments>
             <argument name="docAttributePropertiesMapping" xsi:type="array">
-                <item name="brands" xsi:type="string">brand</item>
+                <item name="brands" xsi:type="string">manufacturer</item>
             </argument>
         </arguments>
     </type>
     <!-- DEFINE THE OPTIONS FOR IMAGE EXPORT: default - true -->
     <type name="Boxalino\DataIntegration\Model\DataProvider\Document\Product\Image">
         <arguments>
-            <argument name="addMediaPath" xsi:type="boolean">false</argument>
+            <argument name="addMediaPath" xsi:type="boolean">true</argument>
             <argument name="addPlaceholder" xsi:type="boolean">false</argument>
         </arguments>
     </type>
     <!-- DEFINE THE OPTIONS FOR GALLERY EXPORT: default - true -->
     <type name="Boxalino\DataIntegration\Model\DataProvider\Document\Product\Gallery">
         <arguments>
-            <argument name="addMediaPath" xsi:type="boolean">false</argument>
+            <argument name="addMediaPath" xsi:type="boolean">true</argument>
         </arguments>
     </type>
-
     <virtualType name="docProductSchemaDataProviderResolver" type="Boxalino\DataIntegration\Model\DataProvider\DiSchemaDataProviderResolver">
         <arguments>
             <argument name="document" xsi:type="string">doc_product</argument>
@@ -103,6 +103,7 @@
                 <item name="option_text" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeOptionText</item>
                 <item name="source_model_global" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeSourceModelInt</item>
                 <item name="source_model_localized" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeSourceModelIntLocalized</item>
+                <!--                <item name="attribute_visibility_grouping" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeVisibilityGrouping</item>-->
             </argument>
         </arguments>
     </virtualType>
@@ -112,6 +113,5 @@
             <argument name="diSchemaDataProviderResolver" xsi:type="object">docProductSchemaDataProviderResolver</argument>
         </arguments>
     </type>
-
 
 </config>
