@@ -9,7 +9,7 @@
   },
   "license": ["MIT"],
   "require": {
-    "php": ">=8.3",
+    "php": ">=8.1",
     "boxalino/rtux-api-php": "~4.1.0",
     "boxalino/rtux-magento2": "~4.1.0",
     "boxalino/data-integration-magento2": "~4.0.0"
