@@ -12,6 +12,7 @@
             <!-- add propertyHandlers that would return data for the document; the handlers here are DI-logic layer -->
             <argument name="propertyHandlers" xsi:type="array">
                 <item name="eavAttributes" xsi:type="object">Boxalino\DataIntegration\Service\Document\Attribute\EavAttribute</item>
+                <item name="extendedAttribute" xsi:type="object">Boxalino\DataIntegration\Service\Document\Attribute\ExtendedAttribute</item>
             </argument>
         </arguments>
     </type>
