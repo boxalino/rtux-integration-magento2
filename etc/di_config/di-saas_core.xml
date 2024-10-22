@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Boxalino\DataIntegrationDoc\Service\Integration\CoreIntegrationHandlerInterface" type="Boxalino\DataIntegration\Service\Integration\CoreIntegrationHandler"/>
+    <type name="Boxalino\DataIntegrationDoc\Service\Integration\CoreIntegrationHandlerInterface">
+        <arguments>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Core\Logger</argument>
+            <argument name="timeout" xsi:type="number">300</argument>
+            <argument name="docHandlers" xsi:type="array">
+                <item name="eavttribute" xsi:type="object">BoxalinoClientProject\BoxalinoIntegration\Service\Document\Core\EavAttribute</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="BoxalinoClientProject\BoxalinoIntegration\Service\Document\Core\EavAttribute" type="Boxalino\DataIntegration\Service\Document\Core\DocHandler">
+        <arguments>
+            <argument name="logger" xsi:type="object">Boxalino\DataIntegration\Logger\Core\Logger</argument>
+            <argument name="dataProvider" xsi:type="object">BoxalinoClientProject\BoxalinoIntegration\Model\Di\Core\EavAttribute</argument>
+            <argument name="type" xsi:type="string">attribute</argument>
+            <argument name="destination" xsi:type="string">doc_attribute_eav</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="boxalino:di:core" xsi:type="object">Boxalino\DataIntegration\Framework\Console\CoreDataIntegration</item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>
