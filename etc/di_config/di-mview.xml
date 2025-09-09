@@ -91,6 +91,7 @@
                 <item name="source_model_global" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeSourceModelInt</item>
                 <item name="source_model_localized" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeSourceModelIntLocalized</item>
                 <item name="review_summary" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\ReviewSummary</item>
+                <item name="min_sale_qty" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\MinSaleQty</item>
                 <!--                <item name="attribute_visibility_grouping" xsi:type="object">Boxalino\DataIntegration\Service\Document\Product\Attribute\AttributeVisibilityGrouping</item>-->
             </argument>
         </arguments>
@@ -171,6 +172,7 @@
                 <item name="source_model_global" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeSourceModelInt</item>
                 <item name="source_model_localized" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeSourceModelIntLocalized</item>
                 <item name="review_summary" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\ReviewSummary</item>
+                <item name="min_sale_qty" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\MinSaleQty</item>
                 <!--                <item name="attribute_visibility_grouping" xsi:type="object">Boxalino\DataIntegration\Model\DataProvider\Document\Product\AttributeVisibilityGrouping</item>-->
             </argument>
         </arguments>
