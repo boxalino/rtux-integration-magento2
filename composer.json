@@ -4,14 +4,15 @@
   "type": "magento2-module",
   "homepage": "http://www.boxalino.com",
   "keywords": ["boxalino","rtux","real-time","personalization","magento2", "integration"],
+  "version": "5.0.0",
   "support": {
     "email": "support@boxalino.com"
   },
   "license": ["MIT"],
   "require": {
-    "php": ">=8.1",
-    "boxalino/rtux-api-php": "~4.1.0",
-    "boxalino/rtux-magento2": "~5.0.0",
+    "php": ">=8.4",
+    "boxalino/rtux-api-php": "~5.0.0",
+    "boxalino/rtux-magento2": "~5.1.0",
     "boxalino/data-integration-magento2": "~4.2.4"
   },
   "autoload": {
