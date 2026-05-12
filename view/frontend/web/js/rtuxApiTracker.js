@@ -7,7 +7,6 @@
  */
 define([
     'jquery',
-    'Boxalino_RealTimeUserExperience/js/api/events/view-page',
     'Boxalino_RealTimeUserExperience/js/api/events/view-navigation',
     'Boxalino_RealTimeUserExperience/js/api/events/view-search',
     'Boxalino_RealTimeUserExperience/js/api/events/view-product',
