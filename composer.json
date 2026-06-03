@@ -4,7 +4,7 @@
   "type": "magento2-module",
   "homepage": "http://www.boxalino.com",
   "keywords": ["boxalino","rtux","real-time","personalization","magento2", "integration"],
-  "version": "5.0.0",
+  "version": "5.1.0",
   "support": {
     "email": "support@boxalino.com"
   },
@@ -13,7 +13,7 @@
     "php": ">=8.4",
     "boxalino/rtux-api-php": "~5.0.0",
     "boxalino/rtux-magento2": "~5.1.0",
-    "boxalino/data-integration-magento2": "~4.2.4"
+    "boxalino/data-integration-magento2": "~4.3.0"
   },
   "autoload": {
     "files": ["registration.php"],
