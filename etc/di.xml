@@ -7,6 +7,17 @@
     <!-- PDP recommendations (strategy C) -->
     <preference for="Magento\Checkout\Block\Cart\Crosssell" type="BoxalinoClientProject\BoxalinoIntegration\Block\Api\Product\Crosssell"/>
 
+    <!-- project facet accessor: falls back to getRangeProperties() from/to fields when the API response omits rangeFromField/rangeToField -->
+    <type name="Boxalino\RealTimeUserExperience\Service\Api\Util\AccessorHandler">
+        <arguments>
+            <argument name="accessorList" xsi:type="array">
+                <item name="facet" xsi:type="array">
+                    <item name="facet" xsi:type="string">BoxalinoClientProject\BoxalinoIntegration\Service\Api\Response\Accessor\Facet</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
     <!-- registry-mock to access available API response structures -->
     <preference for="Boxalino\RealTimeUserExperience\Api\CurrentApiResponseRegistryInterface" type="Boxalino\RealTimeUserExperience\Registry\CurrentApiResponse"/>
     <preference for="Boxalino\RealTimeUserExperience\Api\CurrentApiResponseViewRegistryInterface" type="Boxalino\RealTimeUserExperience\Registry\CurrentApiResponseView"/>
